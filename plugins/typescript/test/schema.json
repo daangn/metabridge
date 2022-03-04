@@ -16,12 +16,7 @@
         "additionalProperties": false
       },
       "response": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "string"
-          }
-        }
+        "$ref": "#/$defs/StringValue"
       }
     }
   },

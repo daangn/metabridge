@@ -37,10 +37,10 @@ import dedent from "dedent";
         StorageGetRequestBody: {
           key: string,
         };
-        StorageGetResponse: {
-          value?: string,
-          [k: string]: unknown,
-        };
+        StorageGetResponse: StringValue;
+      }
+      export interface StringValue {
+        value: string;
       }
       
       export interface MetaBridgeDriver {
@@ -58,7 +58,7 @@ import dedent from "dedent";
             return driver.onCalled("STORAGE.GET", req);
           },
         };
-      }    
+      }
     ` + "\n"
   );
 })();
