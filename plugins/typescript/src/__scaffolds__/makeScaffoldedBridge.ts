@@ -1,8 +1,8 @@
-export interface metabridgeDriver {
+export interface MetaBridgeDriver {
   onCalled: (type: string, requestBody: any) => Promise<any>;
 }
 
-export function makeScaffoldedBridge({ driver }: { driver: metabridgeDriver }) {
+export function makeScaffoldedBridge({ driver }: { driver: MetaBridgeDriver }) {
   return {
     /* operations */
   };
