@@ -9,6 +9,7 @@ const protocol = z.object({
 });
 
 const schema = z.object({
+  appName: z.string(),
   protocols: z.record(z.string(), protocol),
   $defs: z.any(),
 });

@@ -1,15 +1,11 @@
 {
+  "appName": "karrot",
   "protocols": {
     "REQ.ROUTER.PUSH": {
       "operationId": "pushRouter",
       "description": "상세설명",
       "requestBody": {
-        "type": "object",
-        "properties": {
-          "something": {
-            "$ref": "#/$defs/something"
-          }
-        }
+        "$ref": "#/$defs/something"
       },
       "response": {}
     }

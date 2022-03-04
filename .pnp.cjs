@@ -129,10 +129,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@nextbridge/cli", "workspace:cli"],\
             ["@nextbridge/plugin-base", "workspace:plugins/base"],\
             ["@types/dedent", "npm:0.7.0"],\
+            ["@types/lodash", "npm:4.14.179"],\
             ["@types/node", "npm:17.0.21"],\
+            ["@types/prettier", "npm:2.4.4"],\
+            ["camel-case", "npm:4.1.2"],\
             ["dedent", "npm:0.7.0"],\
             ["exec-sh", "npm:0.4.0"],\
             ["json-schema-to-typescript", "npm:10.1.5"],\
+            ["lodash", "npm:4.17.21"],\
+            ["pascal-case", "npm:3.1.2"],\
+            ["prettier", "npm:2.5.1"],\
             ["tsm", "npm:2.2.1"],\
             ["typescript", "patch:typescript@npm%3A4.6.2#~builtin<compat/typescript>::version=4.6.2&hash=bda367"]\
           ],\
@@ -268,6 +274,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/call-me-maybe-npm-1.0.1-d07e74bc9c-d19e9d6ac2.zip/node_modules/call-me-maybe/",\
           "packageDependencies": [\
             ["call-me-maybe", "npm:1.0.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["camel-case", [\
+        ["npm:4.1.2", {\
+          "packageLocation": "./.yarn/cache/camel-case-npm-4.1.2-082bf67a9a-bcbd25cd25.zip/node_modules/camel-case/",\
+          "packageDependencies": [\
+            ["camel-case", "npm:4.1.2"],\
+            ["pascal-case", "npm:3.1.2"],\
+            ["tslib", "npm:2.3.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -775,6 +792,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["lower-case", [\
+        ["npm:2.0.2", {\
+          "packageLocation": "./.yarn/cache/lower-case-npm-2.0.2-151055f1c2-83a0a5f159.zip/node_modules/lower-case/",\
+          "packageDependencies": [\
+            ["lower-case", "npm:2.0.2"],\
+            ["tslib", "npm:2.3.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["lru-queue", [\
         ["npm:0.1.0", {\
           "packageLocation": "./.yarn/cache/lru-queue-npm-0.1.0-8e1c90dde8-7f2c53c5e7.zip/node_modules/lru-queue/",\
@@ -858,6 +885,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["no-case", [\
+        ["npm:3.0.4", {\
+          "packageLocation": "./.yarn/cache/no-case-npm-3.0.4-12884c3d98-0b2ebc113d.zip/node_modules/no-case/",\
+          "packageDependencies": [\
+            ["no-case", "npm:3.0.4"],\
+            ["lower-case", "npm:2.0.2"],\
+            ["tslib", "npm:2.3.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["object-assign", [\
         ["npm:4.1.1", {\
           "packageLocation": "./.yarn/cache/object-assign-npm-4.1.1-1004ad6dec-fcc6e4ea8c.zip/node_modules/object-assign/",\
@@ -873,6 +911,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["once", "npm:1.4.0"],\
             ["wrappy", "npm:1.0.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["pascal-case", [\
+        ["npm:3.1.2", {\
+          "packageLocation": "./.yarn/cache/pascal-case-npm-3.1.2-35f5b9bff6-ba98bfd595.zip/node_modules/pascal-case/",\
+          "packageDependencies": [\
+            ["pascal-case", "npm:3.1.2"],\
+            ["no-case", "npm:3.0.4"],\
+            ["tslib", "npm:2.3.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -922,6 +971,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["timers-ext", "npm:0.1.7"],\
             ["es5-ext", "npm:0.10.53"],\
             ["next-tick", "npm:1.1.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["tslib", [\
+        ["npm:2.3.1", {\
+          "packageLocation": "./.yarn/cache/tslib-npm-2.3.1-0e21e18015-de17a98d46.zip/node_modules/tslib/",\
+          "packageDependencies": [\
+            ["tslib", "npm:2.3.1"]\
           ],\
           "linkType": "HARD"\
         }]\
