@@ -7,10 +7,10 @@
 $ yarn add --dev @metabridge/cli
 
 # Generate code
-$ yarn metabridge-cli
-    --plugin @metabridge/plugin-typescript
-    --schema ./somewhere/mySchema.json
-    --output ./somewhere/__generated__/mySdk.ts
+$ yarn metabridge-cli \
+$   --plugin @metabridge/plugin-typescript \
+$   --schema ./somewhere/mySchema.json \
+$   --output ./somewhere/__generated__/mySdk.ts
 ```
 
 ```typescript
