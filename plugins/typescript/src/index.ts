@@ -1,6 +1,5 @@
 import { Plugin } from "@nextbridge/plugin-base";
 import { compile } from "json-schema-to-typescript";
-import $RefParser from "@apidevtools/json-schema-ref-parser";
 
 const plugin: Plugin = {
   async compile(schema) {

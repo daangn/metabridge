@@ -3,23 +3,21 @@
   "version": "0.0.0",
   "main": "lib/index.js",
   "scripts": {
-    "build": "tsc",
-    "test": "yarn node -r tsm ./test/index.test.ts"
+    "build": "tsc -p tsconfig.build.json",
+    "test": "yarn build && yarn node -r tsm ./test/index.test.ts"
   },
   "dependencies": {
-    "@apidevtools/json-schema-ref-parser": "^9.0.9",
     "@nextbridge/plugin-base": "workspace:^",
-    "exec-sh": "^0.4.0",
-    "json-schema-to-typescript": "^10.1.5",
-    "quicktype-core": "^6.0.70"
+    "json-schema-to-typescript": "^10.1.5"
   },
   "devDependencies": {
     "@nextbridge/cli": "workspace:^",
+    "@types/dedent": "^0.7.0",
+    "@types/node": "^17.0.21",
+    "dedent": "^0.7.0",
+    "exec-sh": "^0.4.0",
     "tsm": "^2.2.1",
     "typescript": "^4.6.2"
-  },
-  "peerDependencies": {
-    "@nextbridge/cli": ">=0.0.0"
   },
   "packageManager": "yarn@3.2.0"
 }

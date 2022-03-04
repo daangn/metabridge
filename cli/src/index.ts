@@ -2,7 +2,6 @@ import { program } from "commander";
 import * as z from "zod";
 import path from "path";
 import fs from "fs/promises";
-import to from "await-to-js";
 import { Plugin } from "@nextbridge/plugin-base";
 import * as nextBridgeSchema from "@nextbridge/schema";
 
@@ -43,7 +42,5 @@ const pkg = require("../package.json");
 
   const output = await compile(loadedSchema);
 
-  console.log(output);
-
-  // console.log(schemaLoadErr, schema);
+  await fs.writeFile(outputPath, output, "utf-8");
 })();
