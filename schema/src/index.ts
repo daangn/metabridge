@@ -1,25 +1,16 @@
-import * as z from "zod";
-import { zodToJsonSchema } from "zod-to-json-schema";
+import Ajv, { JSONSchemaType } from "ajv";
+import { Schema } from "./schema";
+import metaSchema from "./schema.json";
 
-const protocol = z.object({
-  operationId: z.string(),
-  description: z.string(),
-  requestBody: z.any(),
-  response: z.any(),
-});
+const ajv = new Ajv();
+const validate = ajv.compile(metaSchema as any as JSONSchemaType<Schema>);
 
-const schema = z.object({
-  appName: z.string(),
-  protocols: z.record(z.string(), protocol),
-  $defs: z.any(),
-});
-
-export const jsonSchema = zodToJsonSchema(schema, "nextbridgeSchema");
-
-export type TypeSchema = z.infer<typeof schema>;
-
-export type TypeProtocol = z.infer<typeof protocol>;
+export type TypeSchema = Schema;
 
 export function parse(data: unknown) {
-  return schema.parse(data);
+  if (validate(data)) {
+    return data;
+  }
+
+  throw new Error(`Invalid Schema: ${validate.errors?.toString()}`);
 }

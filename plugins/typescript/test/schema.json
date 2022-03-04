@@ -1,13 +1,21 @@
 {
+  "$schema": "../../../schema/src/schema.json",
   "appName": "karrot",
   "protocols": {
-    "REQ.ROUTER.PUSH": {
-      "operationId": "pushRouter",
-      "description": "상세설명",
+    "GET.INFO.FROM.STORAGE": {
+      "operationId": "getInfoFromStorage",
+      "description": "Get viewer info from storage",
       "requestBody": {
         "$ref": "#/$defs/something"
       },
-      "response": {}
+      "response": {
+        "type": "object",
+        "properties": {
+          "hello": {
+            "type": "string"
+          }
+        }
+      }
     }
   },
   "$defs": {
