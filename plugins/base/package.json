@@ -1,6 +1,7 @@
 {
   "name": "@nextbridge/plugin-base",
   "packageManager": "yarn@3.2.0",
+  "main": "lib/index.js",
   "scripts": {
     "build": "tsc"
   },
@@ -9,5 +10,8 @@
   },
   "dependencies": {
     "@nextbridge/schema": "workspace:^"
+  },
+  "peerDependencies": {
+    "@nextbridge/plugin-typescript": ">=0.0.0"
   }
 }

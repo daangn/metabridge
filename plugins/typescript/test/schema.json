@@ -1,0 +1,11 @@
+{
+  "protocols": {
+    "REQ.ROUTER.PUSH": {
+      "operationId": "pushRouter",
+      "description": "상세설명",
+      "requestBody": {},
+      "response": {}
+    }
+  },
+  "components": {}
+}

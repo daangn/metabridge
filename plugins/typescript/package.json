@@ -1,11 +1,19 @@
 {
   "name": "@nextbridge/plugin-typescript",
   "version": "0.0.0",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "yarn node -r tsm ./test/index.test.ts"
+  },
   "dependencies": {
+    "@nextbridge/plugin-base": "workspace:^",
+    "exec-sh": "^0.4.0",
     "json-schema-to-typescript": "^10.1.5"
   },
   "devDependencies": {
     "@nextbridge/cli": "workspace:^",
+    "tsm": "^2.2.1",
     "typescript": "^4.6.2"
   },
   "peerDependencies": {

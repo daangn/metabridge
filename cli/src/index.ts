@@ -3,6 +3,8 @@ import * as z from "zod";
 import path from "path";
 import fs from "fs/promises";
 import to from "await-to-js";
+import { Plugin } from "@nextbridge/plugin-base";
+import * as nextBridgeSchema from "@nextbridge/schema";
 
 const pkg = require("../package.json");
 
@@ -13,7 +15,7 @@ const pkg = require("../package.json");
     .version(pkg.version);
 
   program
-    .requiredOption("-p, --plugins <plugins...>")
+    .requiredOption("-p, --plugin <plugin>")
     .requiredOption("-s, --schema <path>")
     .requiredOption("-o, --output <path>");
 
@@ -21,19 +23,27 @@ const pkg = require("../package.json");
 
   const Options = z
     .object({
-      plugins: z.array(z.string()),
+      plugin: z.string(),
       schema: z.string(),
       output: z.string(),
     })
-    .transform(({ schema, plugins, output }) => ({
-      plugins,
+    .transform(({ schema, plugin, output }) => ({
+      plugin: require(plugin).default as Plugin,
       schemaPath: path.resolve(schema),
       outputPath: path.resolve(output),
     }));
 
-  const { schemaPath, plugins, outputPath } = Options.parse(program.opts());
+  const { schemaPath, plugin, outputPath } = Options.parse(program.opts());
 
-  const [schemaLoadErr, schema] = await to(fs.readFile(schemaPath));
+  const loadedSchema = nextBridgeSchema.parse(
+    JSON.parse(await fs.readFile(schemaPath, "utf-8"))
+  );
 
-  console.log(schemaLoadErr, schema);
+  const { compile } = plugin;
+
+  const output = compile(loadedSchema);
+
+  console.log(output);
+
+  // console.log(schemaLoadErr, schema);
 })();

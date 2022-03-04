@@ -28,6 +28,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nextbridge/cli@workspace:cli"
   dependencies:
+    "@nextbridge/plugin-base": "workspace:^"
+    "@nextbridge/schema": "workspace:^"
     "@types/node": ^17.0.21
     await-to-js: ^3.0.0
     commander: ^9.0.0
@@ -48,21 +50,26 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nextbridge/plugin-base@workspace:plugins/base":
+"@nextbridge/plugin-base@workspace:^, @nextbridge/plugin-base@workspace:plugins/base":
   version: 0.0.0-use.local
   resolution: "@nextbridge/plugin-base@workspace:plugins/base"
   dependencies:
     "@nextbridge/schema": "workspace:^"
     typescript: ^4.6.2
+  peerDependencies:
+    "@nextbridge/plugin-typescript": ">=0.0.0"
   languageName: unknown
   linkType: soft
 
-"@nextbridge/plugin-typescript@workspace:plugins/typescript":
+"@nextbridge/plugin-typescript@*, @nextbridge/plugin-typescript@workspace:plugins/typescript":
   version: 0.0.0-use.local
   resolution: "@nextbridge/plugin-typescript@workspace:plugins/typescript"
   dependencies:
     "@nextbridge/cli": "workspace:^"
+    "@nextbridge/plugin-base": "workspace:^"
+    exec-sh: ^0.4.0
     json-schema-to-typescript: ^10.1.5
+    tsm: ^2.2.1
     typescript: ^4.6.2
   peerDependencies:
     "@nextbridge/cli": ">=0.0.0"
@@ -74,6 +81,8 @@ __metadata:
   resolution: "@nextbridge/schema@workspace:schema"
   dependencies:
     typescript: ^4.6.2
+    zod: ^3.13.4
+    zod-to-json-schema: ^3.11.3
   languageName: unknown
   linkType: soft
 
@@ -469,6 +478,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"exec-sh@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "exec-sh@npm:0.4.0"
+  checksum: 57e0bb253b5ece8e284dca1608a19c0fd7986342daa3c2a54400dda941eb8190d2153c912fec5f08e406d0d2a2f254fdd6d410db807aebbcbd8671544d86ebe6
+  languageName: node
+  linkType: hard
+
 "ext@npm:^1.1.2":
   version: 1.6.0
   resolution: "ext@npm:1.6.0"
@@ -803,7 +819,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:^3.13.4":
+"zod-to-json-schema@npm:^3.11.3":
+  version: 3.11.3
+  resolution: "zod-to-json-schema@npm:3.11.3"
+  dependencies:
+    zod: ^3.11.6
+  checksum: 28c7e415c3fc2361ed411966840ff65ac9a4590bb4336c29b16359027e62c401ead8779e4b8504a2ee6f7e036ce5d8a2d25f1c0607823094a28ef0d44b8a14a2
+  languageName: node
+  linkType: hard
+
+"zod@npm:^3.11.6, zod@npm:^3.13.4":
   version: 3.13.4
   resolution: "zod@npm:3.13.4"
   checksum: 3db8e4d27e8d305eed44c3eaff3e67fa26e39ad0bf4f06dbafae6b6e6516bdcc5aafe342afeb81ba0386fa53373404a18f0371d41a3738f1f9b85d1321ee9724

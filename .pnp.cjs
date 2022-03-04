@@ -42,8 +42,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
     "fallbackExclusionList": [\
       ["@nextbridge/cli", ["workspace:cli"]],\
       ["@nextbridge/monorepo", ["workspace:."]],\
-      ["@nextbridge/plugin-base", ["workspace:plugins/base"]],\
-      ["@nextbridge/plugin-typescript", ["workspace:plugins/typescript"]],\
+      ["@nextbridge/plugin-base", ["virtual:17747bc295dc8fed6bc1e710e26be8dfd627eb77d6f1dd8c04c820429cbf6cd669d240c62fa7b91a6161a9ad5a0b1c735e2d0f5cd76e332590dacf82dc64091c#workspace:plugins/base", "virtual:f2bf6b135b453894874f606ce49671274bfa2fc5e360063716f1855f6cf05ae21359c650b9b51f7af38bd62adc4e9a74066c302e77691aacf08af6f6859685a9#workspace:plugins/base", "workspace:plugins/base"]],\
+      ["@nextbridge/plugin-typescript", ["virtual:17747bc295dc8fed6bc1e710e26be8dfd627eb77d6f1dd8c04c820429cbf6cd669d240c62fa7b91a6161a9ad5a0b1c735e2d0f5cd76e332590dacf82dc64091c#workspace:plugins/typescript", "workspace:plugins/typescript"]],\
       ["@nextbridge/schema", ["workspace:schema"]]\
     ],\
     "fallbackPool": [\
@@ -86,6 +86,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./cli/",\
           "packageDependencies": [\
             ["@nextbridge/cli", "workspace:cli"],\
+            ["@nextbridge/plugin-base", "virtual:17747bc295dc8fed6bc1e710e26be8dfd627eb77d6f1dd8c04c820429cbf6cd669d240c62fa7b91a6161a9ad5a0b1c735e2d0f5cd76e332590dacf82dc64091c#workspace:plugins/base"],\
+            ["@nextbridge/plugin-typescript", "virtual:17747bc295dc8fed6bc1e710e26be8dfd627eb77d6f1dd8c04c820429cbf6cd669d240c62fa7b91a6161a9ad5a0b1c735e2d0f5cd76e332590dacf82dc64091c#workspace:plugins/typescript"],\
+            ["@nextbridge/schema", "workspace:schema"],\
             ["@types/node", "npm:17.0.21"],\
             ["await-to-js", "npm:3.0.0"],\
             ["commander", "npm:9.0.0"],\
@@ -108,6 +111,36 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@nextbridge/plugin-base", [\
+        ["virtual:17747bc295dc8fed6bc1e710e26be8dfd627eb77d6f1dd8c04c820429cbf6cd669d240c62fa7b91a6161a9ad5a0b1c735e2d0f5cd76e332590dacf82dc64091c#workspace:plugins/base", {\
+          "packageLocation": "./.yarn/__virtual__/@nextbridge-plugin-base-virtual-0ede014292/1/plugins/base/",\
+          "packageDependencies": [\
+            ["@nextbridge/plugin-base", "virtual:17747bc295dc8fed6bc1e710e26be8dfd627eb77d6f1dd8c04c820429cbf6cd669d240c62fa7b91a6161a9ad5a0b1c735e2d0f5cd76e332590dacf82dc64091c#workspace:plugins/base"],\
+            ["@nextbridge/plugin-typescript", "virtual:17747bc295dc8fed6bc1e710e26be8dfd627eb77d6f1dd8c04c820429cbf6cd669d240c62fa7b91a6161a9ad5a0b1c735e2d0f5cd76e332590dacf82dc64091c#workspace:plugins/typescript"],\
+            ["@nextbridge/schema", "workspace:schema"],\
+            ["@types/nextbridge__plugin-typescript", null],\
+            ["typescript", "patch:typescript@npm%3A4.6.2#~builtin<compat/typescript>::version=4.6.2&hash=bda367"]\
+          ],\
+          "packagePeers": [\
+            "@nextbridge/plugin-typescript",\
+            "@types/nextbridge__plugin-typescript"\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:f2bf6b135b453894874f606ce49671274bfa2fc5e360063716f1855f6cf05ae21359c650b9b51f7af38bd62adc4e9a74066c302e77691aacf08af6f6859685a9#workspace:plugins/base", {\
+          "packageLocation": "./.yarn/__virtual__/@nextbridge-plugin-base-virtual-95213bb0d3/1/plugins/base/",\
+          "packageDependencies": [\
+            ["@nextbridge/plugin-base", "virtual:f2bf6b135b453894874f606ce49671274bfa2fc5e360063716f1855f6cf05ae21359c650b9b51f7af38bd62adc4e9a74066c302e77691aacf08af6f6859685a9#workspace:plugins/base"],\
+            ["@nextbridge/plugin-typescript", "workspace:plugins/typescript"],\
+            ["@nextbridge/schema", "workspace:schema"],\
+            ["@types/nextbridge__plugin-typescript", null],\
+            ["typescript", "patch:typescript@npm%3A4.6.2#~builtin<compat/typescript>::version=4.6.2&hash=bda367"]\
+          ],\
+          "packagePeers": [\
+            "@nextbridge/plugin-typescript",\
+            "@types/nextbridge__plugin-typescript"\
+          ],\
+          "linkType": "SOFT"\
+        }],\
         ["workspace:plugins/base", {\
           "packageLocation": "./plugins/base/",\
           "packageDependencies": [\
@@ -119,12 +152,33 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@nextbridge/plugin-typescript", [\
+        ["virtual:17747bc295dc8fed6bc1e710e26be8dfd627eb77d6f1dd8c04c820429cbf6cd669d240c62fa7b91a6161a9ad5a0b1c735e2d0f5cd76e332590dacf82dc64091c#workspace:plugins/typescript", {\
+          "packageLocation": "./.yarn/__virtual__/@nextbridge-plugin-typescript-virtual-ea7942cba4/1/plugins/typescript/",\
+          "packageDependencies": [\
+            ["@nextbridge/plugin-typescript", "virtual:17747bc295dc8fed6bc1e710e26be8dfd627eb77d6f1dd8c04c820429cbf6cd669d240c62fa7b91a6161a9ad5a0b1c735e2d0f5cd76e332590dacf82dc64091c#workspace:plugins/typescript"],\
+            ["@nextbridge/cli", "workspace:cli"],\
+            ["@nextbridge/plugin-base", "virtual:17747bc295dc8fed6bc1e710e26be8dfd627eb77d6f1dd8c04c820429cbf6cd669d240c62fa7b91a6161a9ad5a0b1c735e2d0f5cd76e332590dacf82dc64091c#workspace:plugins/base"],\
+            ["@types/nextbridge__cli", null],\
+            ["exec-sh", "npm:0.4.0"],\
+            ["json-schema-to-typescript", "npm:10.1.5"],\
+            ["tsm", "npm:2.2.1"],\
+            ["typescript", "patch:typescript@npm%3A4.6.2#~builtin<compat/typescript>::version=4.6.2&hash=bda367"]\
+          ],\
+          "packagePeers": [\
+            "@nextbridge/cli",\
+            "@types/nextbridge__cli"\
+          ],\
+          "linkType": "SOFT"\
+        }],\
         ["workspace:plugins/typescript", {\
           "packageLocation": "./plugins/typescript/",\
           "packageDependencies": [\
             ["@nextbridge/plugin-typescript", "workspace:plugins/typescript"],\
             ["@nextbridge/cli", "workspace:cli"],\
+            ["@nextbridge/plugin-base", "virtual:f2bf6b135b453894874f606ce49671274bfa2fc5e360063716f1855f6cf05ae21359c650b9b51f7af38bd62adc4e9a74066c302e77691aacf08af6f6859685a9#workspace:plugins/base"],\
+            ["exec-sh", "npm:0.4.0"],\
             ["json-schema-to-typescript", "npm:10.1.5"],\
+            ["tsm", "npm:2.2.1"],\
             ["typescript", "patch:typescript@npm%3A4.6.2#~builtin<compat/typescript>::version=4.6.2&hash=bda367"]\
           ],\
           "linkType": "SOFT"\
@@ -135,7 +189,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./schema/",\
           "packageDependencies": [\
             ["@nextbridge/schema", "workspace:schema"],\
-            ["typescript", "patch:typescript@npm%3A4.6.2#~builtin<compat/typescript>::version=4.6.2&hash=bda367"]\
+            ["typescript", "patch:typescript@npm%3A4.6.2#~builtin<compat/typescript>::version=4.6.2&hash=bda367"],\
+            ["zod", "npm:3.13.4"],\
+            ["zod-to-json-schema", "npm:3.11.3"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -563,6 +619,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["exec-sh", [\
+        ["npm:0.4.0", {\
+          "packageLocation": "./.yarn/cache/exec-sh-npm-0.4.0-d24cf298f4-57e0bb253b.zip/node_modules/exec-sh/",\
+          "packageDependencies": [\
+            ["exec-sh", "npm:0.4.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["ext", [\
         ["npm:1.6.0", {\
           "packageLocation": "./.yarn/cache/ext-npm-1.6.0-d724ecc103-ca3ef4619e.zip/node_modules/ext/",\
@@ -936,6 +1001,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         ["npm:3.13.4", {\
           "packageLocation": "./.yarn/cache/zod-npm-3.13.4-8e1debbd22-3db8e4d27e.zip/node_modules/zod/",\
           "packageDependencies": [\
+            ["zod", "npm:3.13.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["zod-to-json-schema", [\
+        ["npm:3.11.3", {\
+          "packageLocation": "./.yarn/cache/zod-to-json-schema-npm-3.11.3-f29773303b-28c7e415c3.zip/node_modules/zod-to-json-schema/",\
+          "packageDependencies": [\
+            ["zod-to-json-schema", "npm:3.11.3"],\
             ["zod", "npm:3.13.4"]\
           ],\
           "linkType": "HARD"\

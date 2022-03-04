@@ -5,6 +5,8 @@
     "nextbridge-cli": "./bin/run"
   },
   "dependencies": {
+    "@nextbridge/plugin-base": "workspace:^",
+    "@nextbridge/schema": "workspace:^",
     "await-to-js": "^3.0.0",
     "commander": "^9.0.0",
     "tsm": "^2.2.1",

@@ -1,3 +1,7 @@
-import { Schema } from "@nextbridge/schema/lib/index";
+import { TypeSchema } from "@nextbridge/schema";
 
-export type Compile = (schema: Schema) => string;
+export type Compile = (schema: TypeSchema) => string;
+
+export type Plugin = {
+  compile: Compile;
+};

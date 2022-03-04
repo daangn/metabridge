@@ -1,11 +1,16 @@
 {
   "name": "@nextbridge/schema",
   "version": "0.0.0",
+  "main": "lib/index.js",
   "scripts": {
     "build": "tsc"
   },
   "devDependencies": {
     "typescript": "^4.6.2"
   },
-  "packageManager": "yarn@3.2.0"
+  "packageManager": "yarn@3.2.0",
+  "dependencies": {
+    "zod": "^3.13.4",
+    "zod-to-json-schema": "^3.11.3"
+  }
 }
