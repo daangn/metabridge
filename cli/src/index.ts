@@ -41,7 +41,7 @@ const pkg = require("../package.json");
 
   const { compile } = plugin;
 
-  const output = compile(loadedSchema);
+  const output = await compile(loadedSchema);
 
   console.log(output);
 

@@ -10,7 +10,7 @@ const protocol = z.object({
 
 const schema = z.object({
   protocols: z.record(z.string(), protocol),
-  components: z.any(),
+  $defs: z.any(),
 });
 
 export const jsonSchema = zodToJsonSchema(schema, "nextbridgeSchema");

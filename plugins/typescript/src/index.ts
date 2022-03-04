@@ -1,8 +1,25 @@
-import { Plugin } from "@nextbridge/plugin-base/lib";
+import { Plugin } from "@nextbridge/plugin-base";
+import { compile } from "json-schema-to-typescript";
+import $RefParser from "@apidevtools/json-schema-ref-parser";
 
 const plugin: Plugin = {
-  compile() {
-    return "Hello, World!";
+  async compile(schema) {
+    const output: string[] = [];
+
+    for (let type in schema.protocols) {
+      const { requestBody, response } = schema.protocols[type];
+      output.push(
+        await compile(
+          {
+            ...requestBody,
+            $defs: schema.$defs,
+          },
+          type
+        )
+      );
+    }
+
+    return output.join(`\n`);
   },
 };
 

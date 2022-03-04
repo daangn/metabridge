@@ -3,9 +3,27 @@
     "REQ.ROUTER.PUSH": {
       "operationId": "pushRouter",
       "description": "상세설명",
-      "requestBody": {},
+      "requestBody": {
+        "type": "object",
+        "properties": {
+          "something": {
+            "$ref": "#/$defs/something"
+          }
+        }
+      },
       "response": {}
     }
   },
-  "components": {}
+  "$defs": {
+    "something": {
+      "type": "object",
+      "properties": {
+        "app": {
+          "type": "string"
+        }
+      },
+      "required": ["app"],
+      "additionalProperties": false
+    }
+  }
 }
