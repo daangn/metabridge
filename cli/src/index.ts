@@ -2,14 +2,14 @@ import { program } from "commander";
 import * as z from "zod";
 import path from "path";
 import fs from "fs/promises";
-import { Plugin } from "@nextbridge/plugin-base";
-import * as nextBridgeSchema from "@nextbridge/schema";
+import { Plugin } from "@metabridge/plugin-base";
+import * as metabridgeSchema from "@metabridge/schema";
 
 const pkg = require("../package.json");
 
 (async function main() {
   program
-    .name("nextbridge-cli")
+    .name("metabridge-cli")
     .description("JSON Schema based WebView bridge integration")
     .version(pkg.version);
 
@@ -34,7 +34,7 @@ const pkg = require("../package.json");
 
   const { schemaPath, plugin, outputPath } = Options.parse(program.opts());
 
-  const loadedSchema = nextBridgeSchema.parse(
+  const loadedSchema = metabridgeSchema.parse(
     JSON.parse(await fs.readFile(schemaPath, "utf-8"))
   );
 

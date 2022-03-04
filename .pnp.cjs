@@ -17,34 +17,34 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
     ],\
     "dependencyTreeRoots": [\
       {\
-        "name": "@nextbridge/monorepo",\
+        "name": "@metabridge/monorepo",\
         "reference": "workspace:."\
       },\
       {\
-        "name": "@nextbridge/cli",\
+        "name": "@metabridge/cli",\
         "reference": "workspace:cli"\
       },\
       {\
-        "name": "@nextbridge/plugin-base",\
+        "name": "@metabridge/plugin-base",\
         "reference": "workspace:plugins/base"\
       },\
       {\
-        "name": "@nextbridge/plugin-typescript",\
+        "name": "@metabridge/plugin-typescript",\
         "reference": "workspace:plugins/typescript"\
       },\
       {\
-        "name": "@nextbridge/schema",\
+        "name": "@metabridge/schema",\
         "reference": "workspace:schema"\
       }\
     ],\
     "enableTopLevelFallback": true,\
     "ignorePatternData": "(^(?:\\\\.yarn\\\\/sdks(?:\\\\/(?!\\\\.{1,2}(?:\\\\/|$))(?:(?:(?!(?:^|\\\\/)\\\\.{1,2}(?:\\\\/|$)).)*?)|$))$)",\
     "fallbackExclusionList": [\
-      ["@nextbridge/cli", ["workspace:cli"]],\
-      ["@nextbridge/monorepo", ["workspace:."]],\
-      ["@nextbridge/plugin-base", ["workspace:plugins/base"]],\
-      ["@nextbridge/plugin-typescript", ["workspace:plugins/typescript"]],\
-      ["@nextbridge/schema", ["workspace:schema"]]\
+      ["@metabridge/cli", ["workspace:cli"]],\
+      ["@metabridge/monorepo", ["workspace:."]],\
+      ["@metabridge/plugin-base", ["workspace:plugins/base"]],\
+      ["@metabridge/plugin-typescript", ["workspace:plugins/typescript"]],\
+      ["@metabridge/schema", ["workspace:schema"]]\
     ],\
     "fallbackPool": [\
     ],\
@@ -81,14 +81,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["@nextbridge/cli", [\
+      ["@metabridge/cli", [\
         ["workspace:cli", {\
           "packageLocation": "./cli/",\
           "packageDependencies": [\
-            ["@nextbridge/cli", "workspace:cli"],\
-            ["@nextbridge/plugin-base", "workspace:plugins/base"],\
-            ["@nextbridge/plugin-typescript", "workspace:plugins/typescript"],\
-            ["@nextbridge/schema", "workspace:schema"],\
+            ["@metabridge/cli", "workspace:cli"],\
+            ["@metabridge/plugin-base", "workspace:plugins/base"],\
+            ["@metabridge/plugin-typescript", "workspace:plugins/typescript"],\
+            ["@metabridge/schema", "workspace:schema"],\
             ["@types/node", "npm:17.0.21"],\
             ["await-to-js", "npm:3.0.0"],\
             ["commander", "npm:9.0.0"],\
@@ -99,35 +99,35 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "SOFT"\
         }]\
       ]],\
-      ["@nextbridge/monorepo", [\
+      ["@metabridge/monorepo", [\
         ["workspace:.", {\
           "packageLocation": "./",\
           "packageDependencies": [\
-            ["@nextbridge/monorepo", "workspace:."],\
+            ["@metabridge/monorepo", "workspace:."],\
             ["prettier", "npm:2.5.1"],\
             ["typescript", "patch:typescript@npm%3A4.6.2#~builtin<compat/typescript>::version=4.6.2&hash=bda367"]\
           ],\
           "linkType": "SOFT"\
         }]\
       ]],\
-      ["@nextbridge/plugin-base", [\
+      ["@metabridge/plugin-base", [\
         ["workspace:plugins/base", {\
           "packageLocation": "./plugins/base/",\
           "packageDependencies": [\
-            ["@nextbridge/plugin-base", "workspace:plugins/base"],\
-            ["@nextbridge/schema", "workspace:schema"],\
+            ["@metabridge/plugin-base", "workspace:plugins/base"],\
+            ["@metabridge/schema", "workspace:schema"],\
             ["typescript", "patch:typescript@npm%3A4.6.2#~builtin<compat/typescript>::version=4.6.2&hash=bda367"]\
           ],\
           "linkType": "SOFT"\
         }]\
       ]],\
-      ["@nextbridge/plugin-typescript", [\
+      ["@metabridge/plugin-typescript", [\
         ["workspace:plugins/typescript", {\
           "packageLocation": "./plugins/typescript/",\
           "packageDependencies": [\
-            ["@nextbridge/plugin-typescript", "workspace:plugins/typescript"],\
-            ["@nextbridge/cli", "workspace:cli"],\
-            ["@nextbridge/plugin-base", "workspace:plugins/base"],\
+            ["@metabridge/plugin-typescript", "workspace:plugins/typescript"],\
+            ["@metabridge/cli", "workspace:cli"],\
+            ["@metabridge/plugin-base", "workspace:plugins/base"],\
             ["@types/dedent", "npm:0.7.0"],\
             ["@types/lodash", "npm:4.14.179"],\
             ["@types/node", "npm:17.0.21"],\
@@ -145,11 +145,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "SOFT"\
         }]\
       ]],\
-      ["@nextbridge/schema", [\
+      ["@metabridge/schema", [\
         ["workspace:schema", {\
           "packageLocation": "./schema/",\
           "packageDependencies": [\
-            ["@nextbridge/schema", "workspace:schema"],\
+            ["@metabridge/schema", "workspace:schema"],\
             ["@types/node", "npm:17.0.21"],\
             ["ajv", "npm:8.10.0"],\
             ["json-schema-to-typescript", "npm:10.1.5"],\

@@ -7,9 +7,9 @@ import dedent from "dedent";
 (async () => {
   const command = [
     "yarn",
-    "nextbridge-cli",
+    "metabridge-cli",
     "--plugin",
-    "@nextbridge/plugin-typescript",
+    "@metabridge/plugin-typescript",
     "--schema",
     "./test/schema.json",
     "--output",

@@ -1,4 +1,4 @@
-import { Plugin } from "@nextbridge/plugin-base";
+import { Plugin } from "@metabridge/plugin-base";
 import { compile } from "json-schema-to-typescript";
 import { camelCase } from "camel-case";
 import { pascalCase } from "pascal-case";

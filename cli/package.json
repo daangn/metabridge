@@ -1,12 +1,12 @@
 {
-  "name": "@nextbridge/cli",
+  "name": "@metabridge/cli",
   "version": "0.0.0",
   "bin": {
-    "nextbridge-cli": "./bin/run"
+    "metabridge-cli": "./bin/run"
   },
   "dependencies": {
-    "@nextbridge/plugin-base": "workspace:^",
-    "@nextbridge/schema": "workspace:^",
+    "@metabridge/plugin-base": "workspace:^",
+    "@metabridge/schema": "workspace:^",
     "await-to-js": "^3.0.0",
     "commander": "^9.0.0",
     "tsm": "^2.2.1",

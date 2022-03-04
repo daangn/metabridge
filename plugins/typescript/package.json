@@ -1,5 +1,5 @@
 {
-  "name": "@nextbridge/plugin-typescript",
+  "name": "@metabridge/plugin-typescript",
   "version": "0.0.0",
   "main": "lib/index.js",
   "scripts": {
@@ -7,7 +7,7 @@
     "test": "yarn build && yarn node -r tsm ./test/index.test.ts"
   },
   "dependencies": {
-    "@nextbridge/plugin-base": "workspace:^",
+    "@metabridge/plugin-base": "workspace:^",
     "camel-case": "^4.1.2",
     "json-schema-to-typescript": "^10.1.5",
     "lodash": "^4.17.21",
@@ -15,7 +15,7 @@
     "prettier": "^2.5.1"
   },
   "devDependencies": {
-    "@nextbridge/cli": "workspace:^",
+    "@metabridge/cli": "workspace:^",
     "@types/dedent": "^0.7.0",
     "@types/lodash": "^4.14.179",
     "@types/node": "^17.0.21",

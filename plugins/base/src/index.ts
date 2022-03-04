@@ -1,4 +1,4 @@
-import { TypeSchema } from "@nextbridge/schema";
+import { TypeSchema } from "@metabridge/schema";
 
 export type Compile = (schema: TypeSchema) => Promise<string>;
 
