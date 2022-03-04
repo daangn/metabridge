@@ -2,16 +2,23 @@
   "$schema": "../../../schema/src/schema.json",
   "appName": "karrot",
   "protocols": {
-    "GET.INFO.FROM.STORAGE": {
-      "operationId": "getInfoFromStorage",
-      "description": "Get viewer info from storage",
+    "STORAGE.GET": {
+      "operationId": "getItemFromStorage",
+      "description": "Get item from persistent storage",
       "requestBody": {
-        "$ref": "#/$defs/something"
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          }
+        },
+        "required": ["key"],
+        "additionalProperties": false
       },
       "response": {
         "type": "object",
         "properties": {
-          "hello": {
+          "value": {
             "type": "string"
           }
         }
@@ -19,14 +26,14 @@
     }
   },
   "$defs": {
-    "something": {
+    "StringValue": {
       "type": "object",
       "properties": {
-        "app": {
+        "value": {
           "type": "string"
         }
       },
-      "required": ["app"],
+      "required": ["value"],
       "additionalProperties": false
     }
   }

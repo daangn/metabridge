@@ -32,14 +32,33 @@ import dedent from "dedent";
        * DO NOT MODIFY IT BY HAND. Instead, modify the source JSONSchema file,
        * and run json-schema-to-typescript to regenerate this file.
        */
-
-      export interface REQROUTER {
-        something?: Something;
-        [k: string]: unknown;
+      
+      export interface KarrotBridgeSchema {
+        StorageGetRequestBody: {
+          key: string,
+        };
+        StorageGetResponse: {
+          value?: string,
+          [k: string]: unknown,
+        };
       }
-      export interface Something {
-        app: string;
+      
+      export interface MetaBridgeDriver {
+        onCalled: (type: string, requestBody: any) => Promise<any>;
       }
+      
+      export function makeKarrotBridge({ driver }: { driver: MetaBridgeDriver }) {
+        return {
+          /**
+           * Get item from persistent storage
+           */
+          getItemFromStorage(
+            req: KarrotBridgeSchema["StorageGetRequestBody"]
+          ): Promise<KarrotBridgeSchema["StorageGetResponse"]> {
+            return driver.onCalled("STORAGE.GET", req);
+          },
+        };
+      }    
     ` + "\n"
   );
 })();

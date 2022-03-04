@@ -7,7 +7,8 @@
     "schema"
   ],
   "scripts": {
-    "build": "yarn workspaces foreach -t run build"
+    "build": "yarn workspaces foreach -t run build",
+    "test": "yarn workspaces foreach -t run test"
   },
   "devDependencies": {
     "prettier": "^2.5.1",
