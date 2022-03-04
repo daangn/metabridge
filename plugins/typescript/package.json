@@ -1,0 +1,15 @@
+{
+  "name": "@nextbridge/plugin-typescript",
+  "version": "0.0.0",
+  "dependencies": {
+    "json-schema-to-typescript": "^10.1.5"
+  },
+  "devDependencies": {
+    "@nextbridge/cli": "workspace:^",
+    "typescript": "^4.6.2"
+  },
+  "peerDependencies": {
+    "@nextbridge/cli": ">=0.0.0"
+  },
+  "packageManager": "yarn@3.2.0"
+}

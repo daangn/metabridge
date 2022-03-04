@@ -1,9 +1,10 @@
 import { program } from "commander";
 import * as z from "zod";
-import pkg from "../package.json";
 import path from "path";
 import fs from "fs/promises";
 import to from "await-to-js";
+
+const pkg = require("../package.json");
 
 (async function main() {
   program
@@ -12,27 +13,27 @@ import to from "await-to-js";
     .version(pkg.version);
 
   program
-    .requiredOption("-s, --schema <path>")
     .requiredOption("-p, --plugins <plugins...>")
+    .requiredOption("-s, --schema <path>")
     .requiredOption("-o, --output <path>");
 
   program.parse(process.argv);
 
-  const Options = z.object({
-    schema: z.string(),
-    plugins: z.array(z.string()),
-    output: z.string(),
-  });
+  const Options = z
+    .object({
+      plugins: z.array(z.string()),
+      schema: z.string(),
+      output: z.string(),
+    })
+    .transform(({ schema, plugins, output }) => ({
+      plugins,
+      schemaPath: path.resolve(schema),
+      outputPath: path.resolve(output),
+    }));
 
-  const {
-    schema: schemaPath,
-    plugins,
-    output: outputPath,
-  } = Options.parse(program.opts());
+  const { schemaPath, plugins, outputPath } = Options.parse(program.opts());
 
-  const [schemaLoadErr, schema] = await to(
-    fs.readFile(path.resolve(schemaPath))
-  );
+  const [schemaLoadErr, schema] = await to(fs.readFile(schemaPath));
 
   console.log(schemaLoadErr, schema);
 })();

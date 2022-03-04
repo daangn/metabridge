@@ -1,0 +1,13 @@
+{
+  "name": "@nextbridge/plugin-base",
+  "packageManager": "yarn@3.2.0",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.2"
+  },
+  "dependencies": {
+    "@nextbridge/schema": "workspace:^"
+  }
+}
