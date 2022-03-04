@@ -1,0 +1,18 @@
+{
+  "name": "@nextbridge/cli",
+  "version": "0.0.0",
+  "bin": {
+    "nextbridge-cli": "./bin/run"
+  },
+  "dependencies": {
+    "await-to-js": "^3.0.0",
+    "commander": "^9.0.0",
+    "tsm": "^2.2.1",
+    "zod": "^3.13.4"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.21",
+    "typescript": "^4.6.2"
+  },
+  "packageManager": "yarn@3.2.0"
+}
