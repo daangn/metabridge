@@ -17,9 +17,11 @@ $   --output ./somewhere/__generated__/mySdk.ts
 import { makeMyBridge } from "./somewhere/__generated__/mySdk";
 
 const myBridge = makeMyBridge({
-  onCalled(type, req) {
-    // ...your business logic for transport layer
-    return res;
+  driver: {
+    onCalled(type, req) {
+      // ...your business logic for transport layer
+      return res;
+    },
   },
 });
 
