@@ -9,7 +9,7 @@
         "type": "object",
         "properties": {
           "key": {
-            "type": "string"
+            "$ref": "#/$defs/StringValue"
           }
         },
         "required": ["key"],
@@ -25,7 +25,12 @@
       "type": "object",
       "properties": {
         "value": {
-          "type": "string"
+          "type": "object",
+          "properties": {
+            "wow": {
+              "type": "boolean"
+            }
+          }
         }
       },
       "required": ["value"],

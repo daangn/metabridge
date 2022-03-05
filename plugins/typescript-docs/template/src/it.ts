@@ -8,12 +8,12 @@ declare global {
   }
 }
 
-export const { title, schema } = window;
+export const { title } = window;
 
 export function getSchema() {
-  if (!schema) {
+  if (!window.schema) {
     return sampleSchema as TypeSchema;
   }
 
-  return schema;
+  return window.schema;
 }

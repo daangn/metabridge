@@ -1,3 +1,5 @@
+import "@karrotframe/navigator/index.css";
+import "@karrotframe/tabs/index.css";
 import "./main.css";
 
 import React from "react";

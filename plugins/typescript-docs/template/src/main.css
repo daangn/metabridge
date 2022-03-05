@@ -1,3 +1,24 @@
+html {
+  cursor: default;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  user-select: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-touch-callout: none;
+  color: #212529;
+}
+
 body {
   margin: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
 }

@@ -1,10 +1,25 @@
 import React from "react";
-import { getSchema } from "./it";
+import { ChakraProvider } from "@chakra-ui/react";
+import styled from "@emotion/styled";
+import { Navigator, Screen } from "@karrotframe/navigator";
+import PageHome from "./pages/PageHome";
 
-console.log(getSchema());
+const isCupertino = /iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase());
 
 const App: React.FC = () => {
-  return <div>Hello, World!</div>;
+  return (
+    <Container>
+      <ChakraProvider>
+        <Navigator theme={isCupertino ? "Cupertino" : "Android"}>
+          <Screen path="/" component={PageHome} />
+        </Navigator>
+      </ChakraProvider>
+    </Container>
+  );
 };
+
+const Container = styled.div`
+  height: 100%;
+`;
 
 export default App;
