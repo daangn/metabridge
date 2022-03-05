@@ -2,6 +2,10 @@ import React, { useReducer, useState } from "react";
 import styled from "@emotion/styled";
 import { getSchema } from "../it";
 import Form from "@rjsf/chakra-ui";
+import { Button } from "@chakra-ui/react";
+import { stringify } from "javascript-stringify";
+import CodeSnippet from "./CodeSnippet";
+import { getDriver } from "../driver";
 
 const schema = getSchema();
 
@@ -14,6 +18,12 @@ const Protocol: React.FC<ProtocolProps> = (props) => {
   const [requestBody, setRequestBody] = useState<any>(null);
   const [response, setResponse] = useState<any>(null);
 
+  const onSubmit = async () => {
+    const driver = getDriver();
+    const response = await driver.onCalled(props.type, requestBody);
+    setResponse(response);
+  };
+
   return (
     <Container>
       <Top onClick={toggleCollapse}>
@@ -22,26 +32,44 @@ const Protocol: React.FC<ProtocolProps> = (props) => {
       </Top>
       {!isCollapsed && (
         <Body>
-          <BodyForm>
-            <Form
-              schema={{
-                ...(schema.protocols[props.type].requestBody as any),
-                $defs: schema.$defs,
-              }}
-              formData={requestBody}
-              onSubmit={(e) => {
-                console.log(e.formData);
-                setResponse({ hello: "world" });
-              }}
-              onChange={(e) => {
-                setRequestBody(e.formData);
-              }}
-            />
-          </BodyForm>
-          {requestBody && (
-            <BodySdkCode>{JSON.stringify(requestBody)}</BodySdkCode>
+          <BodyRequest>
+            <BodyRequestForm>
+              <Form
+                schema={{
+                  ...(schema.protocols[props.type].requestBody as any),
+                  $defs: schema.$defs,
+                }}
+                formData={requestBody}
+                onSubmit={(e) => {
+                  console.log(e.formData);
+                  setResponse({ hello: "world" });
+                }}
+                onChange={(e) => {
+                  setRequestBody(e.formData);
+                }}
+              />
+            </BodyRequestForm>
+            <BodyRequestSdkCode>
+              <CodeSnippet language="typescript">
+                {`myBridge.${
+                  schema.protocols[props.type].operationId
+                }(${stringify(requestBody, null, 2)})`}
+              </CodeSnippet>
+            </BodyRequestSdkCode>
+            <BodyFormBottom>
+              <Button colorScheme="blue" onClick={onSubmit}>
+                Submit
+              </Button>
+            </BodyFormBottom>
+          </BodyRequest>
+          {response && (
+            <BodyResponse>
+              <BodyResponseTitle>RESPONSE</BodyResponseTitle>
+              <CodeSnippet language="typescript">
+                {stringify(response, null, 2)}
+              </CodeSnippet>
+            </BodyResponse>
           )}
-          {response && <BodyResponse>{JSON.stringify(response)}</BodyResponse>}
         </Body>
       )}
     </Container>
@@ -73,29 +101,45 @@ const Description = styled.div`
 
 const Body = styled.div``;
 
-const BodyForm = styled.div`
+const BodyRequest = styled.div`
+  padding: 0.75rem;
   box-shadow: 0 1px 0 0 #f1f3f5;
-  padding: 1rem;
+`;
 
+const BodyRequestForm = styled.div`
   form > div:first-of-type > div {
     margin-bottom: 0;
   }
   form > div:last-of-type {
     margin-top: 0;
+    display: none;
   }
   h5 {
-    font-size: 1rem;
+    font-size: 0.875rem;
     margin-bottom: 0.25rem;
+    color: #343a40;
   }
 `;
 
-const BodySdkCode = styled.div`
-  padding: 1rem;
-  box-shadow: 0 1px 0 0 #f1f3f5;
+const BodyRequestSdkCode = styled.div`
+  padding: 0.75rem;
+  box-shadow: 0 0 0 1px #e9ecef;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  margin-top: -0.5rem;
 `;
 
+const BodyFormBottom = styled.div``;
+
 const BodyResponse = styled.div`
-  padding: 1rem;
+  padding: 0.75rem;
+`;
+
+const BodyResponseTitle = styled.div`
+  font-size: 0.875rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #343a40;
 `;
 
 export default Protocol;

@@ -2631,6 +2631,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eta", "npm:1.12.3"],\
             ["exec-sh", "npm:0.4.0"],\
             ["framer-motion", "virtual:5c6c3c9f71b3cc4b9c4fcde93e182f72a37a5d1f837cd226c9fc81a802f203f5169ef0fe42a139e7ebfc8ee67300c77f0c4daa352447e7a97cc47ce168c603c6#npm:6.2.8"],\
+            ["highlight.js", "npm:11.4.0"],\
+            ["javascript-stringify", "npm:2.1.0"],\
             ["pascal-case", "npm:3.1.2"],\
             ["react", "npm:17.0.2"],\
             ["react-dom", "virtual:5c6c3c9f71b3cc4b9c4fcde93e182f72a37a5d1f837cd226c9fc81a802f203f5169ef0fe42a139e7ebfc8ee67300c77f0c4daa352447e7a97cc47ce168c603c6#npm:17.0.2"],\
@@ -4476,6 +4478,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["highlight.js", [\
+        ["npm:11.4.0", {\
+          "packageLocation": "./.yarn/cache/highlight.js-npm-11.4.0-5b42446b27-df57994d1e.zip/node_modules/highlight.js/",\
+          "packageDependencies": [\
+            ["highlight.js", "npm:11.4.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["history", [\
         ["npm:4.10.1", {\
           "packageLocation": "./.yarn/cache/history-npm-4.10.1-ee217563ae-addd84bc46.zip/node_modules/history/",\
@@ -4736,6 +4747,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/isexe-npm-2.0.0-b58870bd2e-26bf6c5480.zip/node_modules/isexe/",\
           "packageDependencies": [\
             ["isexe", "npm:2.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["javascript-stringify", [\
+        ["npm:2.1.0", {\
+          "packageLocation": "./.yarn/cache/javascript-stringify-npm-2.1.0-3da58139d2-009981ec84.zip/node_modules/javascript-stringify/",\
+          "packageDependencies": [\
+            ["javascript-stringify", "npm:2.1.0"]\
           ],\
           "linkType": "HARD"\
         }]\
