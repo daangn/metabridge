@@ -12,8 +12,15 @@ const plugin: Plugin = {
       "utf-8"
     );
 
+    Eta.configure({
+      autoEscape: false,
+    });
+
+    const title = pascalCase(schema.appName + " Bridge");
+
     const output = await Eta.render(template, {
-      title: "karrot",
+      title,
+      schema: JSON.stringify(schema),
     });
 
     if (!output) {
