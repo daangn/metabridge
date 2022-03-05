@@ -21,11 +21,11 @@ const PageHome: React.FC = () => {
               buttonLabel: "Protocols",
               render() {
                 return (
-                  <Protocols>
+                  <TabMain>
                     {Object.keys(schema.protocols).map((key) => (
                       <Protocol key={key} type={key} />
                     ))}
-                  </Protocols>
+                  </TabMain>
                 );
               },
             },
@@ -41,15 +41,20 @@ const PageHome: React.FC = () => {
   );
 };
 
-const Container = styled.div``;
-
-const TabsContainer = styled.div`
-  position: relative;
-  top: -1px;
+const Container = styled.div`
+  height: 100%;
+  overflow: hidden;
 `;
 
-const Protocols = styled.div`
+const TabsContainer = styled.div`
+  height: 100%;
+  overflow: hidden;
+`;
+
+const TabMain = styled.div`
   padding: 1rem;
+  overflow-y: scroll;
+  height: 100%;
 `;
 
 export default PageHome;

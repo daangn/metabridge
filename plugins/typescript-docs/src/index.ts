@@ -1,9 +1,8 @@
 import { Plugin } from "@metabridge/plugin-base";
-import { camelCase } from "camel-case";
 import { pascalCase } from "pascal-case";
 import fs from "fs/promises";
+import { parse, HTMLElement, TextNode } from "node-html-parser";
 import path from "path";
-import * as Eta from "eta";
 
 const plugin: Plugin = {
   async compile(schema) {
@@ -12,22 +11,35 @@ const plugin: Plugin = {
       "utf-8"
     );
 
-    Eta.configure({
-      autoEscape: false,
-    });
+    const root = parse(template);
 
-    const title = pascalCase(schema.appName + " Bridge");
+    const titleText = new TextNode(
+      pascalCase(schema.appName + " Bridge"),
+      null as any
+    );
 
-    const output = await Eta.render(template, {
-      title,
-      schema: JSON.stringify(schema),
-    });
+    const title = new HTMLElement("title", {}, "", null);
+    title.appendChild(titleText);
 
-    if (!output) {
-      throw new Error("Compile failed");
-    }
+    const scriptText = new TextNode(
+      `
+        try {
+          window.title = \`${titleText}\`;
+        } catch (e) {}
+        try {
+          window.schema = JSON.parse(\`${JSON.stringify(schema)}\`);
+        } catch (e) {}
+      `,
+      null as any
+    );
+    const script = new HTMLElement("script", {}, "", null);
+    script.appendChild(scriptText);
 
-    return output;
+    const head = root.getElementsByTagName("head")[0];
+    head.appendChild(title);
+    head.appendChild(script);
+
+    return root.toString();
   },
 };
 
