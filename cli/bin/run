@@ -1,4 +1,4 @@
 #!/usr/bin/env node
 
-require('tsm')
-require('../src/index.ts')
+require("tsm");
+require("../src/index.ts");

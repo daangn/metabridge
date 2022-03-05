@@ -1,4 +1,5 @@
 import { TypeSchema } from "@metabridge/schema";
+
 import sampleSchema from "../../test/schema.json";
 
 declare global {

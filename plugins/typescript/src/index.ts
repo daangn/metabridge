@@ -1,12 +1,13 @@
-import { Plugin } from "@metabridge/plugin-base";
-import { compile } from "json-schema-to-typescript";
 import { camelCase } from "camel-case";
-import { pascalCase } from "pascal-case";
-import fs from "fs/promises";
-import path from "path";
-import { pipe } from "lodash/fp";
 import dedent from "dedent";
+import fs from "fs/promises";
+import { compile } from "json-schema-to-typescript";
+import { pipe } from "lodash/fp";
+import { pascalCase } from "pascal-case";
+import path from "path";
 import prettier from "prettier";
+
+import { Plugin } from "@metabridge/plugin-base";
 
 const plugin: Plugin = {
   async compile(schema) {

@@ -1,8 +1,8 @@
 import assert from "assert";
+import dedent from "dedent";
 import exec from "exec-sh";
 import fs from "fs/promises";
 import path from "path";
-import dedent from "dedent";
 
 (async () => {
   const command = [

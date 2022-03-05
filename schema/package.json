@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "main": "lib/index.js",
   "scripts": {
-    "build": "json2ts --input ./src/schema.json --output ./src/schema.ts && tsc"
+    "build": "json2ts --input ./src/schema.json --output ./src/__generated__/schema.ts && tsc"
   },
   "dependencies": {
     "ajv": "^8.10.0"

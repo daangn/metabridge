@@ -1,7 +1,8 @@
 import { program } from "commander";
-import * as z from "zod";
-import path from "path";
 import fs from "fs/promises";
+import path from "path";
+import * as z from "zod";
+
 import { Plugin } from "@metabridge/plugin-base";
 import * as metabridgeSchema from "@metabridge/schema";
 

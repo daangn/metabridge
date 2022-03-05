@@ -1,7 +1,9 @@
 import React from "react";
+
 import { ChakraProvider } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import { Navigator, Screen } from "@karrotframe/navigator";
+
 import PageHome from "./pages/PageHome";
 
 const isCupertino = /iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase());

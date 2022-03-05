@@ -1,8 +1,9 @@
-import { Plugin } from "@metabridge/plugin-base";
-import { pascalCase } from "pascal-case";
 import fs from "fs/promises";
-import { parse, HTMLElement, TextNode } from "node-html-parser";
+import { HTMLElement, parse, TextNode } from "node-html-parser";
+import { pascalCase } from "pascal-case";
 import path from "path";
+
+import { Plugin } from "@metabridge/plugin-base";
 
 const plugin: Plugin = {
   async compile(schema) {

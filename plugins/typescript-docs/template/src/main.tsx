@@ -8,6 +8,7 @@ import json from "highlight.js/lib/languages/json";
 import typescript from "highlight.js/lib/languages/typescript";
 import React from "react";
 import ReactDOM from "react-dom";
+
 import App from "./App";
 
 hljs.registerLanguage("json", json);

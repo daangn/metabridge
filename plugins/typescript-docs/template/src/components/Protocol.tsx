@@ -1,11 +1,13 @@
-import React, { useReducer, useState } from "react";
-import styled from "@emotion/styled";
-import { getSchema } from "../it";
-import Form from "@rjsf/chakra-ui";
-import { Button } from "@chakra-ui/react";
 import { stringify } from "javascript-stringify";
-import CodeSnippet from "./CodeSnippet";
+import React, { useReducer, useState } from "react";
+
+import { Button } from "@chakra-ui/react";
+import styled from "@emotion/styled";
+import Form from "@rjsf/chakra-ui";
+
 import { getDriver } from "../driver";
+import { getSchema } from "../it";
+import CodeSnippet from "./CodeSnippet";
 
 const schema = getSchema();
 

@@ -1,5 +1,6 @@
 import Ajv, { JSONSchemaType } from "ajv";
-import { Schema } from "./schema";
+
+import { Schema } from "./__generated__/schema";
 import metaSchema from "./schema.json";
 
 const ajv = new Ajv();
