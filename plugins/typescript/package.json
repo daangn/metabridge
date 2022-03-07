@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
+    "version": "yarn build && lerna version --no-git-tag-version",
     "test": "yarn build && yarn node -r tsm ./test/index.test.ts"
   },
   "dependencies": {
