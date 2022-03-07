@@ -78,7 +78,9 @@ const plugin: Plugin = {
 
     const output = lines.join(`\n`);
 
-    return prettier.format(output);
+    return prettier.format(output, {
+      parser: "babel-ts",
+    });
   },
 };
 

@@ -35,7 +35,7 @@ import path from "path";
       
       export interface MyAppBridgeSchema {
         StorageGetRequestBody: {
-          key: string,
+          key: string;
         };
         StorageGetResponse: StringValue;
       }
@@ -47,7 +47,11 @@ import path from "path";
         onCalled: (type: string, requestBody: any) => Promise<any>;
       }
       
-      export function makeMyAppBridge({ driver }: { driver: MetaBridgeDriver }) {
+      export function makeMyAppBridge<T extends MetaBridgeDriver>({
+        driver,
+      }: {
+        driver: T;
+      }) {
         return {
           driver,
           /**
