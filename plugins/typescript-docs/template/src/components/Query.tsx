@@ -46,6 +46,7 @@ const Query: React.FC<QueryProps> = (props) => {
                 onChange={(e) => {
                   setRequestBody(e.formData);
                 }}
+                liveValidate
               />
             </BodyRequestForm>
             <BodyRequestSdkCode>
