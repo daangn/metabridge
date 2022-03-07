@@ -1,0 +1,16 @@
+{
+  "name": "@metabridge/schema",
+  "version": "0.1.0",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "json2ts --input ./src/schema.json --output ./src/__generated__/schema.ts && tsc"
+  },
+  "dependencies": {
+    "ajv": "^8.10.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.21",
+    "json-schema-to-typescript": "^10.1.5",
+    "typescript": "^4.6.2"
+  }
+}

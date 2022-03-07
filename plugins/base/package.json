@@ -1,0 +1,14 @@
+{
+  "name": "@metabridge/plugin-base",
+  "version": "0.1.0",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@metabridge/schema": "^0.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.2"
+  }
+}

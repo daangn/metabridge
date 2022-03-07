@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "appName": {
+      "type": "string"
+    },
+    "queries": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "operationId": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "requestBody": {
+            "$ref": "http://json-schema.org/draft-07/schema#"
+          },
+          "response": {
+            "$ref": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        "required": ["operationId", "description", "requestBody", "response"],
+        "additionalProperties": false
+      }
+    },
+    "$defs": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "http://json-schema.org/draft-07/schema#"
+      }
+    }
+  },
+  "required": ["$schema", "appName", "queries"],
+  "additionalProperties": false
+}
