@@ -1,6 +1,6 @@
 {
   "name": "@metabridge/plugin-typescript-docs",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "main": "lib/index.js",
   "files": [
     "lib",
@@ -27,7 +27,7 @@
     "@karrotframe/navigator": "^0.18.0",
     "@karrotframe/tabs": "^0.4.2",
     "@metabridge/cli": "^0.1.0",
-    "@metabridge/plugin-typescript": "^0.1.3",
+    "@metabridge/plugin-typescript": "^0.1.4",
     "@metabridge/schema": "^0.1.0",
     "@rjsf/chakra-ui": "^4.0.1",
     "@rjsf/core": "^4.0.1",
