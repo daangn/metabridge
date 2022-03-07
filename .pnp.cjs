@@ -3477,6 +3477,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@metabridge/schema", "workspace:schema"],\
             ["@rjsf/chakra-ui", "virtual:5c6c3c9f71b3cc4b9c4fcde93e182f72a37a5d1f837cd226c9fc81a802f203f5169ef0fe42a139e7ebfc8ee67300c77f0c4daa352447e7a97cc47ce168c603c6#npm:4.0.1"],\
             ["@rjsf/core", "virtual:5c6c3c9f71b3cc4b9c4fcde93e182f72a37a5d1f837cd226c9fc81a802f203f5169ef0fe42a139e7ebfc8ee67300c77f0c4daa352447e7a97cc47ce168c603c6#npm:4.0.1"],\
+            ["@types/lodash", "npm:4.14.179"],\
             ["@types/node", "npm:17.0.21"],\
             ["@types/react", "npm:17.0.39"],\
             ["@types/react-dom", "npm:17.0.13"],\
@@ -3486,6 +3487,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["framer-motion", "virtual:5c6c3c9f71b3cc4b9c4fcde93e182f72a37a5d1f837cd226c9fc81a802f203f5169ef0fe42a139e7ebfc8ee67300c77f0c4daa352447e7a97cc47ce168c603c6#npm:6.2.8"],\
             ["highlight.js", "npm:11.4.0"],\
             ["javascript-stringify", "npm:2.1.0"],\
+            ["lodash", "npm:4.17.21"],\
             ["node-html-parser", "npm:5.2.0"],\
             ["pascal-case", "npm:3.1.2"],\
             ["react", "npm:17.0.2"],\

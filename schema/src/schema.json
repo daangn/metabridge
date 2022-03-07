@@ -19,6 +19,9 @@
           "description": {
             "type": "string"
           },
+          "tag": {
+            "type": "string"
+          },
           "requestBody": {
             "$ref": "http://json-schema.org/draft-07/schema#"
           },

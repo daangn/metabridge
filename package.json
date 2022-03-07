@@ -9,7 +9,7 @@
   "scripts": {
     "build": "yarn workspaces foreach -t run build",
     "test": "yarn workspaces foreach -t run test",
-    "version": "yarn build && lerna version --no-git-tag-version"
+    "lerna:publish": "yarn build && lerna publish && yarn install"
   },
   "devDependencies": {
     "lerna": "^4.0.0",

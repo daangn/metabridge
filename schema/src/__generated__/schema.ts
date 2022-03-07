@@ -77,6 +77,7 @@ export interface Schema {
     [k: string]: {
       operationId: string;
       description: string;
+      tag?: string;
       requestBody: CoreSchemaMetaSchema;
       response: CoreSchemaMetaSchema;
     };

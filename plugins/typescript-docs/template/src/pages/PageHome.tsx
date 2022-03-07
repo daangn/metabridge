@@ -1,3 +1,4 @@
+import { groupBy } from "lodash";
 import React, { useState } from "react";
 
 import styled from "@emotion/styled";
@@ -10,28 +11,36 @@ import { getSchema, title } from "../it";
 const schema = getSchema();
 
 const PageHome: React.FC = () => {
-  const [activeTabKey, setActiveTabKey] = useState("Queries");
+  const queryGroups = groupBy(
+    Object.keys(schema.queries).map((type) => {
+      return {
+        type,
+        ...schema.queries[type],
+      };
+    }),
+    ({ tag }) => tag || "Etc"
+  );
+
+  const [activeTabKey, setActiveTabKey] = useState(Object.keys(queryGroups)[0]);
 
   return (
     <Container>
       <ScreenHelmet title={title} />
       <TabsContainer>
         <Tabs
-          tabs={[
-            {
-              key: "Queries",
-              buttonLabel: "Queries",
-              render() {
-                return (
-                  <TabMain>
-                    {Object.keys(schema.queries).map((key) => (
-                      <Query key={key} type={key} />
-                    ))}
-                  </TabMain>
-                );
-              },
+          tabs={Object.entries(queryGroups).map(([tagName, queries]) => ({
+            key: tagName,
+            buttonLabel: tagName,
+            render() {
+              return (
+                <TabMain>
+                  {queries.map(({ type }) => (
+                    <Query key={type} type={type} />
+                  ))}
+                </TabMain>
+              );
             },
-          ]}
+          }))}
           activeTabKey={activeTabKey}
           onTabChange={(tabKey) => {
             setActiveTabKey(tabKey);
