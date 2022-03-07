@@ -1,6 +1,6 @@
 {
   "name": "@metabridge/plugin-typescript-docs",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "main": "lib/index.js",
   "files": [
     "lib",
@@ -14,7 +14,7 @@
     "test": "yarn build && yarn node -r tsm ./test/index.test.ts"
   },
   "dependencies": {
-    "@metabridge/plugin-base": "^0.1.0",
+    "@metabridge/plugin-base": "^0.1.1",
     "node-html-parser": "^5.2.0",
     "pascal-case": "^3.1.2"
   },
@@ -26,9 +26,9 @@
     "@emotion/styled": "^11.8.1",
     "@karrotframe/navigator": "^0.18.0",
     "@karrotframe/tabs": "^0.4.2",
-    "@metabridge/cli": "^0.1.0",
-    "@metabridge/plugin-typescript": "^0.1.5",
-    "@metabridge/schema": "^0.1.0",
+    "@metabridge/cli": "^0.1.1",
+    "@metabridge/plugin-typescript": "^0.1.6",
+    "@metabridge/schema": "^0.1.1",
     "@rjsf/chakra-ui": "^4.0.1",
     "@rjsf/core": "^4.0.1",
     "@types/lodash": "^4.14.179",
