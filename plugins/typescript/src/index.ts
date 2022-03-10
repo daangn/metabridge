@@ -14,17 +14,17 @@ const plugin: Plugin = {
     const lines: string[] = [];
 
     const properties = Object.entries(schema.queries).reduce(
-      (acc, [type, { requestBody, response }]) => {
+      (acc, [queryName, { requestBody, response }]) => {
         return {
           ...acc,
-          [pascalCase(type + " RequestBody")]: requestBody,
-          [pascalCase(type + " Response")]: response,
+          [pascalCase(queryName + " RequestBody")]: requestBody,
+          [pascalCase(queryName + " Response")]: response,
         };
       },
       {} as any
     );
 
-    const schemaTypeName = pascalCase(schema.appName + " BridgeSchema");
+    const schemaRootTypeName = pascalCase(schema.appName + " BridgeSchema");
 
     const typeDefs = await compile(
       {
@@ -33,7 +33,7 @@ const plugin: Plugin = {
         required: Object.keys(properties),
         $defs: schema.$defs,
       },
-      schemaTypeName
+      schemaRootTypeName
     );
 
     lines.push(typeDefs);
@@ -44,20 +44,26 @@ const plugin: Plugin = {
     );
 
     const operations = Object.entries(schema.queries).map(
-      ([type, { operationId, description }]) => {
+      ([queryName, { operationId, description }]) => {
         const functionName = camelCase(operationId);
 
         const requestBodyTypeName =
-          schemaTypeName + `["` + pascalCase(type + " RequestBody") + `"]`;
+          schemaRootTypeName +
+          `["` +
+          pascalCase(queryName + " RequestBody") +
+          `"]`;
         const responseTypeName =
-          schemaTypeName + `["` + pascalCase(type + " Response") + `"]`;
+          schemaRootTypeName +
+          `["` +
+          pascalCase(queryName + " Response") +
+          `"]`;
 
         return dedent`
           /**
            * ${description}
            */
           ${functionName}(req:  ${requestBodyTypeName}): Promise<${responseTypeName}> {
-            return driver.onCalled("${type}", req)
+            return driver.onQueried("${queryName}", req)
           },
         `;
       },
@@ -85,9 +91,7 @@ const plugin: Plugin = {
 };
 
 function replaceAll(from: string, to: string) {
-  return (str: string) => {
-    return str.split(from).join(to);
-  };
+  return (str: string) => str.split(from).join(to);
 }
 
 export default plugin;

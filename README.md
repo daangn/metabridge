@@ -18,7 +18,7 @@ import { makeMyBridge } from "./somewhere/__generated__/mySdk";
 
 const myBridge = makeMyBridge({
   driver: {
-    onCalled(type, req) {
+    onQueried(queryName, req) {
       // ...your business logic for transport layer
       return res;
     },
