@@ -2265,7 +2265,7 @@ __metadata:
     "@karrotframe/tabs": ^0.4.2
     "@metabridge/cli": ^0.1.1
     "@metabridge/plugin-base": ^0.1.1
-    "@metabridge/plugin-typescript": ^0.1.6
+    "@metabridge/plugin-typescript": ^0.1.7
     "@metabridge/schema": ^0.1.1
     "@rjsf/chakra-ui": ^4.0.1
     "@rjsf/core": ^4.0.1
@@ -2292,7 +2292,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@metabridge/plugin-typescript@*, @metabridge/plugin-typescript@^0.1.6, @metabridge/plugin-typescript@workspace:plugins/typescript":
+"@metabridge/plugin-typescript@*, @metabridge/plugin-typescript@^0.1.7, @metabridge/plugin-typescript@workspace:plugins/typescript":
   version: 0.0.0-use.local
   resolution: "@metabridge/plugin-typescript@workspace:plugins/typescript"
   dependencies:
