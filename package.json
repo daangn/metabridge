@@ -8,8 +8,9 @@
   ],
   "scripts": {
     "build": "yarn workspaces foreach -t run build",
+    "lerna:publish": "yarn build && lerna publish && yarn install",
     "test": "yarn workspaces foreach -t run test",
-    "lerna:publish": "yarn build && lerna publish && yarn install"
+    "version": "yarn install && git stage yarn.lock"
   },
   "devDependencies": {
     "lerna": "^4.0.0",
