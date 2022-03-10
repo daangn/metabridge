@@ -44,7 +44,7 @@ import path from "path";
       }
       
       export interface MetaBridgeDriver {
-        onCalled: (type: string, requestBody: any) => Promise<any>;
+        onQueried: (queryName: string, requestBody: any) => Promise<any>;
       }
       
       export function makeMyAppBridge<T extends MetaBridgeDriver>({
@@ -60,7 +60,7 @@ import path from "path";
           getItemFromStorage(
             req: MyAppBridgeSchema["StorageGetRequestBody"]
           ): Promise<MyAppBridgeSchema["StorageGetResponse"]> {
-            return driver.onCalled("STORAGE.GET", req);
+            return driver.onQueried("STORAGE.GET", req);
           },
         };
       }

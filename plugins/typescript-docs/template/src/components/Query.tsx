@@ -13,7 +13,7 @@ import CodeSnippet from "./CodeSnippet";
 const schema = getSchema();
 
 interface QueryProps {
-  type: string;
+  queryName: string;
 }
 const Query: React.FC<QueryProps> = (props) => {
   const [isCollapsed, toggleCollapse] = useReducer((t) => !t, true);
@@ -23,15 +23,15 @@ const Query: React.FC<QueryProps> = (props) => {
 
   const onSubmit = async () => {
     const driver = getDriver();
-    const response = await driver.onCalled(props.type, requestBody);
+    const response = await driver.onQueried(props.queryName, requestBody);
     setResponse(response);
   };
 
   return (
     <Container>
       <Top onClick={toggleCollapse}>
-        <Title>{props.type}</Title>
-        <Description>{schema.queries[props.type].description}</Description>
+        <Title>{props.queryName}</Title>
+        <Description>{schema.queries[props.queryName].description}</Description>
       </Top>
       {!isCollapsed && (
         <Body>
@@ -39,7 +39,7 @@ const Query: React.FC<QueryProps> = (props) => {
             <BodyRequestForm>
               <Form
                 schema={{
-                  ...(schema.queries[props.type].requestBody as any),
+                  ...(schema.queries[props.queryName].requestBody as any),
                   $defs: schema.$defs,
                 }}
                 formData={requestBody}
@@ -52,7 +52,7 @@ const Query: React.FC<QueryProps> = (props) => {
             <BodyRequestSdkCode>
               <CodeSnippet language="typescript">
                 {`${camelCase(title)}.${
-                  schema.queries[props.type].operationId
+                  schema.queries[props.queryName].operationId
                 }(${stringify(requestBody, null, 2)})`}
               </CodeSnippet>
             </BodyRequestSdkCode>

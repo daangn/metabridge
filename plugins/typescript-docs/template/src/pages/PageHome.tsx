@@ -12,10 +12,10 @@ const schema = getSchema();
 
 const PageHome: React.FC = () => {
   const queryGroups = groupBy(
-    Object.keys(schema.queries).map((type) => {
+    Object.keys(schema.queries).map((queryName) => {
       return {
-        type,
-        ...schema.queries[type],
+        queryName,
+        ...schema.queries[queryName],
       };
     }),
     ({ tag }) => tag || "Etc"
@@ -34,8 +34,8 @@ const PageHome: React.FC = () => {
             render() {
               return (
                 <TabMain>
-                  {queries.map(({ type }) => (
-                    <Query key={type} type={type} />
+                  {queries.map(({ queryName }) => (
+                    <Query key={queryName} queryName={queryName} />
                   ))}
                 </TabMain>
               );

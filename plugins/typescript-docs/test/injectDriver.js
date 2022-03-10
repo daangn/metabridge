@@ -1,8 +1,8 @@
 window.driver = {
-  onCalled: function (type, requestBody) {
+  onQueried: function (queryName, requestBody) {
     return new Promise((resolve) => {
       resolve({
-        type,
+        queryName,
         requestBody,
       });
     });

@@ -1,5 +1,5 @@
 export interface MetaBridgeDriver {
-  onCalled: (type: string, requestBody: any) => Promise<any>;
+  onQueried: (queryName: string, requestBody: any) => Promise<any>;
 }
 
 declare global {
