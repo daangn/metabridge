@@ -1,4 +1,4 @@
-import { camelCase } from "camel-case";
+import { camelCase } from "change-case";
 import { stringify } from "javascript-stringify";
 import React, { useReducer, useState } from "react";
 

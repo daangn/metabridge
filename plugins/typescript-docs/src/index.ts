@@ -1,6 +1,6 @@
 import fs from "fs/promises";
 import { HTMLElement, parse, TextNode } from "node-html-parser";
-import { pascalCase } from "pascal-case";
+import { pascalCase } from "change-case";
 import path from "path";
 
 import { Plugin } from "@metabridge/plugin-base";

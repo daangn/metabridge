@@ -1,9 +1,8 @@
-import { camelCase } from "camel-case";
+import { camelCase, pascalCase } from "change-case";
 import dedent from "dedent";
 import fs from "fs/promises";
 import { compile } from "json-schema-to-typescript";
 import { pipe } from "lodash/fp";
-import { pascalCase } from "pascal-case";
 import path from "path";
 import prettier from "prettier";
 

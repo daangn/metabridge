@@ -1,0 +1,35 @@
+{
+  "$schema": "../../../schema/src/schema.json",
+  "appName": "myApp",
+  "queries": {
+    "STORAGE.GET": {
+      "operationId": "getItemFromStorage",
+      "description": "Get item from persistent storage",
+      "requestBody": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          }
+        },
+        "required": ["key"],
+        "additionalProperties": false
+      },
+      "response": {
+        "$ref": "#/$defs/StringValue"
+      }
+    }
+  },
+  "$defs": {
+    "StringValue": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "required": ["value"],
+      "additionalProperties": false
+    }
+  }
+}
