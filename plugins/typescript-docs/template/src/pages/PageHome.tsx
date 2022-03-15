@@ -25,7 +25,7 @@ const PageHome: React.FC = () => {
 
   return (
     <Container>
-      <ScreenHelmet title={title} />
+      <ScreenHelmet title={title} noBorder />
       <TabsContainer>
         <Tabs
           tabs={Object.entries(queryGroups).map(([tagName, queries]) => ({
