@@ -48,7 +48,7 @@ const plugin: Plugin = {
       inputData,
       lang,
       rendererOptions: {
-        framework: "just-types",
+        framework: "kotlinx",
         package: packageName,
       },
     });
