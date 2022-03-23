@@ -44,8 +44,8 @@ const plugin: Plugin = {
       inputData,
       lang,
       rendererOptions: {
-        "struct-or-class": "struct",
-        "just-types": "true",
+        "struct-or-class": "class",
+        initializers: "true",
       },
     });
 
