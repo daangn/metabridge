@@ -9,6 +9,7 @@ import Form from "@rjsf/chakra-ui";
 import { getDriver } from "../driver";
 import { getSchema, title } from "../it";
 import CodeSnippet from "./CodeSnippet";
+import { colors } from "../colors";
 
 const schema = getSchema();
 
@@ -78,35 +79,66 @@ const Query: React.FC<QueryProps> = (props) => {
 
 const Container = styled.div`
   margin-bottom: 0.75rem;
-  box-shadow: 0 0 0 1px #dee2e6, 0 2px 0 0 #f1f3f5;
+  box-shadow: 0 0 0 1px ${colors.gray200}, 0 2px 0 0 ${colors.gray100};
   border-radius: 0.25rem;
   overflow: hidden;
+
+  @media (prefers-color-scheme: dark) {
+    box-shadow: 0 0 0 1px ${colors.gray700};
+  }
 `;
 
 const Top = styled.div`
   padding: 0.5rem 0.75rem;
-  box-shadow: 0 1px 0 0 #f1f3f5;
+  box-shadow: 0 1px 0 0 ${colors.gray200};
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  @media (prefers-color-scheme: dark) {
+    box-shadow: 0 1px 0 0 ${colors.gray700};
+  }
 `;
 
 const Title = styled.div`
   font-size: 0.9125rem;
   font-weight: bold;
-  color: #343a40;
+  color: ${colors.gray900};
+
+  @media (prefers-color-scheme: dark) {
+    color: ${colors.gray50};
+  }
 `;
 
 const Description = styled.div`
   font-size: 0.75rem;
-  color: #495057;
+  color: ${colors.gray600};
+
+  @media (prefers-color-scheme: dark) {
+    color: ${colors.gray500};
+  }
 `;
 
 const Body = styled.div``;
 
 const BodyRequest = styled.div`
   padding: 0.75rem;
-  box-shadow: 0 1px 0 0 #f1f3f5;
 `;
 
 const BodyRequestForm = styled.div`
+  color: ${colors.gray900};
+
+  @media (prefers-color-scheme: dark) {
+    color: ${colors.gray50};
+  }
+
+  hr {
+    border-color: ${colors.gray200};
+
+    @media (prefers-color-scheme: dark) {
+      border-color: ${colors.gray700};
+    }
+  }
+
   form > div:first-of-type > div {
     margin-bottom: 0;
   }
@@ -117,15 +149,25 @@ const BodyRequestForm = styled.div`
   h5 {
     font-size: 0.875rem;
     margin-bottom: 0.25rem;
-    color: #343a40;
+    color: ${colors.gray900};
+
+    @media (prefers-color-scheme: dark) {
+      color: ${colors.gray50};
+    }
   }
 `;
 
 const BodyRequestSdkCode = styled.div`
   padding: 0.75rem;
-  box-shadow: 0 0 0 1px #e9ecef;
+  box-shadow: 0 0 0 1px ${colors.gray200};
   border-radius: 0.5rem;
   margin-bottom: 1.5rem;
+  background-color: #fff;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #0d1117;
+    box-shadow: none;
+  }
 `;
 
 const BodyFormBottom = styled.div``;
@@ -139,6 +181,10 @@ const BodyResponseTitle = styled.div`
   font-weight: bold;
   margin-bottom: 0.5rem;
   color: #343a40;
+
+  @media (prefers-color-scheme: dark) {
+    color: #343a40;
+  }
 `;
 
 export default Query;

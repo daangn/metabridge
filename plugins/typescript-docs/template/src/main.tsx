@@ -1,7 +1,8 @@
 import "@karrotframe/navigator/index.css";
 import "@karrotframe/tabs/index.css";
-import "highlight.js/styles/github.css";
 import "./main.css";
+import "./highlight.js/styles/github";
+import "./highlight.js/styles/github-dark";
 
 import hljs from "highlight.js";
 import json from "highlight.js/lib/languages/json";
