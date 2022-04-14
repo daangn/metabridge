@@ -471,3 +471,8 @@ class JSONAny: Codable {
         }
     }
 }
+
+enum MyAppBridgeSchemaQueryName: String {
+  case undefined
+  case storageGet = "STORAGE.GET"
+}

@@ -499,6 +499,11 @@ import path from "path";
               }
           }
       }
+      
+      enum MyAppBridgeSchemaQueryName: String {
+        case undefined
+        case storageGet = "STORAGE.GET"
+      }
     ` + "\n"
   );
 })();

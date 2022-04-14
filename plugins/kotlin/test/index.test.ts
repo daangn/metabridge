@@ -67,6 +67,10 @@ import path from "path";
       data class StorageGetResponse (
           val value: String
       )
+      
+      object MyAppBridgeSchemaQueryName {
+          const val STORAGE_GET = "STORAGE.GET"
+      }
     ` + "\n"
   );
 })();

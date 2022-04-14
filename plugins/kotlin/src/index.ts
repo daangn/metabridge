@@ -1,4 +1,4 @@
-import { camelCase, pascalCase } from "change-case";
+import { camelCase, pascalCase, constantCase } from "change-case";
 import {
   FetchingJSONSchemaStore,
   InputData,
@@ -53,7 +53,17 @@ const plugin: Plugin = {
       },
     });
 
-    return typeDefs.lines.join(`\n`);
+    const enumLines = [`object ${schemaRootTypeName}QueryName {`];
+
+    for (const queryName of Object.keys(schema.queries)) {
+      enumLines.push(
+        `    const val ${constantCase(queryName)} = "${queryName}"`
+      );
+    }
+
+    enumLines.push("}");
+
+    return [...typeDefs.lines, ...enumLines].join(`\n`) + "\n";
   },
 };
 

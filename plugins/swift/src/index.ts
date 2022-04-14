@@ -49,7 +49,18 @@ const plugin: Plugin = {
       },
     });
 
-    return typeDefs.lines.join(`\n`);
+    const enumLines = [
+      `enum ${schemaRootTypeName}QueryName: String {`,
+      "  case undefined",
+    ];
+
+    for (const queryName of Object.keys(schema.queries)) {
+      enumLines.push(`  case ${camelCase(queryName)} = "${queryName}"`);
+    }
+
+    enumLines.push("}");
+
+    return [...typeDefs.lines, ...enumLines].join(`\n`) + "\n";
   },
 };
 
