@@ -2,6 +2,7 @@ import { groupBy } from "lodash";
 import React, { useState } from "react";
 
 import styled from "@emotion/styled";
+import { css } from "@emotion/css";
 import { ScreenHelmet } from "@karrotframe/navigator";
 import { Tabs } from "@karrotframe/tabs";
 
@@ -28,6 +29,16 @@ const PageHome: React.FC = () => {
       <ScreenHelmet title={title} noBorder />
       <TabsContainer>
         <Tabs
+          className={css`
+            @media (prefers-color-scheme: dark) {
+              --kf_tabs_tabBar-backgroundColor: #17171a;
+              --kf_tabs_tabBar-borderColor: rgba(255, 255, 255, 0.07);
+              --kf_tabs_tabBar-baseFontColor: #868b94;
+              --kf_tabs_tabBar-activeFontColor: #eaebee;
+              --kf_tabs_tabBar-indicator-color: #eaebee;
+              --kf_tabs_tabMain-backgroundColor: #17171a;
+            }
+          `}
           tabs={Object.entries(queryGroups).map(([tagName, queries]) => ({
             key: tagName,
             buttonLabel: tagName,

@@ -4,12 +4,12 @@ import sampleSchema from "../../test/schema.json";
 
 declare global {
   interface Window {
-    title: string;
+    title: string | undefined;
     schema: TypeSchema | undefined;
   }
 }
 
-export const { title } = window;
+export const { title = "MyApp Bridge" } = window;
 
 export function getSchema() {
   if (!window.schema) {

@@ -1225,6 +1225,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@emotion/css@npm:^11.9.0":
+  version: 11.9.0
+  resolution: "@emotion/css@npm:11.9.0"
+  dependencies:
+    "@emotion/babel-plugin": ^11.7.1
+    "@emotion/cache": ^11.7.1
+    "@emotion/serialize": ^1.0.3
+    "@emotion/sheet": ^1.0.3
+    "@emotion/utils": ^1.0.0
+  peerDependencies:
+    "@babel/core": ^7.0.0
+  peerDependenciesMeta:
+    "@babel/core":
+      optional: true
+  checksum: bd83d9af5cf87b82992dea030b5c7db9cc26f8fee508fc8c20257bc040d35b0cc595143c5c8e3f5d6719351f3ae1c53b152899c22b60a2a5ff37d3439304401e
+  languageName: node
+  linkType: hard
+
 "@emotion/hash@npm:^0.8.0":
   version: 0.8.0
   resolution: "@emotion/hash@npm:0.8.0"
@@ -1301,7 +1319,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/sheet@npm:^1.1.0":
+"@emotion/serialize@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "@emotion/serialize@npm:1.0.3"
+  dependencies:
+    "@emotion/hash": ^0.8.0
+    "@emotion/memoize": ^0.7.4
+    "@emotion/unitless": ^0.7.5
+    "@emotion/utils": ^1.0.0
+    csstype: ^3.0.2
+  checksum: 99a9053bd98c99d63af542ebee029281eeaf653e3a12e97ee79bad7330c68408104c30be6fc07a528e38bb69aba680655181744b76ec6c6f459c121cb805fac2
+  languageName: node
+  linkType: hard
+
+"@emotion/sheet@npm:^1.0.3, @emotion/sheet@npm:^1.1.0":
   version: 1.1.0
   resolution: "@emotion/sheet@npm:1.1.0"
   checksum: a4b74e16a8fea1157413efe4904f5f679d724323cb605d66d20a0b98744422f5d411fca927ceb52e4de454a0a819c5273ca9496db9f011b4ecd17b9f1b212007
@@ -2303,6 +2334,7 @@ __metadata:
     "@chakra-ui/icons": ^1.1.7
     "@chakra-ui/react": ^1.8.6
     "@chakra-ui/system": ^1.11.2
+    "@emotion/css": ^11.9.0
     "@emotion/react": ^11.8.1
     "@emotion/styled": ^11.8.1
     "@karrotframe/navigator": ^0.18.0
