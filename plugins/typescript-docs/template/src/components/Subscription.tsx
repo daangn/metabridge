@@ -1,6 +1,7 @@
 import { camelCase } from "change-case";
 import { stringify } from "javascript-stringify";
 import React, { useReducer, useRef, useState } from "react";
+import dedent from "dedent";
 
 import { Button } from "@chakra-ui/react";
 import styled from "@emotion/styled";
@@ -86,7 +87,7 @@ const Subscription: React.FC<SubscriptionProps> = (props) => {
             </BodyRequestForm>
             <BodyRequestSdkCode>
               <CodeSnippet language="typescript">
-                {`${camelCase(title)}.${
+                {dedent`${camelCase(title)}.${
                   schema.subscriptions?.[props.subscriptionName].operationId
                 }(${stringify(requestBody, null, 2)}, (error, response) => {
                   console.log(response)
