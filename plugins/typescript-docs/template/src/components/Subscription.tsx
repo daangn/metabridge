@@ -31,6 +31,7 @@ const Subscription: React.FC<SubscriptionProps> = (props) => {
     }
 
     setIsSubscribed(true);
+    setResponses([]);
 
     const driver = getDriver();
 
@@ -87,7 +88,9 @@ const Subscription: React.FC<SubscriptionProps> = (props) => {
               <CodeSnippet language="typescript">
                 {`${camelCase(title)}.${
                   schema.subscriptions?.[props.subscriptionName].operationId
-                }(${stringify(requestBody, null, 2)})`}
+                }(${stringify(requestBody, null, 2)}, (error, response) => {
+                  console.log(response)
+                })`}
               </CodeSnippet>
             </BodyRequestSdkCode>
             <BodyFormBottom>
