@@ -1,6 +1,6 @@
 import { camelCase } from "change-case";
 import { stringify } from "javascript-stringify";
-import React, { useReducer, useState } from "react";
+import React, { useReducer, useRef, useState } from "react";
 
 import { Button } from "@chakra-ui/react";
 import styled from "@emotion/styled";
@@ -23,6 +23,8 @@ const Subscription: React.FC<SubscriptionProps> = (props) => {
   const [requestBody, setRequestBody] = useState<any>(null);
   const [responses, setResponses] = useState<any[]>([]);
 
+  const disposerRef = useRef<() => void>();
+
   const onSubscribe = async () => {
     if (isSubscribed) {
       return;
@@ -32,7 +34,7 @@ const Subscription: React.FC<SubscriptionProps> = (props) => {
 
     const driver = getDriver();
 
-    driver.onSubscribed(
+    disposerRef.current = driver.onSubscribed(
       props.subscriptionName,
       requestBody,
       (error, response) => {
@@ -44,6 +46,16 @@ const Subscription: React.FC<SubscriptionProps> = (props) => {
         }
       }
     );
+  };
+
+  const onDispose = () => {
+    if (!isSubscribed) {
+      return;
+    }
+
+    disposerRef.current?.();
+
+    setIsSubscribed(false);
   };
 
   return (
@@ -80,9 +92,14 @@ const Subscription: React.FC<SubscriptionProps> = (props) => {
             </BodyRequestSdkCode>
             <BodyFormBottom>
               {isSubscribed ? (
-                <Button colorScheme="gray" disabled>
-                  Listening...
-                </Button>
+                <>
+                  <Button colorScheme="gray" disabled marginRight="1">
+                    Listening...
+                  </Button>
+                  <Button colorScheme="orange" onClick={onDispose}>
+                    Dispose
+                  </Button>
+                </>
               ) : (
                 <Button colorScheme="blue" onClick={onSubscribe}>
                   Subscribe
@@ -94,7 +111,9 @@ const Subscription: React.FC<SubscriptionProps> = (props) => {
             <BodyResponse>
               <BodyResponseTitle>RESPONSES</BodyResponseTitle>
               <CodeSnippet language="typescript">
-                {responses.map((response) => stringify(response, null, 2))}
+                {responses.map(
+                  (response) => stringify(response, null, 2) + "\n"
+                )}
               </CodeSnippet>
             </BodyResponse>
           )}

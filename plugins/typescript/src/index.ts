@@ -100,7 +100,7 @@ const plugin: Plugin = {
           /**
            * ${description}
            */
-          ${functionName}(req: ${requestBodyTypeName}, listener: (error: Error | null, response: ${responseTypeName} | null) => void): void {
+          ${functionName}(req: ${requestBodyTypeName}, listener: (error: Error | null, response: ${responseTypeName} | null) => void): () => void {
             return driver.onSubscribed("${subscriptionName}", req, listener)
           },
         `;

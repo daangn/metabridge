@@ -57,7 +57,7 @@ import path from "path";
           subscriptionName: string,
           requestBody: any,
           listener: (error: Error | null, response: any | null) => void
-        ) => void;
+        ) => () => void;
       }
       
       export function makeMyAppBridge<T extends MetaBridgeDriver>({
@@ -84,7 +84,7 @@ import path from "path";
               error: Error | null,
               response: MyAppBridgeSchema["StreamSubscribeResponse"] | null
             ) => void
-          ): void {
+          ): () => void {
             return driver.onSubscribed("STREAM.SUBSCRIBE", req, listener);
           },
         };

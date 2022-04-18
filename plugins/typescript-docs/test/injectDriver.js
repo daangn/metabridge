@@ -7,6 +7,18 @@ window.driver = {
       });
     });
   },
+  onSubscribed: function (subscriptionName, requestBody, listener) {
+    const interval = setInterval(() => {
+      listener(null, {
+        subscriptionName,
+        requestBody,
+      });
+    }, 500);
+
+    return () => {
+      clearInterval(interval);
+    };
+  },
 };
 
 window.onClose = () => {};
