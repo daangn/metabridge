@@ -82,6 +82,15 @@ export interface Schema {
       response: CoreSchemaMetaSchema;
     };
   };
+  subscriptions?: {
+    [k: string]: {
+      operationId: string;
+      description: string;
+      tag?: string;
+      requestBody: CoreSchemaMetaSchema;
+      response: CoreSchemaMetaSchema;
+    };
+  };
   $defs?: {
     [k: string]: CoreSchemaMetaSchema;
   };

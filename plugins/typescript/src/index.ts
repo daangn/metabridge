@@ -12,16 +12,28 @@ const plugin: Plugin = {
   async compile(schema) {
     const lines: string[] = [];
 
-    const properties = Object.entries(schema.queries).reduce(
-      (acc, [queryName, { requestBody, response }]) => {
-        return {
-          ...acc,
-          [pascalCase(queryName + " RequestBody")]: requestBody,
-          [pascalCase(queryName + " Response")]: response,
-        };
-      },
-      {} as any
-    );
+    const properties = {
+      ...Object.entries(schema.queries).reduce(
+        (acc, [queryName, { requestBody, response }]) => {
+          return {
+            ...acc,
+            [pascalCase(queryName + " RequestBody")]: requestBody,
+            [pascalCase(queryName + " Response")]: response,
+          };
+        },
+        {} as any
+      ),
+      ...Object.entries(schema.subscriptions ?? {}).reduce(
+        (acc, [subscriptionName, { requestBody, response }]) => {
+          return {
+            ...acc,
+            [pascalCase(subscriptionName + " RequestBody")]: requestBody,
+            [pascalCase(subscriptionName + " Response")]: response,
+          };
+        },
+        {} as any
+      ),
+    };
 
     const schemaRootTypeName = pascalCase(schema.appName + " BridgeSchema");
 
@@ -42,7 +54,7 @@ const plugin: Plugin = {
       "utf-8"
     );
 
-    const operations = Object.entries(schema.queries).map(
+    const queries = Object.entries(schema.queries).map(
       ([queryName, { operationId, description }]) => {
         const functionName = camelCase(operationId);
 
@@ -61,8 +73,35 @@ const plugin: Plugin = {
           /**
            * ${description}
            */
-          ${functionName}(req:  ${requestBodyTypeName}): Promise<${responseTypeName}> {
+          ${functionName}(req: ${requestBodyTypeName}): Promise<${responseTypeName}> {
             return driver.onQueried("${queryName}", req)
+          },
+        `;
+      },
+      {} as any
+    );
+
+    const subscriptions = Object.entries(schema.subscriptions ?? {}).map(
+      ([subscriptionName, { operationId, description }]) => {
+        const functionName = camelCase(operationId);
+
+        const requestBodyTypeName =
+          schemaRootTypeName +
+          `["` +
+          pascalCase(subscriptionName + " RequestBody") +
+          `"]`;
+        const responseTypeName =
+          schemaRootTypeName +
+          `["` +
+          pascalCase(subscriptionName + " Response") +
+          `"]`;
+
+        return dedent`
+          /**
+           * ${description}
+           */
+          ${functionName}(req: ${requestBodyTypeName}, listener: (res: ${responseTypeName}) => void): void {
+            return driver.onSubscribed("${subscriptionName}", req, listener)
           },
         `;
       },
@@ -71,7 +110,10 @@ const plugin: Plugin = {
 
     const sdk = pipe(
       replaceAll("Scaffolded", pascalCase(schema.appName)),
-      replaceAll("    /* operations */", operations.join(`\n`))
+      replaceAll(
+        "    /* operations */",
+        [...queries, ...subscriptions].join(`\n`)
+      )
     )(
       await fs.readFile(
         path.join(__dirname, "../src/__scaffolds__/makeScaffoldedBridge.ts"),

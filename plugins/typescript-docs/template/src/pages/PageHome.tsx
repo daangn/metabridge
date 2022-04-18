@@ -8,21 +8,28 @@ import { Tabs } from "@karrotframe/tabs";
 
 import Query from "../components/Query";
 import { getSchema, title } from "../it";
+import Subscription from "../components/Subscription";
 
 const schema = getSchema();
 
 const PageHome: React.FC = () => {
-  const queryGroups = groupBy(
-    Object.keys(schema.queries).map((queryName) => {
-      return {
-        queryName,
-        ...schema.queries[queryName],
-      };
-    }),
+  const groups = groupBy(
+    [
+      ...Object.keys(schema.queries).map((name) => ({
+        _t: "QUERY" as const,
+        name,
+        ...schema.queries[name],
+      })),
+      ...Object.keys(schema.subscriptions ?? {}).map((name) => ({
+        _t: "SUBSCRIPTION" as const,
+        name,
+        ...schema.subscriptions?.[name],
+      })),
+    ],
     ({ tag }) => tag || "Etc"
   );
 
-  const [activeTabKey, setActiveTabKey] = useState(Object.keys(queryGroups)[0]);
+  const [activeTabKey, setActiveTabKey] = useState(Object.keys(groups)[0]);
 
   return (
     <Container>
@@ -39,15 +46,19 @@ const PageHome: React.FC = () => {
               --kf_tabs_tabMain-backgroundColor: #17171a;
             }
           `}
-          tabs={Object.entries(queryGroups).map(([tagName, queries]) => ({
+          tabs={Object.entries(groups).map(([tagName, commands]) => ({
             key: tagName,
             buttonLabel: tagName,
             render() {
               return (
                 <TabMain>
-                  {queries.map(({ queryName }) => (
-                    <Query key={queryName} queryName={queryName} />
-                  ))}
+                  {commands.map(({ _t, name }) =>
+                    _t === "QUERY" ? (
+                      <Query key={name} queryName={name} />
+                    ) : (
+                      <Subscription key={name} subscriptionName={name} />
+                    )
+                  )}
                 </TabMain>
               );
             },

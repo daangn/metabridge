@@ -100,15 +100,21 @@ import path from "path";
       class MyAppBridgeSchemaClass: Codable {
           let storageGetRequestBody: StorageGetRequestBody
           let storageGetResponse: StorageGetResponse
+          let streamSubscribeRequestBody: StreamSubscribeRequestBody
+          let streamSubscribeResponse: StreamSubscribeResponse
       
           enum CodingKeys: String, CodingKey {
               case storageGetRequestBody = "StorageGetRequestBody"
               case storageGetResponse = "StorageGetResponse"
+              case streamSubscribeRequestBody = "StreamSubscribeRequestBody"
+              case streamSubscribeResponse = "StreamSubscribeResponse"
           }
       
-          init(storageGetRequestBody: StorageGetRequestBody, storageGetResponse: StorageGetResponse) {
+          init(storageGetRequestBody: StorageGetRequestBody, storageGetResponse: StorageGetResponse, streamSubscribeRequestBody: StreamSubscribeRequestBody, streamSubscribeResponse: StreamSubscribeResponse) {
               self.storageGetRequestBody = storageGetRequestBody
               self.storageGetResponse = storageGetResponse
+              self.streamSubscribeRequestBody = streamSubscribeRequestBody
+              self.streamSubscribeResponse = streamSubscribeResponse
           }
       }
       
@@ -117,7 +123,7 @@ import path from "path";
       extension MyAppBridgeSchemaClass {
           convenience init(data: Data) throws {
               let me = try newJSONDecoder().decode(MyAppBridgeSchemaClass.self, from: data)
-              self.init(storageGetRequestBody: me.storageGetRequestBody, storageGetResponse: me.storageGetResponse)
+              self.init(storageGetRequestBody: me.storageGetRequestBody, storageGetResponse: me.storageGetResponse, streamSubscribeRequestBody: me.streamSubscribeRequestBody, streamSubscribeResponse: me.streamSubscribeResponse)
           }
       
           convenience init(_ json: String, using encoding: String.Encoding = .utf8) throws {
@@ -133,11 +139,15 @@ import path from "path";
       
           func with(
               storageGetRequestBody: StorageGetRequestBody? = nil,
-              storageGetResponse: StorageGetResponse? = nil
+              storageGetResponse: StorageGetResponse? = nil,
+              streamSubscribeRequestBody: StreamSubscribeRequestBody? = nil,
+              streamSubscribeResponse: StreamSubscribeResponse? = nil
           ) -> MyAppBridgeSchemaClass {
               return MyAppBridgeSchemaClass(
                   storageGetRequestBody: storageGetRequestBody ?? self.storageGetRequestBody,
-                  storageGetResponse: storageGetResponse ?? self.storageGetResponse
+                  storageGetResponse: storageGetResponse ?? self.storageGetResponse,
+                  streamSubscribeRequestBody: streamSubscribeRequestBody ?? self.streamSubscribeRequestBody,
+                  streamSubscribeResponse: streamSubscribeResponse ?? self.streamSubscribeResponse
               )
           }
       
@@ -228,6 +238,96 @@ import path from "path";
           ) -> StorageGetResponse {
               return StorageGetResponse(
                   value: value ?? self.value
+              )
+          }
+      
+          func jsonData() throws -> Data {
+              return try newJSONEncoder().encode(self)
+          }
+      
+          func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
+              return String(data: try self.jsonData(), encoding: encoding)
+          }
+      }
+      
+      // MARK: - StreamSubscribeRequestBody
+      class StreamSubscribeRequestBody: Codable {
+          let eventName: String
+      
+          init(eventName: String) {
+              self.eventName = eventName
+          }
+      }
+      
+      // MARK: StreamSubscribeRequestBody convenience initializers and mutators
+      
+      extension StreamSubscribeRequestBody {
+          convenience init(data: Data) throws {
+              let me = try newJSONDecoder().decode(StreamSubscribeRequestBody.self, from: data)
+              self.init(eventName: me.eventName)
+          }
+      
+          convenience init(_ json: String, using encoding: String.Encoding = .utf8) throws {
+              guard let data = json.data(using: encoding) else {
+                  throw NSError(domain: "JSONDecoding", code: 0, userInfo: nil)
+              }
+              try self.init(data: data)
+          }
+      
+          convenience init(fromURL url: URL) throws {
+              try self.init(data: try Data(contentsOf: url))
+          }
+      
+          func with(
+              eventName: String? = nil
+          ) -> StreamSubscribeRequestBody {
+              return StreamSubscribeRequestBody(
+                  eventName: eventName ?? self.eventName
+              )
+          }
+      
+          func jsonData() throws -> Data {
+              return try newJSONEncoder().encode(self)
+          }
+      
+          func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
+              return String(data: try self.jsonData(), encoding: encoding)
+          }
+      }
+      
+      // MARK: - StreamSubscribeResponse
+      class StreamSubscribeResponse: Codable {
+          let data: String
+      
+          init(data: String) {
+              self.data = data
+          }
+      }
+      
+      // MARK: StreamSubscribeResponse convenience initializers and mutators
+      
+      extension StreamSubscribeResponse {
+          convenience init(data: Data) throws {
+              let me = try newJSONDecoder().decode(StreamSubscribeResponse.self, from: data)
+              self.init(data: me.data)
+          }
+      
+          convenience init(_ json: String, using encoding: String.Encoding = .utf8) throws {
+              guard let data = json.data(using: encoding) else {
+                  throw NSError(domain: "JSONDecoding", code: 0, userInfo: nil)
+              }
+              try self.init(data: data)
+          }
+      
+          convenience init(fromURL url: URL) throws {
+              try self.init(data: try Data(contentsOf: url))
+          }
+      
+          func with(
+              data: String? = nil
+          ) -> StreamSubscribeResponse {
+              return StreamSubscribeResponse(
+                  data: data ?? self.data
               )
           }
       
@@ -503,6 +603,11 @@ import path from "path";
       enum MyAppBridgeSchemaQueryName: String {
         case undefined
         case storageGet = "STORAGE.GET"
+      }
+      
+      enum MyAppBridgeSchemaSubscriptionName: String {
+        case undefined
+        case streamSubscribe = "STREAM.SUBSCRIBE"
       }
     ` + "\n"
   );

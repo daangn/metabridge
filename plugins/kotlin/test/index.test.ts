@@ -55,7 +55,13 @@ import path from "path";
           val storageGetRequestBody: StorageGetRequestBody,
       
           @SerialName("StorageGetResponse")
-          val storageGetResponse: StorageGetResponse
+          val storageGetResponse: StorageGetResponse,
+      
+          @SerialName("StreamSubscribeRequestBody")
+          val streamSubscribeRequestBody: StreamSubscribeRequestBody,
+      
+          @SerialName("StreamSubscribeResponse")
+          val streamSubscribeResponse: StreamSubscribeResponse
       )
       
       @Serializable
@@ -68,8 +74,22 @@ import path from "path";
           val value: String
       )
       
+      @Serializable
+      data class StreamSubscribeRequestBody (
+          val eventName: String
+      )
+      
+      @Serializable
+      data class StreamSubscribeResponse (
+          val data: String
+      )
+      
       object MyAppBridgeSchemaQueryName {
           const val STORAGE_GET = "STORAGE.GET"
+      }
+      
+      object MyAppBridgeSchemaSubscriptionName {
+          const val STREAM_SUBSCRIBE = "STREAM.SUBSCRIBE"
       }
     ` + "\n"
   );

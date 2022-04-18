@@ -9,7 +9,7 @@
         "type": "object",
         "properties": {
           "key": {
-            "$ref": "#/$defs/StringValue"
+            "type": "string"
           }
         },
         "required": ["key"],
@@ -20,17 +20,36 @@
       }
     }
   },
+  "subscriptions": {
+    "STREAM.SUBSCRIBE": {
+      "operationId": "subscribe",
+      "description": "Subscribe event",
+      "requestBody": {
+        "type": "object",
+        "required": ["eventName"],
+        "properties": {
+          "eventName": {
+            "type": "string"
+          }
+        }
+      },
+      "response": {
+        "type": "object",
+        "required": ["data"],
+        "properties": {
+          "data": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
   "$defs": {
     "StringValue": {
       "type": "object",
       "properties": {
         "value": {
-          "type": "object",
-          "properties": {
-            "wow": {
-              "type": "boolean"
-            }
-          }
+          "type": "string"
         }
       },
       "required": ["value"],

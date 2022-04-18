@@ -33,6 +33,31 @@
         "additionalProperties": false
       }
     },
+    "subscriptions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "operationId": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "tag": {
+            "type": "string"
+          },
+          "requestBody": {
+            "$ref": "http://json-schema.org/draft-07/schema#"
+          },
+          "response": {
+            "$ref": "http://json-schema.org/draft-07/schema#"
+          }
+        },
+        "required": ["operationId", "description", "requestBody", "response"],
+        "additionalProperties": false
+      }
+    },
     "$defs": {
       "type": "object",
       "additionalProperties": {

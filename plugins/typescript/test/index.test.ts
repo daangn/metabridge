@@ -38,6 +38,14 @@ import path from "path";
           key: string;
         };
         StorageGetResponse: StringValue;
+        StreamSubscribeRequestBody: {
+          eventName: string;
+          [k: string]: unknown;
+        };
+        StreamSubscribeResponse: {
+          data: string;
+          [k: string]: unknown;
+        };
       }
       export interface StringValue {
         value: string;
@@ -45,6 +53,11 @@ import path from "path";
       
       export interface MetaBridgeDriver {
         onQueried: (queryName: string, requestBody: any) => Promise<any>;
+        onSubscribed: (
+          subscriptionName: string,
+          requestBody: any,
+          listener: (response: any) => void
+        ) => void;
       }
       
       export function makeMyAppBridge<T extends MetaBridgeDriver>({
@@ -61,6 +74,15 @@ import path from "path";
             req: MyAppBridgeSchema["StorageGetRequestBody"]
           ): Promise<MyAppBridgeSchema["StorageGetResponse"]> {
             return driver.onQueried("STORAGE.GET", req);
+          },
+          /**
+           * Subscribe event
+           */
+          subscribe(
+            req: MyAppBridgeSchema["StreamSubscribeRequestBody"],
+            listener: (res: MyAppBridgeSchema["StreamSubscribeResponse"]) => void
+          ): void {
+            return driver.onSubscribed("STREAM.SUBSCRIBE", req, listener);
           },
         };
       }
