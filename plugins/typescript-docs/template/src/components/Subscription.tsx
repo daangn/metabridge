@@ -32,9 +32,18 @@ const Subscription: React.FC<SubscriptionProps> = (props) => {
 
     const driver = getDriver();
 
-    driver.onSubscribed(props.subscriptionName, requestBody, (res) => {
-      setResponses((prevResponses) => [...prevResponses, res]);
-    });
+    driver.onSubscribed(
+      props.subscriptionName,
+      requestBody,
+      (error, response) => {
+        if (error) {
+          // DO NOTHING...
+        }
+        if (response) {
+          setResponses((prevResponses) => [...prevResponses, response]);
+        }
+      }
+    );
   };
 
   return (

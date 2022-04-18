@@ -56,7 +56,7 @@ import path from "path";
         onSubscribed: (
           subscriptionName: string,
           requestBody: any,
-          listener: (response: any) => void
+          listener: (error: Error | null, response: any | null) => void
         ) => void;
       }
       
@@ -80,7 +80,10 @@ import path from "path";
            */
           subscribe(
             req: MyAppBridgeSchema["StreamSubscribeRequestBody"],
-            listener: (res: MyAppBridgeSchema["StreamSubscribeResponse"]) => void
+            listener: (
+              error: Error | null,
+              response: MyAppBridgeSchema["StreamSubscribeResponse"] | null
+            ) => void
           ): void {
             return driver.onSubscribed("STREAM.SUBSCRIBE", req, listener);
           },

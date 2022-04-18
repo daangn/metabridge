@@ -3,7 +3,7 @@ export interface MetaBridgeDriver {
   onSubscribed: (
     subscriptionName: string,
     requestBody: any,
-    listener: (response: any) => void
+    listener: (error: Error | null, response: any | null) => void
   ) => void;
 }
 
