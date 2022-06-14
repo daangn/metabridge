@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/css";
 import { ScreenHelmet } from "@karrotframe/navigator";
-import { Tabs } from "@karrotframe/tabs";
+import { ITab, Tabs } from "@karrotframe/tabs";
 
 import Query from "../components/Query";
 import { getSchema, title } from "../it";
@@ -65,7 +65,15 @@ const PageHome: React.FC = () => {
                 );
               },
             })),
-            ...getCustomTabs(),
+            ...getCustomTabs().map(
+              (tab) =>
+                ({
+                  ...tab,
+                  render() {
+                    return <div id={`customTab-${tab.key}`}></div>;
+                  },
+                } as ITab)
+            ),
           ]}
           activeTabKey={activeTabKey}
           onTabChange={(tabKey) => {

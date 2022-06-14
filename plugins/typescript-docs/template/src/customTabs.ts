@@ -2,7 +2,7 @@ import { ITab } from "@karrotframe/tabs";
 
 declare global {
   interface Window {
-    customTabs: ITab[];
+    customTabs: Array<Omit<ITab, "render">>;
   }
 }
 
