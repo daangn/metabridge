@@ -9,6 +9,7 @@ import { Tabs } from "@karrotframe/tabs";
 import Query from "../components/Query";
 import { getSchema, title } from "../it";
 import Subscription from "../components/Subscription";
+import { getCustomTabs } from "../customTabs";
 
 const schema = getSchema();
 
@@ -46,23 +47,26 @@ const PageHome: React.FC = () => {
               --kf_tabs_tabMain-backgroundColor: #17171a;
             }
           `}
-          tabs={Object.entries(groups).map(([tagName, commands]) => ({
-            key: tagName,
-            buttonLabel: tagName,
-            render() {
-              return (
-                <TabMain>
-                  {commands.map(({ _t, name }) =>
-                    _t === "QUERY" ? (
-                      <Query key={name} queryName={name} />
-                    ) : (
-                      <Subscription key={name} subscriptionName={name} />
-                    )
-                  )}
-                </TabMain>
-              );
-            },
-          }))}
+          tabs={[
+            ...Object.entries(groups).map(([tagName, commands]) => ({
+              key: tagName,
+              buttonLabel: tagName,
+              render() {
+                return (
+                  <TabMain>
+                    {commands.map(({ _t, name }) =>
+                      _t === "QUERY" ? (
+                        <Query key={name} queryName={name} />
+                      ) : (
+                        <Subscription key={name} subscriptionName={name} />
+                      )
+                    )}
+                  </TabMain>
+                );
+              },
+            })),
+            ...getCustomTabs(),
+          ]}
           activeTabKey={activeTabKey}
           onTabChange={(tabKey) => {
             setActiveTabKey(tabKey);
