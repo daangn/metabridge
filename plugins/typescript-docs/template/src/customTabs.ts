@@ -7,5 +7,5 @@ declare global {
 }
 
 export function getCustomTabs() {
-  return window.customTabs;
+  return window.customTabs ?? [];
 }
