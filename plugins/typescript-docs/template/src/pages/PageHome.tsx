@@ -1,5 +1,5 @@
 import { groupBy } from "lodash";
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import styled from "@emotion/styled";
 import { css } from "@emotion/css";
@@ -30,7 +30,16 @@ const PageHome: React.FC = () => {
     ({ tag }) => tag || "Etc"
   );
 
+  const customTabs = useMemo(() => getCustomTabs(), []);
+
   const [activeTabKey, setActiveTabKey] = useState(Object.keys(groups)[0]);
+
+  useEffect(() => {
+    const activeCustomTab = customTabs.find(
+      (customTab) => customTab.key === activeTabKey
+    );
+    activeCustomTab?.onActive();
+  }, [activeTabKey]);
 
   return (
     <Container>
@@ -65,7 +74,7 @@ const PageHome: React.FC = () => {
                 );
               },
             })),
-            ...getCustomTabs().map(
+            ...customTabs.map(
               (tab) =>
                 ({
                   ...tab,

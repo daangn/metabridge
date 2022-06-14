@@ -1,8 +1,12 @@
-import { ITab } from "@karrotframe/tabs";
+interface CustomTab {
+  key: string;
+  buttonLabel: string;
+  onActive: () => void;
+}
 
 declare global {
   interface Window {
-    customTabs: Array<Omit<ITab, "render">>;
+    customTabs: Array<CustomTab>;
   }
 }
 
