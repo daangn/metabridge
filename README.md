@@ -3,8 +3,8 @@
 ## Usage
 
 ```bash
-# Install dependencies
-$ yarn add --dev @metabridge/cli
+# Install CLI
+$ yarn add --dev @metabridge/cli @metabridge/plugin-typescript
 
 # Generate code
 $ yarn metabridge-cli \
@@ -30,3 +30,29 @@ myBridge.pushRouter({
   // ...
 });
 ```
+
+## Available Plugins
+
+- `@metabridge/plugin-typescript`: TypeScript SDK
+- `@metabridge/plugin-typescript-docs`: TypeScript SDK Documentations (for WebView)
+- `@metabridge/plugin-kotlin`: Kotlin Stub
+- `@metabridge/plugin-swift`: Swift Stub
+
+## How to implement the JavaScript `Driver`
+
+Just implement this
+
+```typescript
+export interface MetaBridgeDriver {
+  onQueried: (queryName: string, requestBody: any) => Promise<any>;
+  onSubscribed: (
+    subscriptionName: string,
+    requestBody: any,
+    listener: (error: Error | null, response: any | null) => void
+  ) => () => void;
+}
+```
+
+## Contributors
+
+- [@tonyfromundefined](https://github.com/tonyfromundefined)
