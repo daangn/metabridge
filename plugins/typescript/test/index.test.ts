@@ -69,6 +69,10 @@ import path from "path";
           driver,
           /**
            * Get item from persistent storage
+           *
+           * Minimum Support App Version
+           * - iOS 1.1.1
+           * - Android 1.1.1
            */
           getItemFromStorage(
             req: MyAppBridgeSchema["StorageGetRequestBody"]
@@ -88,7 +92,7 @@ import path from "path";
             return driver.onSubscribed("STREAM.SUBSCRIBE", req, listener);
           },
         };
-      }
+      }    
     ` + "\n"
   );
 })();
