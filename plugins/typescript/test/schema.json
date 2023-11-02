@@ -17,6 +17,10 @@
       },
       "response": {
         "$ref": "#/$defs/StringValue"
+      },
+      "minimumSupportAppVersion": {
+        "android": "1.1.1",
+        "ios": "1.1.1"
       }
     }
   },

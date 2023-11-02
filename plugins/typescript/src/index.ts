@@ -55,7 +55,7 @@ const plugin: Plugin = {
     );
 
     const queries = Object.entries(schema.queries).map(
-      ([queryName, { operationId, description }]) => {
+      ([queryName, { operationId, description, minimumSupportAppVersion }]) => {
         const functionName = camelCase(operationId);
 
         const requestBodyTypeName =
@@ -71,7 +71,11 @@ const plugin: Plugin = {
 
         return dedent`
           /**
-           * ${description}
+           * ${description}${
+          minimumSupportAppVersion
+            ? `\n * \n * Minimum Support App Version\n * - iOS ${minimumSupportAppVersion.ios}\n * - Android ${minimumSupportAppVersion.android}`
+            : ""
+        }
            */
           ${functionName}(req: ${requestBodyTypeName}): Promise<${responseTypeName}> {
             return driver.onQueried("${queryName}", req)
@@ -82,7 +86,10 @@ const plugin: Plugin = {
     );
 
     const subscriptions = Object.entries(schema.subscriptions ?? {}).map(
-      ([subscriptionName, { operationId, description }]) => {
+      ([
+        subscriptionName,
+        { operationId, description, minimumSupportAppVersion },
+      ]) => {
         const functionName = camelCase(operationId);
 
         const requestBodyTypeName =
@@ -98,7 +105,11 @@ const plugin: Plugin = {
 
         return dedent`
           /**
-           * ${description}
+           * ${description}${
+          minimumSupportAppVersion
+            ? `\n * \n * Minimum Support App Version\n * - iOS ${minimumSupportAppVersion.ios}\n * - Android ${minimumSupportAppVersion.android}`
+            : ""
+        }
            */
           ${functionName}(req: ${requestBodyTypeName}, listener: (error: Error | null, response: ${responseTypeName} | null) => void): () => void {
             return driver.onSubscribed("${subscriptionName}", req, listener)

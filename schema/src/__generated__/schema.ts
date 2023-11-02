@@ -69,7 +69,6 @@ export type CoreSchemaMetaSchema =
       [k: string]: unknown;
     }
   | boolean;
-export type SemverSchemaJson = string;
 
 export interface Schema {
   $schema: string;
@@ -82,8 +81,8 @@ export interface Schema {
       requestBody: CoreSchemaMetaSchema;
       response: CoreSchemaMetaSchema;
       minimumSupportAppVersion?: {
-        ios?: SemverSchemaJson;
-        android?: SemverSchemaJson;
+        ios: string;
+        android: string;
         [k: string]: unknown;
       };
     };
@@ -96,8 +95,8 @@ export interface Schema {
       requestBody: CoreSchemaMetaSchema;
       response: CoreSchemaMetaSchema;
       minimumSupportAppVersion?: {
-        ios?: SemverSchemaJson;
-        android?: SemverSchemaJson;
+        ios: string;
+        android: string;
         [k: string]: unknown;
       };
     };
