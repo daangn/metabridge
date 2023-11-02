@@ -32,10 +32,10 @@
             "type": "object",
             "properties": {
               "ios": {
-                "$ref": "https://raw.githubusercontent.com/microsoft/json-schemas/main/spfx/semver.schema.json"
+                "$ref": "https://developer.microsoft.com/json-schemas/spfx/semver.schema.json"
               },
               "android": {
-                "type": "string"
+                "$ref": "https://developer.microsoft.com/json-schemas/spfx/semver.schema.json"
               }
             }
           }
