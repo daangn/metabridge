@@ -7,7 +7,7 @@
     "schema"
   ],
   "scripts": {
-    "build": "yarn workspaces foreach -t run build",
+    "build": "yarn workspaces foreach -t --all run build",
     "lerna:publish": "yarn build && lerna publish",
     "test": "yarn workspaces foreach -t run test",
     "version": "yarn install && git stage yarn.lock"
