@@ -27,6 +27,17 @@
           },
           "response": {
             "$ref": "http://json-schema.org/draft-07/schema#"
+          },
+          "minimumSupportAppVersion": {
+            "type": "object",
+            "properties": {
+              "ios": {
+                "type": "string"
+              },
+              "android": {
+                "type": "string"
+              }
+            }
           }
         },
         "required": ["operationId", "description", "requestBody", "response"],
