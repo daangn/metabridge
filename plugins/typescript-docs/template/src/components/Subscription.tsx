@@ -60,13 +60,26 @@ const Subscription: React.FC<SubscriptionProps> = (props) => {
     setIsSubscribed(false);
   };
 
+  const currentSubscription = schema.subscriptions?.[props.subscriptionName];
+
   return (
     <Container>
       <Top onClick={toggleCollapse}>
         <Title>{props.subscriptionName}</Title>
-        <Description>
-          {schema.subscriptions?.[props.subscriptionName].description}
-        </Description>
+        <Description>{currentSubscription?.description}</Description>
+        {currentSubscription?.minimumSupportAppVersion && (
+          <MinimumSupportAppVersion>
+            <MinimumSupportAppVersionTitle>
+              Minimum Support App Version
+            </MinimumSupportAppVersionTitle>
+            <MinimumSupportAppVersionContent>
+              🍎 iOS: {currentSubscription.minimumSupportAppVersion.ios}
+            </MinimumSupportAppVersionContent>
+            <MinimumSupportAppVersionContent>
+              🤖 Android: {currentSubscription.minimumSupportAppVersion.android}
+            </MinimumSupportAppVersionContent>
+          </MinimumSupportAppVersion>
+        )}
       </Top>
       {!isCollapsed && (
         <Body>
@@ -74,8 +87,7 @@ const Subscription: React.FC<SubscriptionProps> = (props) => {
             <BodyRequestForm>
               <Form
                 schema={{
-                  ...(schema.subscriptions?.[props.subscriptionName]
-                    .requestBody as any),
+                  ...(currentSubscription?.requestBody as any),
                   $defs: schema.$defs,
                 }}
                 formData={requestBody}
@@ -88,7 +100,7 @@ const Subscription: React.FC<SubscriptionProps> = (props) => {
             <BodyRequestSdkCode>
               <CodeSnippet language="typescript">
                 {dedent`${camelCase(title)}.${
-                  schema.subscriptions?.[props.subscriptionName].operationId
+                  currentSubscription?.operationId
                 }(${stringify(requestBody, null, 2)}, (error, response) => {
                   console.log(response)
                 })`}
@@ -160,6 +172,30 @@ const Title = styled.div`
 `;
 
 const Description = styled.div`
+  font-size: 0.75rem;
+  color: ${colors.gray600};
+
+  @media (prefers-color-scheme: dark) {
+    color: ${colors.gray500};
+  }
+`;
+
+const MinimumSupportAppVersion = styled.div`
+  margin-top: .5rem;
+`;
+
+const MinimumSupportAppVersionTitle = styled.div`
+  font-size: 0.625rem;
+  color: ${colors.gray600};
+  font-weight: 700;
+  text-transform: uppercase;
+
+  @media (prefers-color-scheme: dark) {
+    color: ${colors.gray500};
+  }
+`;
+
+const MinimumSupportAppVersionContent = styled.div`
   font-size: 0.75rem;
   color: ${colors.gray600};
 

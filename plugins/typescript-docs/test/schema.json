@@ -17,6 +17,10 @@
       },
       "response": {
         "$ref": "#/$defs/StringValue"
+      },
+      "minimumSupportAppVersion": {
+        "ios": "1.2.3",
+        "android": "1.2.3"
       }
     }
   },
@@ -41,6 +45,10 @@
             "type": "string"
           }
         }
+      },
+      "minimumSupportAppVersion": {
+        "ios": "1.2.3",
+        "android": "1.2.3"
       }
     }
   },

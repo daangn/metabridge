@@ -69,6 +69,7 @@ export type CoreSchemaMetaSchema =
       [k: string]: unknown;
     }
   | boolean;
+export type SemverSchemaJson = string;
 
 export interface Schema {
   $schema: string;
@@ -80,6 +81,11 @@ export interface Schema {
       tag?: string;
       requestBody: CoreSchemaMetaSchema;
       response: CoreSchemaMetaSchema;
+      minimumSupportAppVersion?: {
+        ios?: SemverSchemaJson;
+        android?: SemverSchemaJson;
+        [k: string]: unknown;
+      };
     };
   };
   subscriptions?: {
@@ -89,6 +95,11 @@ export interface Schema {
       tag?: string;
       requestBody: CoreSchemaMetaSchema;
       response: CoreSchemaMetaSchema;
+      minimumSupportAppVersion?: {
+        ios?: SemverSchemaJson;
+        android?: SemverSchemaJson;
+        [k: string]: unknown;
+      };
     };
   };
   $defs?: {

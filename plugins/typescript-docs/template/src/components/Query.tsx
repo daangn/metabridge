@@ -28,11 +28,26 @@ const Query: React.FC<QueryProps> = (props) => {
     setResponse(response);
   };
 
+  const currentQuery = schema.queries[props.queryName];
+
   return (
     <Container>
       <Top onClick={toggleCollapse}>
         <Title>{props.queryName}</Title>
-        <Description>{schema.queries[props.queryName].description}</Description>
+        <Description>{currentQuery.description}</Description>
+        {currentQuery.minimumSupportAppVersion && (
+          <MinimumSupportAppVersion>
+            <MinimumSupportAppVersionTitle>
+              Minimum Support App Version
+            </MinimumSupportAppVersionTitle>
+            <MinimumSupportAppVersionContent>
+              🍎 iOS: {currentQuery.minimumSupportAppVersion.ios}
+            </MinimumSupportAppVersionContent>
+            <MinimumSupportAppVersionContent>
+              🤖 Android: {currentQuery.minimumSupportAppVersion.android}
+            </MinimumSupportAppVersionContent>
+          </MinimumSupportAppVersion>
+        )}
       </Top>
       {!isCollapsed && (
         <Body>
@@ -40,7 +55,7 @@ const Query: React.FC<QueryProps> = (props) => {
             <BodyRequestForm>
               <Form
                 schema={{
-                  ...(schema.queries[props.queryName].requestBody as any),
+                  ...(currentQuery.requestBody as any),
                   $defs: schema.$defs,
                 }}
                 formData={requestBody}
@@ -52,9 +67,11 @@ const Query: React.FC<QueryProps> = (props) => {
             </BodyRequestForm>
             <BodyRequestSdkCode>
               <CodeSnippet language="typescript">
-                {`${camelCase(title)}.${
-                  schema.queries[props.queryName].operationId
-                }(${stringify(requestBody, null, 2)})`}
+                {`${camelCase(title)}.${currentQuery.operationId}(${stringify(
+                  requestBody,
+                  null,
+                  2
+                )})`}
               </CodeSnippet>
             </BodyRequestSdkCode>
             <BodyFormBottom>
@@ -110,6 +127,30 @@ const Title = styled.div`
 `;
 
 const Description = styled.div`
+  font-size: 0.75rem;
+  color: ${colors.gray600};
+
+  @media (prefers-color-scheme: dark) {
+    color: ${colors.gray500};
+  }
+`;
+
+const MinimumSupportAppVersion = styled.div`
+  margin-top: .5rem;
+`;
+
+const MinimumSupportAppVersionTitle = styled.div`
+  font-size: 0.625rem;
+  color: ${colors.gray600};
+  font-weight: 700;
+  text-transform: uppercase;
+
+  @media (prefers-color-scheme: dark) {
+    color: ${colors.gray500};
+  }
+`;
+
+const MinimumSupportAppVersionContent = styled.div`
   font-size: 0.75rem;
   color: ${colors.gray600};
 
