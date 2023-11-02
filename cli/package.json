@@ -1,12 +1,12 @@
 {
   "name": "@metabridge/cli",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "bin": {
     "metabridge-cli": "./bin/run"
   },
   "dependencies": {
-    "@metabridge/plugin-base": "^0.2.0",
-    "@metabridge/schema": "^0.2.0",
+    "@metabridge/plugin-base": "^0.3.0",
+    "@metabridge/schema": "^0.3.0",
     "await-to-js": "^3.0.0",
     "commander": "^9.0.0",
     "tsm": "^2.2.1",
