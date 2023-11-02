@@ -27,6 +27,17 @@
           },
           "response": {
             "$ref": "http://json-schema.org/draft-07/schema#"
+          },
+          "minimumSupportAppVersion": {
+            "type": "object",
+            "properties": {
+              "ios": {
+                "$ref": "https://developer.microsoft.com/json-schemas/spfx/semver.schema.json"
+              },
+              "android": {
+                "$ref": "https://developer.microsoft.com/json-schemas/spfx/semver.schema.json"
+              }
+            }
           }
         },
         "required": ["operationId", "description", "requestBody", "response"],
