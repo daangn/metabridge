@@ -32,7 +32,7 @@
             "type": "object",
             "properties": {
               "ios": {
-                "type": "string"
+                "$ref": "https://raw.githubusercontent.com/microsoft/json-schemas/main/spfx/semver.schema.json"
               },
               "android": {
                 "type": "string"
