@@ -25,7 +25,7 @@
     "@emotion/css": "^11.9.0",
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
-    "@karrotframe/navigator": "^0.18.0",
+    "@karrotframe/navigator": "^0.25.3",
     "@karrotframe/tabs": "^0.4.2",
     "@metabridge/cli": "^0.2.0",
     "@metabridge/plugin-typescript": "^0.2.2",
