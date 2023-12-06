@@ -59,36 +59,42 @@ import path from "path";
           listener: (error: Error | null, response: any | null) => void
         ) => () => void;
       }
+
+      export type BridgeInstance<T> = {
+        driver: T;
+        /**
+         * Get item from persistent storage
+         *
+         * Minimum Support App Version
+         * - iOS 1.1.1
+         * - Android 1.1.1
+         */
+        getItemFromStorage: (
+          req: MyAppBridgeSchema["StorageGetRequestBody"]
+        ) => Promise<MyAppBridgeSchema["StorageGetResponse"]>;
+        /**
+         * Subscribe event
+         */
+        subscribe: (
+          req: MyAppBridgeSchema["StreamSubscribeRequestBody"],
+          listener: (
+            error: Error | null,
+            response: MyAppBridgeSchema["StreamSubscribeResponse"] | null
+          ) => void
+        ) => () => void;
+      };
       
       export function makeMyAppBridge<T extends MetaBridgeDriver>({
         driver,
       }: {
         driver: T;
-      }) {
+      }): BridgeInstance<T> {
         return {
           driver,
-          /**
-           * Get item from persistent storage
-           *
-           * Minimum Support App Version
-           * - iOS 1.1.1
-           * - Android 1.1.1
-           */
-          getItemFromStorage(
-            req: MyAppBridgeSchema["StorageGetRequestBody"]
-          ): Promise<MyAppBridgeSchema["StorageGetResponse"]> {
+          getItemFromStorage(req) {
             return driver.onQueried("STORAGE.GET", req);
           },
-          /**
-           * Subscribe event
-           */
-          subscribe(
-            req: MyAppBridgeSchema["StreamSubscribeRequestBody"],
-            listener: (
-              error: Error | null,
-              response: MyAppBridgeSchema["StreamSubscribeResponse"] | null
-            ) => void
-          ): () => void {
+          subscribe(req, listener) {
             return driver.onSubscribed("STREAM.SUBSCRIBE", req, listener);
           },
         };

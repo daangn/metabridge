@@ -54,7 +54,7 @@ const plugin: Plugin = {
       "utf-8"
     );
 
-    const queries = Object.entries(schema.queries).map(
+    const queryDefinitions = Object.entries(schema.queries).map(
       ([queryName, { operationId, description, minimumSupportAppVersion }]) => {
         const functionName = camelCase(operationId);
 
@@ -77,7 +77,18 @@ const plugin: Plugin = {
             : ""
         }
            */
-          ${functionName}(req: ${requestBodyTypeName}): Promise<${responseTypeName}> {
+          ${functionName}: (req: ${requestBodyTypeName}) => Promise<${responseTypeName}>;
+        `;
+      },
+      {} as any
+    );
+
+    const queries = Object.entries(schema.queries).map(
+      ([queryName, { operationId }]) => {
+        const functionName = camelCase(operationId);
+
+        return dedent`
+          ${functionName}(req) {
             return driver.onQueried("${queryName}", req)
           },
         `;
@@ -85,7 +96,9 @@ const plugin: Plugin = {
       {} as any
     );
 
-    const subscriptions = Object.entries(schema.subscriptions ?? {}).map(
+    const subscriptionDefinitions = Object.entries(
+      schema.subscriptions ?? {}
+    ).map(
       ([
         subscriptionName,
         { operationId, description, minimumSupportAppVersion },
@@ -111,7 +124,18 @@ const plugin: Plugin = {
             : ""
         }
            */
-          ${functionName}(req: ${requestBodyTypeName}, listener: (error: Error | null, response: ${responseTypeName} | null) => void): () => void {
+          ${functionName}: (req: ${requestBodyTypeName}, listener: (error: Error | null, response: ${responseTypeName} | null) => void) => () => void;
+        `;
+      },
+      {} as any
+    );
+
+    const subscriptions = Object.entries(schema.subscriptions ?? {}).map(
+      ([subscriptionName, { operationId }]) => {
+        const functionName = camelCase(operationId);
+
+        return dedent`
+          ${functionName}(req, listener) {
             return driver.onSubscribed("${subscriptionName}", req, listener)
           },
         `;
@@ -121,6 +145,10 @@ const plugin: Plugin = {
 
     const sdk = pipe(
       replaceAll("Scaffolded", pascalCase(schema.appName)),
+      replaceAll(
+        "  /* definitions */",
+        [...queryDefinitions, ...subscriptionDefinitions].join(`\n`)
+      ),
       replaceAll(
         "    /* operations */",
         [...queries, ...subscriptions].join(`\n`)
