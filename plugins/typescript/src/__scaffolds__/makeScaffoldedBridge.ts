@@ -7,11 +7,16 @@ export interface MetaBridgeDriver {
   ) => () => void;
 }
 
+export type BridgeInstance<T> = {
+  driver: T;
+  /* definitions */
+};
+
 export function makeScaffoldedBridge<T extends MetaBridgeDriver>({
   driver,
 }: {
   driver: T;
-}) {
+}): BridgeInstance<T> {
   return {
     driver,
     /* operations */
