@@ -10,6 +10,7 @@ import { getDriver } from "../driver";
 import { getSchema, title } from "../it";
 import CodeSnippet from "./CodeSnippet";
 import { colors } from "../colors";
+import Copy from "./Copy";
 
 const schema = getSchema();
 
@@ -82,7 +83,16 @@ const Query: React.FC<QueryProps> = (props) => {
           </BodyRequest>
           {response && (
             <BodyResponse>
-              <BodyResponseTitle>RESPONSE</BodyResponseTitle>
+              <BodyResponseTitleArea>
+                <BodyResponseTitle>RESPONSE</BodyResponseTitle>
+                <Copy
+                  onClick={async () => {
+                    await navigator.clipboard.writeText(
+                      stringify(response, null, 2)!
+                    );
+                  }}
+                />
+              </BodyResponseTitleArea>
               <CodeSnippet language="typescript">
                 {stringify(response, null, 2)}
               </CodeSnippet>
@@ -136,7 +146,7 @@ const Description = styled.div`
 `;
 
 const MinimumSupportAppVersion = styled.div`
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 `;
 
 const MinimumSupportAppVersionTitle = styled.div`
@@ -217,10 +227,16 @@ const BodyResponse = styled.div`
   padding: 0.75rem;
 `;
 
+const BodyResponseTitleArea = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+`;
+
 const BodyResponseTitle = styled.div`
   font-size: 0.875rem;
   font-weight: bold;
-  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
   color: #343a40;
 
   @media (prefers-color-scheme: dark) {

@@ -11,6 +11,7 @@ import { getDriver } from "../driver";
 import { getSchema, title } from "../it";
 import CodeSnippet from "./CodeSnippet";
 import { colors } from "../colors";
+import Copy from "./Copy";
 
 const schema = getSchema();
 
@@ -61,6 +62,10 @@ const Subscription: React.FC<SubscriptionProps> = (props) => {
   };
 
   const currentSubscription = schema.subscriptions?.[props.subscriptionName];
+
+  const formattedResponses = responses.map(
+    (response) => stringify(response, null, 2) + "\n"
+  );
 
   return (
     <Container>
@@ -125,11 +130,18 @@ const Subscription: React.FC<SubscriptionProps> = (props) => {
           </BodyRequest>
           {responses.length > 0 && (
             <BodyResponse>
-              <BodyResponseTitle>RESPONSES</BodyResponseTitle>
+              <BodyResponseTitleArea>
+                <BodyResponseTitle>RESPONSES</BodyResponseTitle>
+                <Copy
+                  onClick={async () => {
+                    await navigator.clipboard.writeText(
+                      formattedResponses.join("")
+                    );
+                  }}
+                />
+              </BodyResponseTitleArea>
               <CodeSnippet language="typescript">
-                {responses.map(
-                  (response) => stringify(response, null, 2) + "\n"
-                )}
+                {formattedResponses}
               </CodeSnippet>
             </BodyResponse>
           )}
@@ -181,7 +193,7 @@ const Description = styled.div`
 `;
 
 const MinimumSupportAppVersion = styled.div`
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 `;
 
 const MinimumSupportAppVersionTitle = styled.div`
@@ -262,10 +274,16 @@ const BodyResponse = styled.div`
   padding: 0.75rem;
 `;
 
+const BodyResponseTitleArea = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+`;
+
 const BodyResponseTitle = styled.div`
   font-size: 0.875rem;
   font-weight: bold;
-  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
   color: #343a40;
 
   @media (prefers-color-scheme: dark) {
