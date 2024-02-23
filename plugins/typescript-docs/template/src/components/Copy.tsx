@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
+import React, { useState } from "react";
 
 export default function Copy({ onClick }: { onClick?: () => void }) {
   const [copied, setCopied] = useState(false);
