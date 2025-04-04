@@ -28,12 +28,25 @@
           "response": {
             "$ref": "http://json-schema.org/draft-07/schema#"
           },
-          "errors": {
+          "error": {
             "type": "object",
-            "additionalProperties": {
-              "type": "object",
-              "additionalProperties": false
-            }
+            "properties": {
+              "oneOf": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "reason": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["reason"],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": ["oneOf"],
+            "additionalProperties": false
           },
           "minimumSupportAppVersion": {
             "type": "object",
@@ -84,12 +97,25 @@
           "response": {
             "$ref": "http://json-schema.org/draft-07/schema#"
           },
-          "errors": {
+          "error": {
             "type": "object",
-            "additionalProperties": {
-              "type": "object",
-              "additionalProperties": false
-            }
+            "properties": {
+              "oneOf": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "reason": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["reason"],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": ["oneOf"],
+            "additionalProperties": false
           },
           "minimumSupportAppVersion": {
             "type": "object",

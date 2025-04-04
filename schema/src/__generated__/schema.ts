@@ -80,8 +80,10 @@ export interface Schema {
       tag?: string;
       requestBody: CoreSchemaMetaSchema;
       response: CoreSchemaMetaSchema;
-      errors: {
-        [k: string]: {};
+      error?: {
+        oneOf: {
+          reason: string;
+        }[];
       };
       minimumSupportAppVersion?: {
         ios: string;
@@ -97,8 +99,10 @@ export interface Schema {
       tag?: string;
       requestBody: CoreSchemaMetaSchema;
       response: CoreSchemaMetaSchema;
-      errors: {
-        [k: string]: {};
+      error?: {
+        oneOf: {
+          reason: string;
+        }[];
       };
       minimumSupportAppVersion?: {
         ios: string;
