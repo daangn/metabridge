@@ -28,6 +28,13 @@
           "response": {
             "$ref": "http://json-schema.org/draft-07/schema#"
           },
+          "errors": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": false
+            }
+          },
           "minimumSupportAppVersion": {
             "type": "object",
             "properties": {
@@ -47,7 +54,13 @@
             "required": ["ios", "android"]
           }
         },
-        "required": ["operationId", "description", "requestBody", "response"],
+        "required": [
+          "operationId",
+          "description",
+          "requestBody",
+          "response",
+          "errors"
+        ],
         "additionalProperties": false
       }
     },
@@ -71,6 +84,13 @@
           "response": {
             "$ref": "http://json-schema.org/draft-07/schema#"
           },
+          "errors": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": false
+            }
+          },
           "minimumSupportAppVersion": {
             "type": "object",
             "properties": {
@@ -90,7 +110,13 @@
             "required": ["ios", "android"]
           }
         },
-        "required": ["operationId", "description", "requestBody", "response"],
+        "required": [
+          "operationId",
+          "description",
+          "requestBody",
+          "response",
+          "errors"
+        ],
         "additionalProperties": false
       }
     },
