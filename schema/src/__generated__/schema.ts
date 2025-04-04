@@ -80,7 +80,7 @@ export interface Schema {
       tag?: string;
       requestBody: CoreSchemaMetaSchema;
       response: CoreSchemaMetaSchema;
-      error?: {
+      error: {
         oneOf: {
           reason: string;
         }[];
@@ -99,7 +99,7 @@ export interface Schema {
       tag?: string;
       requestBody: CoreSchemaMetaSchema;
       response: CoreSchemaMetaSchema;
-      error?: {
+      error: {
         oneOf: {
           reason: string;
         }[];

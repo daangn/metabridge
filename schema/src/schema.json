@@ -72,7 +72,7 @@
           "description",
           "requestBody",
           "response",
-          "errors"
+          "error"
         ],
         "additionalProperties": false
       }
@@ -141,7 +141,7 @@
           "description",
           "requestBody",
           "response",
-          "errors"
+          "error"
         ],
         "additionalProperties": false
       }
