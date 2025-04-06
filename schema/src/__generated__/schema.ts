@@ -82,7 +82,13 @@ export interface Schema {
       response: CoreSchemaMetaSchema;
       error: {
         oneOf: {
-          reason: string;
+          type: "object";
+          properties: {
+            reason: {
+              const: string;
+            };
+          };
+          required: ["reason"];
         }[];
       };
       minimumSupportAppVersion?: {
@@ -101,7 +107,13 @@ export interface Schema {
       response: CoreSchemaMetaSchema;
       error: {
         oneOf: {
-          reason: string;
+          type: "object";
+          properties: {
+            reason: {
+              const: string;
+            };
+          };
+          required: [] | ["reason"];
         }[];
       };
       minimumSupportAppVersion?: {
