@@ -113,7 +113,7 @@ export interface Schema {
               const: string;
             };
           };
-          required: [] | ["reason"];
+          required: ["reason"];
         }[];
       };
       minimumSupportAppVersion?: {
