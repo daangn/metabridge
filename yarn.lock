@@ -2285,11 +2285,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@metabridge/plugin-base@npm:^0.4.0, @metabridge/plugin-base@workspace:plugins/base":
+"@metabridge/plugin-base@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "@metabridge/plugin-base@npm:0.4.0"
+  dependencies:
+    "@metabridge/schema": "npm:^0.4.0"
+  checksum: 68fb25a6e39bd4031166fb96df0f106ed861248b90bf709e9905b69ccc49cd45de5af768487f31199f46d958a331d3c9963108c5d812a8299e9c48bdfc5f06cf
+  languageName: node
+  linkType: hard
+
+"@metabridge/plugin-base@npm:^0.5.0, @metabridge/plugin-base@workspace:plugins/base":
   version: 0.0.0-use.local
   resolution: "@metabridge/plugin-base@workspace:plugins/base"
   dependencies:
-    "@metabridge/schema": "npm:^0.4.0"
+    "@metabridge/schema": "npm:^0.5.0"
     typescript: "npm:^4.6.2"
   languageName: unknown
   linkType: soft
@@ -2370,12 +2379,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@metabridge/plugin-typescript@npm:*, @metabridge/plugin-typescript@npm:^0.5.0, @metabridge/plugin-typescript@workspace:plugins/typescript":
+"@metabridge/plugin-typescript@npm:*, @metabridge/plugin-typescript@workspace:plugins/typescript":
   version: 0.0.0-use.local
   resolution: "@metabridge/plugin-typescript@workspace:plugins/typescript"
   dependencies:
     "@metabridge/cli": "npm:^0.4.0"
-    "@metabridge/plugin-base": "npm:^0.4.0"
+    "@metabridge/plugin-base": "npm:^0.5.0"
     "@types/dedent": "npm:^0.7.0"
     "@types/lodash": "npm:^4.14.179"
     "@types/node": "npm:^17.0.21"
@@ -2391,7 +2400,30 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@metabridge/schema@npm:^0.4.0, @metabridge/schema@workspace:schema":
+"@metabridge/plugin-typescript@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "@metabridge/plugin-typescript@npm:0.5.0"
+  dependencies:
+    "@metabridge/plugin-base": "npm:^0.4.0"
+    change-case: "npm:^4.1.2"
+    dedent: "npm:^0.7.0"
+    json-schema-to-typescript: "npm:^10.1.5"
+    lodash: "npm:^4.17.21"
+    prettier: "npm:^2.5.1"
+  checksum: e65a6d45a5f23a0cd1124dea7b8fe2e050a562511fd3356b67b120bb8775b3b1b088265c326c4a62abd5942cd885c1e8f078d81c2c93a78b044e41e92dab5a6a
+  languageName: node
+  linkType: hard
+
+"@metabridge/schema@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "@metabridge/schema@npm:0.4.0"
+  dependencies:
+    ajv: "npm:^8.10.0"
+  checksum: 9aa7711d3556856560edf30058e181f5bdfeeeb4597d9a8de7c7fb6fa33904f738128832af9456f9d0292dccb51e69e2702e1eee35a73d1f1687d61d92a3f9c7
+  languageName: node
+  linkType: hard
+
+"@metabridge/schema@npm:^0.5.0, @metabridge/schema@workspace:schema":
   version: 0.0.0-use.local
   resolution: "@metabridge/schema@workspace:schema"
   dependencies:

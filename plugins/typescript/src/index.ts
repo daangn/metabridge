@@ -14,21 +14,23 @@ const plugin: Plugin = {
 
     const properties = {
       ...Object.entries(schema.queries).reduce(
-        (acc, [queryName, { requestBody, response }]) => {
+        (acc, [queryName, { requestBody, response, error }]) => {
           return {
             ...acc,
             [pascalCase(queryName + " RequestBody")]: requestBody,
             [pascalCase(queryName + " Response")]: response,
+            [pascalCase(queryName + " Error")]: error,
           };
         },
         {} as any
       ),
       ...Object.entries(schema.subscriptions ?? {}).reduce(
-        (acc, [subscriptionName, { requestBody, response }]) => {
+        (acc, [subscriptionName, { requestBody, response, error }]) => {
           return {
             ...acc,
             [pascalCase(subscriptionName + " RequestBody")]: requestBody,
             [pascalCase(subscriptionName + " Response")]: response,
+            [pascalCase(subscriptionName + " Error")]: error,
           };
         },
         {} as any
@@ -55,7 +57,10 @@ const plugin: Plugin = {
     );
 
     const queryDefinitions = Object.entries(schema.queries).map(
-      ([queryName, { operationId, description, minimumSupportAppVersion }]) => {
+      ([
+        queryName,
+        { operationId, description, minimumSupportAppVersion, error },
+      ]) => {
         const functionName = camelCase(operationId);
 
         const requestBodyTypeName =
@@ -76,6 +81,13 @@ const plugin: Plugin = {
             ? `\n * \n * Minimum Support App Version\n * - iOS ${minimumSupportAppVersion.ios}\n * - Android ${minimumSupportAppVersion.android}`
             : ""
         }
+           ${
+             error.oneOf.length > 0
+               ? `\n * \n * May throw ScaffoldedBridgeError for reasons: ${error.oneOf
+                   .map(({ properties: { reason } }) => reason)
+                   .join(", ")}`
+               : ""
+           }
            */
           ${functionName}: (req: ${requestBodyTypeName}) => Promise<${responseTypeName}>;
         `;
@@ -101,7 +113,7 @@ const plugin: Plugin = {
     ).map(
       ([
         subscriptionName,
-        { operationId, description, minimumSupportAppVersion },
+        { operationId, description, minimumSupportAppVersion, error },
       ]) => {
         const functionName = camelCase(operationId);
 
@@ -123,8 +135,15 @@ const plugin: Plugin = {
             ? `\n * \n * Minimum Support App Version\n * - iOS ${minimumSupportAppVersion.ios}\n * - Android ${minimumSupportAppVersion.android}`
             : ""
         }
+              ${
+                error.oneOf.length > 0
+                  ? `\n * \n * May throw ScaffoldedBridgeError for reasons: ${error.oneOf
+                      .map(({ properties: { reason } }) => reason)
+                      .join(", ")}`
+                  : ""
+              }
            */
-          ${functionName}: (req: ${requestBodyTypeName}, listener: (error: Error | null, response: ${responseTypeName} | null) => void) => () => void;
+          ${functionName}: (req: ${requestBodyTypeName}, listener: (error: ScaffoldedBridgeError | null, response: ${responseTypeName} | null) => void) => () => void;
         `;
       },
       {} as any

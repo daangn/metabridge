@@ -7,6 +7,16 @@ export interface MetaBridgeDriver {
   ) => () => void;
 }
 
+export class ScaffoldedBridgeError extends Error {
+  override name = "ScaffoldedBridgeError";
+  readonly reason: string;
+
+  constructor(reason: string, debugDescription?: string) {
+    super(debugDescription);
+    this.reason = reason;
+  }
+}
+
 export type BridgeInstance<T> = {
   driver: T;
   /* definitions */
