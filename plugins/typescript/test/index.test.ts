@@ -60,6 +60,16 @@ import path from "path";
         ) => () => void;
       }
 
+      export class MyAppBridgeError extends Error {
+        readonly reason: string;
+        override name = "MyAppBridgeError";
+
+        constructor(reason: string, debugDescription?: string) {
+          super(debugDescription);
+          this.reason = reason;
+        }
+      }
+
       export type BridgeInstance<T> = {
         driver: T;
         /**
