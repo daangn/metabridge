@@ -50,11 +50,9 @@
                             },
                             "enum": {
                               "type": "array",
-                              "items": [
-                                {
-                                  "type": "string"
-                                }
-                              ],
+                              "items": {
+                                "type": "string"
+                              },
                               "minItems": 1,
                               "maxItems": 1
                             }
@@ -68,11 +66,9 @@
                     },
                     "required": {
                       "type": "array",
-                      "items": [
-                        {
-                          "const": "reason"
-                        }
-                      ],
+                      "items": {
+                        "const": "reason"
+                      },
                       "minItems": 1,
                       "maxItems": 1
                     },
@@ -159,11 +155,9 @@
                             },
                             "enum": {
                               "type": "array",
-                              "items": [
-                                {
-                                  "type": "string"
-                                }
-                              ],
+                              "items": {
+                                "type": "string"
+                              },
                               "minItems": 1,
                               "maxItems": 1
                             }
@@ -177,11 +171,9 @@
                     },
                     "required": {
                       "type": "array",
-                      "items": [
-                        {
-                          "const": "reason"
-                        }
-                      ],
+                      "items": {
+                        "const": "reason"
+                      },
                       "minItems": 1,
                       "maxItems": 1
                     },
