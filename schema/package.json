@@ -1,6 +1,6 @@
 {
   "name": "@metabridge/schema",
-  "version": "0.5.0",
+  "version": "0.4.0",
   "main": "lib/index.js",
   "scripts": {
     "build": "json2ts --input ./src/schema.json --output ./src/__generated__/schema.ts && tsc"
