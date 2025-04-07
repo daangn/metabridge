@@ -16,15 +16,17 @@
   "dependencies": {
     "@metabridge/plugin-base": "^0.4.0",
     "change-case": "^4.1.2",
-    "node-html-parser": "^5.2.0"
+    "node-html-parser": "5.2.0"
   },
   "devDependencies": {
     "@chakra-ui/icons": "^1.1.7",
     "@chakra-ui/react": "^1.8.6",
     "@chakra-ui/system": "^1.11.2",
+    "@emotion/cache": "^11.8.1",
     "@emotion/css": "^11.9.0",
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
+    "@emotion/weak-memoize": "^0.2.5",
     "@karrotframe/navigator": "^0.25.3",
     "@karrotframe/tabs": "^0.4.2",
     "@metabridge/cli": "^0.4.0",

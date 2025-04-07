@@ -12,6 +12,10 @@ const CodeSnippet: React.FC<CodeSnippetProps> = (props) => {
   useEffect(() => {
     if (codeRef.current) {
       hljs.highlightBlock(codeRef.current);
+
+      return () => {
+        delete codeRef.current?.dataset.highlighted;
+      }
     }
   }, [codeRef, props.children]);
 
