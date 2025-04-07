@@ -80,6 +80,30 @@ export interface Schema {
       tag?: string;
       requestBody: CoreSchemaMetaSchema;
       response: CoreSchemaMetaSchema;
+      error?: {
+        oneOf: [
+          {
+            type: "object";
+            properties: {
+              reason: {
+                const: string;
+              };
+            };
+            required: ["reason"];
+            additionalProperties: false;
+          },
+          ...{
+            type: "object";
+            properties: {
+              reason: {
+                const: string;
+              };
+            };
+            required: ["reason"];
+            additionalProperties: false;
+          }[]
+        ];
+      };
       minimumSupportAppVersion?: {
         ios: string;
         android: string;
@@ -94,6 +118,30 @@ export interface Schema {
       tag?: string;
       requestBody: CoreSchemaMetaSchema;
       response: CoreSchemaMetaSchema;
+      error?: {
+        oneOf: [
+          {
+            type: "object";
+            properties: {
+              reason: {
+                const: string;
+              };
+            };
+            required: ["reason"];
+            additionalProperties: false;
+          },
+          ...{
+            type: "object";
+            properties: {
+              reason: {
+                const: string;
+              };
+            };
+            required: ["reason"];
+            additionalProperties: false;
+          }[]
+        ];
+      };
       minimumSupportAppVersion?: {
         ios: string;
         android: string;

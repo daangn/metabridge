@@ -14,21 +14,27 @@ const plugin: Plugin = {
 
     const properties = {
       ...Object.entries(schema.queries).reduce(
-        (acc, [queryName, { requestBody, response }]) => {
+        (acc, [queryName, { requestBody, response, error }]) => {
           return {
             ...acc,
             [pascalCase(queryName + " RequestBody")]: requestBody,
             [pascalCase(queryName + " Response")]: response,
+            ...(error ? { [pascalCase(queryName + " Error")]: error } : {}),
           };
         },
         {} as any
       ),
       ...Object.entries(schema.subscriptions ?? {}).reduce(
-        (acc, [subscriptionName, { requestBody, response }]) => {
+        (acc, [subscriptionName, { requestBody, response, error }]) => {
           return {
             ...acc,
             [pascalCase(subscriptionName + " RequestBody")]: requestBody,
             [pascalCase(subscriptionName + " Response")]: response,
+            ...(error
+              ? {
+                  [pascalCase(subscriptionName + " Error")]: error,
+                }
+              : {}),
           };
         },
         {} as any
@@ -39,7 +45,7 @@ const plugin: Plugin = {
 
     const typeDefs = await compile(
       {
-        properties,
+        properties: structuredClone(properties),
         additionalProperties: false,
         required: Object.keys(properties),
         $defs: schema.$defs,
@@ -55,7 +61,10 @@ const plugin: Plugin = {
     );
 
     const queryDefinitions = Object.entries(schema.queries).map(
-      ([queryName, { operationId, description, minimumSupportAppVersion }]) => {
+      ([
+        queryName,
+        { operationId, description, minimumSupportAppVersion, error },
+      ]) => {
         const functionName = camelCase(operationId);
 
         const requestBodyTypeName =
@@ -69,14 +78,29 @@ const plugin: Plugin = {
           pascalCase(queryName + " Response") +
           `"]`;
 
+        const minimumSupportAppVersionDetail = minimumSupportAppVersion
+          ? dedent`
+          Minimum Support App Version
+          - iOS ${minimumSupportAppVersion.ios}
+          - Android ${minimumSupportAppVersion.android}
+        `
+          : "";
+        const errorDetail = error
+          ? dedent`
+            May throw ${pascalCase(
+              schema.appName
+            )}BridgeError for reasons: ${error.oneOf
+              .map(({ properties: { reason } }) => reason.const)
+              .join(", ")}
+            `
+          : "";
+
         return dedent`
-          /**
-           * ${description}${
-          minimumSupportAppVersion
-            ? `\n * \n * Minimum Support App Version\n * - iOS ${minimumSupportAppVersion.ios}\n * - Android ${minimumSupportAppVersion.android}`
-            : ""
-        }
-           */
+          ${makeMultilineComment(
+            description,
+            minimumSupportAppVersionDetail,
+            errorDetail
+          )}
           ${functionName}: (req: ${requestBodyTypeName}) => Promise<${responseTypeName}>;
         `;
       },
@@ -101,7 +125,7 @@ const plugin: Plugin = {
     ).map(
       ([
         subscriptionName,
-        { operationId, description, minimumSupportAppVersion },
+        { operationId, description, minimumSupportAppVersion, error },
       ]) => {
         const functionName = camelCase(operationId);
 
@@ -116,15 +140,32 @@ const plugin: Plugin = {
           pascalCase(subscriptionName + " Response") +
           `"]`;
 
+        const minimumSupportAppVersionDetail = minimumSupportAppVersion
+          ? dedent`
+          Minimum Support App Version
+          - iOS ${minimumSupportAppVersion.ios}
+          - Android ${minimumSupportAppVersion.android}
+        `
+          : "";
+        const errorDetail = error
+          ? dedent`
+            May throw ${pascalCase(
+              schema.appName
+            )}BridgeError for reasons: ${error.oneOf
+              .map(({ properties: { reason } }) => reason.const)
+              .join(", ")}
+            `
+          : "";
+
         return dedent`
-          /**
-           * ${description}${
-          minimumSupportAppVersion
-            ? `\n * \n * Minimum Support App Version\n * - iOS ${minimumSupportAppVersion.ios}\n * - Android ${minimumSupportAppVersion.android}`
-            : ""
-        }
-           */
-          ${functionName}: (req: ${requestBodyTypeName}, listener: (error: Error | null, response: ${responseTypeName} | null) => void) => () => void;
+          ${makeMultilineComment(
+            description,
+            minimumSupportAppVersionDetail,
+            errorDetail
+          )}
+          ${functionName}: (req: ${requestBodyTypeName}, listener: (error: ${pascalCase(
+          schema.appName
+        )}BridgeError | null, response: ${responseTypeName} | null) => void) => () => void;
         `;
       },
       {} as any
@@ -172,6 +213,22 @@ const plugin: Plugin = {
 
 function replaceAll(from: string, to: string) {
   return (str: string) => str.split(from).join(to);
+}
+
+function makeMultilineComment(...comments: string[]): string {
+  return dedent`
+  /**
+   ${comments
+     .filter(Boolean)
+     .map((content) =>
+       content
+         .split("\n")
+         .map((line) => `* ${line}`)
+         .join("\n")
+     )
+     .join("\n*\n")}
+   */
+  `;
 }
 
 export default plugin;

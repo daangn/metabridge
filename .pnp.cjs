@@ -3451,16 +3451,33 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@metabridge/cli", [\
-      ["workspace:cli", {\
-        "packageLocation": "./cli/",\
+      ["npm:0.4.0", {\
+        "packageLocation": "./.yarn/cache/@metabridge-cli-npm-0.4.0-add3666813-6b7be848b0.zip/node_modules/@metabridge/cli/",\
         "packageDependencies": [\
-          ["@metabridge/cli", "workspace:cli"],\
-          ["@metabridge/plugin-base", "workspace:plugins/base"],\
+          ["@metabridge/cli", "npm:0.4.0"],\
+          ["@metabridge/plugin-base", "npm:0.4.0"],\
           ["@metabridge/plugin-kotlin", "workspace:plugins/kotlin"],\
           ["@metabridge/plugin-swift", "workspace:plugins/swift"],\
           ["@metabridge/plugin-typescript", "workspace:plugins/typescript"],\
           ["@metabridge/plugin-typescript-docs", "workspace:plugins/typescript-docs"],\
-          ["@metabridge/schema", "workspace:schema"],\
+          ["@metabridge/schema", "npm:0.4.0"],\
+          ["await-to-js", "npm:3.0.0"],\
+          ["commander", "npm:9.0.0"],\
+          ["tsm", "npm:2.2.1"],\
+          ["zod", "npm:3.13.4"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["workspace:cli", {\
+        "packageLocation": "./cli/",\
+        "packageDependencies": [\
+          ["@metabridge/cli", "workspace:cli"],\
+          ["@metabridge/plugin-base", "npm:0.4.0"],\
+          ["@metabridge/plugin-kotlin", "workspace:plugins/kotlin"],\
+          ["@metabridge/plugin-swift", "workspace:plugins/swift"],\
+          ["@metabridge/plugin-typescript", "workspace:plugins/typescript"],\
+          ["@metabridge/plugin-typescript-docs", "workspace:plugins/typescript-docs"],\
+          ["@metabridge/schema", "npm:0.4.0"],\
           ["@types/node", "npm:17.0.21"],\
           ["await-to-js", "npm:3.0.0"],\
           ["commander", "npm:9.0.0"],\
@@ -3484,11 +3501,19 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@metabridge/plugin-base", [\
+      ["npm:0.4.0", {\
+        "packageLocation": "./.yarn/cache/@metabridge-plugin-base-npm-0.4.0-4955c0cdc9-68fb25a6e3.zip/node_modules/@metabridge/plugin-base/",\
+        "packageDependencies": [\
+          ["@metabridge/plugin-base", "npm:0.4.0"],\
+          ["@metabridge/schema", "npm:0.4.0"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["workspace:plugins/base", {\
         "packageLocation": "./plugins/base/",\
         "packageDependencies": [\
           ["@metabridge/plugin-base", "workspace:plugins/base"],\
-          ["@metabridge/schema", "workspace:schema"],\
+          ["@metabridge/schema", "npm:0.4.0"],\
           ["typescript", "patch:typescript@npm%3A4.6.2#optional!builtin<compat/typescript>::version=4.6.2&hash=5d3a66"]\
         ],\
         "linkType": "SOFT"\
@@ -3499,8 +3524,8 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./plugins/kotlin/",\
         "packageDependencies": [\
           ["@metabridge/plugin-kotlin", "workspace:plugins/kotlin"],\
-          ["@metabridge/cli", "workspace:cli"],\
-          ["@metabridge/plugin-base", "workspace:plugins/base"],\
+          ["@metabridge/cli", "npm:0.4.0"],\
+          ["@metabridge/plugin-base", "npm:0.4.0"],\
           ["@types/dedent", "npm:0.7.0"],\
           ["@types/node", "npm:17.0.21"],\
           ["change-case", "npm:4.1.2"],\
@@ -3518,8 +3543,8 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./plugins/swift/",\
         "packageDependencies": [\
           ["@metabridge/plugin-swift", "workspace:plugins/swift"],\
-          ["@metabridge/cli", "workspace:cli"],\
-          ["@metabridge/plugin-base", "workspace:plugins/base"],\
+          ["@metabridge/cli", "npm:0.4.0"],\
+          ["@metabridge/plugin-base", "npm:0.4.0"],\
           ["@types/dedent", "npm:0.7.0"],\
           ["@types/node", "npm:17.0.21"],\
           ["change-case", "npm:4.1.2"],\
@@ -3533,15 +3558,28 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@metabridge/plugin-typescript", [\
+      ["npm:0.5.0", {\
+        "packageLocation": "./.yarn/cache/@metabridge-plugin-typescript-npm-0.5.0-9a1707acfc-e65a6d45a5.zip/node_modules/@metabridge/plugin-typescript/",\
+        "packageDependencies": [\
+          ["@metabridge/plugin-typescript", "npm:0.5.0"],\
+          ["@metabridge/plugin-base", "npm:0.4.0"],\
+          ["change-case", "npm:4.1.2"],\
+          ["dedent", "npm:0.7.0"],\
+          ["json-schema-to-typescript", "npm:10.1.5"],\
+          ["lodash", "npm:4.17.21"],\
+          ["prettier", "npm:2.5.1"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["workspace:plugins/typescript", {\
         "packageLocation": "./plugins/typescript/",\
         "packageDependencies": [\
           ["@metabridge/plugin-typescript", "workspace:plugins/typescript"],\
-          ["@metabridge/cli", "workspace:cli"],\
-          ["@metabridge/plugin-base", "workspace:plugins/base"],\
+          ["@metabridge/cli", "npm:0.4.0"],\
+          ["@metabridge/plugin-base", "npm:0.4.0"],\
           ["@types/dedent", "npm:0.7.0"],\
           ["@types/lodash", "npm:4.14.179"],\
-          ["@types/node", "npm:17.0.21"],\
+          ["@types/node", "npm:17.0.45"],\
           ["@types/prettier", "npm:2.4.4"],\
           ["change-case", "npm:4.1.2"],\
           ["dedent", "npm:0.7.0"],\
@@ -3568,10 +3606,10 @@ const RAW_RUNTIME_STATE =
           ["@emotion/styled", "virtual:5c6c3c9f71b3cc4b9c4fcde93e182f72a37a5d1f837cd226c9fc81a802f203f5169ef0fe42a139e7ebfc8ee67300c77f0c4daa352447e7a97cc47ce168c603c6#npm:11.8.1"],\
           ["@karrotframe/navigator", "virtual:5c6c3c9f71b3cc4b9c4fcde93e182f72a37a5d1f837cd226c9fc81a802f203f5169ef0fe42a139e7ebfc8ee67300c77f0c4daa352447e7a97cc47ce168c603c6#npm:0.25.3"],\
           ["@karrotframe/tabs", "virtual:5c6c3c9f71b3cc4b9c4fcde93e182f72a37a5d1f837cd226c9fc81a802f203f5169ef0fe42a139e7ebfc8ee67300c77f0c4daa352447e7a97cc47ce168c603c6#npm:0.4.2"],\
-          ["@metabridge/cli", "workspace:cli"],\
-          ["@metabridge/plugin-base", "workspace:plugins/base"],\
-          ["@metabridge/plugin-typescript", "workspace:plugins/typescript"],\
-          ["@metabridge/schema", "workspace:schema"],\
+          ["@metabridge/cli", "npm:0.4.0"],\
+          ["@metabridge/plugin-base", "npm:0.4.0"],\
+          ["@metabridge/plugin-typescript", "npm:0.5.0"],\
+          ["@metabridge/schema", "npm:0.4.0"],\
           ["@rjsf/chakra-ui", "virtual:5c6c3c9f71b3cc4b9c4fcde93e182f72a37a5d1f837cd226c9fc81a802f203f5169ef0fe42a139e7ebfc8ee67300c77f0c4daa352447e7a97cc47ce168c603c6#npm:4.0.1"],\
           ["@rjsf/core", "virtual:5c6c3c9f71b3cc4b9c4fcde93e182f72a37a5d1f837cd226c9fc81a802f203f5169ef0fe42a139e7ebfc8ee67300c77f0c4daa352447e7a97cc47ce168c603c6#npm:4.0.1"],\
           ["@types/dedent", "npm:0.7.0"],\
@@ -3600,6 +3638,14 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@metabridge/schema", [\
+      ["npm:0.4.0", {\
+        "packageLocation": "./.yarn/cache/@metabridge-schema-npm-0.4.0-843ae3212b-9aa7711d35.zip/node_modules/@metabridge/schema/",\
+        "packageDependencies": [\
+          ["@metabridge/schema", "npm:0.4.0"],\
+          ["ajv", "npm:8.10.0"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["workspace:schema", {\
         "packageLocation": "./schema/",\
         "packageDependencies": [\
@@ -4266,6 +4312,13 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/@types-node-npm-17.0.21-7d68eb6a13-2beae12b02.zip/node_modules/@types/node/",\
         "packageDependencies": [\
           ["@types/node", "npm:17.0.21"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:17.0.45", {\
+        "packageLocation": "./.yarn/cache/@types-node-npm-17.0.45-fdb38d1624-b45fff7270.zip/node_modules/@types/node/",\
+        "packageDependencies": [\
+          ["@types/node", "npm:17.0.45"]\
         ],\
         "linkType": "HARD"\
       }]\

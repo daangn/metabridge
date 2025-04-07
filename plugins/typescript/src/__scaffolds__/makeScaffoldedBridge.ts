@@ -3,8 +3,21 @@ export interface MetaBridgeDriver {
   onSubscribed: (
     subscriptionName: string,
     requestBody: any,
-    listener: (error: Error | null, response: any | null) => void
+    listener: (
+      error: ScaffoldedBridgeError | null,
+      response: any | null
+    ) => void
   ) => () => void;
+}
+
+export class ScaffoldedBridgeError extends Error {
+  override name = "ScaffoldedBridgeError";
+  readonly reason: string;
+
+  constructor(reason: string, debugDescription?: string) {
+    super(debugDescription);
+    this.reason = reason;
+  }
 }
 
 export type BridgeInstance<T> = {
