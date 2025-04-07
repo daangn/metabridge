@@ -24,8 +24,7 @@
             "type": "object",
             "properties": {
               "reason": {
-                "type": "string",
-                "enum": ["NOT_FOUND"]
+                "const": "NOT_FOUND"
               }
             },
             "required": ["reason"],

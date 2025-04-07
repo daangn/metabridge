@@ -45,19 +45,11 @@
                         "reason": {
                           "type": "object",
                           "properties": {
-                            "type": {
-                              "const": "string"
-                            },
-                            "enum": {
-                              "type": "array",
-                              "items": {
-                                "type": "string"
-                              },
-                              "minItems": 1,
-                              "maxItems": 1
+                            "const": {
+                              "type": "string"
                             }
                           },
-                          "required": ["enum", "type"],
+                          "required": ["const"],
                           "additionalProperties": false
                         }
                       },
@@ -150,19 +142,11 @@
                         "reason": {
                           "type": "object",
                           "properties": {
-                            "type": {
-                              "const": "string"
-                            },
-                            "enum": {
-                              "type": "array",
-                              "items": {
-                                "type": "string"
-                              },
-                              "minItems": 1,
-                              "maxItems": 1
+                            "const": {
+                              "type": "string"
                             }
                           },
-                          "required": ["enum", "type"],
+                          "required": ["const"],
                           "additionalProperties": false
                         }
                       },

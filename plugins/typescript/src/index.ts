@@ -31,7 +31,9 @@ const plugin: Plugin = {
             [pascalCase(subscriptionName + " RequestBody")]: requestBody,
             [pascalCase(subscriptionName + " Response")]: response,
             ...(error
-              ? { [pascalCase(subscriptionName + " Error")]: error }
+              ? {
+                  [pascalCase(subscriptionName + " Error")]: error,
+                }
               : {}),
           };
         },
@@ -43,7 +45,7 @@ const plugin: Plugin = {
 
     const typeDefs = await compile(
       {
-        properties,
+        properties: structuredClone(properties),
         additionalProperties: false,
         required: Object.keys(properties),
         $defs: schema.$defs,
@@ -88,7 +90,7 @@ const plugin: Plugin = {
             May throw ${pascalCase(
               schema.appName
             )}BridgeError for reasons: ${error.oneOf
-              .map(({ properties: { reason } }) => reason.enum[0])
+              .map(({ properties: { reason } }) => reason.const)
               .join(", ")}
             `
           : "";
@@ -150,7 +152,7 @@ const plugin: Plugin = {
             May throw ${pascalCase(
               schema.appName
             )}BridgeError for reasons: ${error.oneOf
-              .map(({ properties: { reason } }) => reason.enum[0])
+              .map(({ properties: { reason } }) => reason.const)
               .join(", ")}
             `
           : "";
