@@ -32,12 +32,15 @@ import path from "path";
        * DO NOT MODIFY IT BY HAND. Instead, modify the source JSONSchema file,
        * and run json-schema-to-typescript to regenerate this file.
        */
-      
+
       export interface MyAppBridgeSchema {
         StorageGetRequestBody: {
           key: string;
         };
         StorageGetResponse: StringValue;
+        StorageGetError: {
+          reason: "NOT_FOUND";
+        };
         StreamSubscribeRequestBody: {
           eventName: string;
           [k: string]: unknown;
@@ -50,14 +53,24 @@ import path from "path";
       export interface StringValue {
         value: string;
       }
-      
+
       export interface MetaBridgeDriver {
         onQueried: (queryName: string, requestBody: any) => Promise<any>;
         onSubscribed: (
           subscriptionName: string,
           requestBody: any,
-          listener: (error: Error | null, response: any | null) => void
+          listener: (error: MyAppBridgeError | null, response: any | null) => void
         ) => () => void;
+      }
+
+      export class MyAppBridgeError extends Error {
+        override name = "MyAppBridgeError";
+        readonly reason: string;
+
+        constructor(reason: string, debugDescription?: string) {
+          super(debugDescription);
+          this.reason = reason;
+        }
       }
 
       export type BridgeInstance<T> = {
@@ -68,6 +81,8 @@ import path from "path";
          * Minimum Support App Version
          * - iOS 1.1.1
          * - Android 1.1.1
+         *
+         * May throw MyAppBridgeError for reasons: NOT_FOUND
          */
         getItemFromStorage: (
           req: MyAppBridgeSchema["StorageGetRequestBody"]
@@ -78,12 +93,12 @@ import path from "path";
         subscribe: (
           req: MyAppBridgeSchema["StreamSubscribeRequestBody"],
           listener: (
-            error: Error | null,
+            error: MyAppBridgeError | null,
             response: MyAppBridgeSchema["StreamSubscribeResponse"] | null
           ) => void
         ) => () => void;
       };
-      
+
       export function makeMyAppBridge<T extends MetaBridgeDriver>({
         driver,
       }: {
@@ -98,7 +113,7 @@ import path from "path";
             return driver.onSubscribed("STREAM.SUBSCRIBE", req, listener);
           },
         };
-      }    
+      } 
     ` + "\n"
   );
 })();
