@@ -80,16 +80,31 @@ export interface Schema {
       tag?: string;
       requestBody: CoreSchemaMetaSchema;
       response: CoreSchemaMetaSchema;
-      error: {
-        oneOf: {
-          type: "object";
-          properties: {
-            reason: {
-              const: string;
+      error?: {
+        oneOf: [
+          {
+            type: "object";
+            properties: {
+              reason: {
+                type: "string";
+                enum: [string];
+              };
             };
-          };
-          required: ["reason"];
-        }[];
+            required: ["reason"];
+            additionalProperties: false;
+          },
+          ...{
+            type: "object";
+            properties: {
+              reason: {
+                type: "string";
+                enum: [string];
+              };
+            };
+            required: ["reason"];
+            additionalProperties: false;
+          }[]
+        ];
       };
       minimumSupportAppVersion?: {
         ios: string;
@@ -105,16 +120,31 @@ export interface Schema {
       tag?: string;
       requestBody: CoreSchemaMetaSchema;
       response: CoreSchemaMetaSchema;
-      error: {
-        oneOf: {
-          type: "object";
-          properties: {
-            reason: {
-              const: string;
+      error?: {
+        oneOf: [
+          {
+            type: "object";
+            properties: {
+              reason: {
+                type: "string";
+                enum: [string];
+              };
             };
-          };
-          required: ["reason"];
-        }[];
+            required: ["reason"];
+            additionalProperties: false;
+          },
+          ...{
+            type: "object";
+            properties: {
+              reason: {
+                type: "string";
+                enum: [string];
+              };
+            };
+            required: ["reason"];
+            additionalProperties: false;
+          }[]
+        ];
       };
       minimumSupportAppVersion?: {
         ios: string;

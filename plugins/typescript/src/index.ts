@@ -19,7 +19,7 @@ const plugin: Plugin = {
             ...acc,
             [pascalCase(queryName + " RequestBody")]: requestBody,
             [pascalCase(queryName + " Response")]: response,
-            [pascalCase(queryName + " Error")]: error,
+            ...(error ? { [pascalCase(queryName + " Error")]: error } : {}),
           };
         },
         {} as any
@@ -30,7 +30,9 @@ const plugin: Plugin = {
             ...acc,
             [pascalCase(subscriptionName + " RequestBody")]: requestBody,
             [pascalCase(subscriptionName + " Response")]: response,
-            [pascalCase(subscriptionName + " Error")]: error,
+            ...(error
+              ? { [pascalCase(subscriptionName + " Error")]: error }
+              : {}),
           };
         },
         {} as any
@@ -74,21 +76,29 @@ const plugin: Plugin = {
           pascalCase(queryName + " Response") +
           `"]`;
 
+        const minimumSupportAppVersionDetail = minimumSupportAppVersion
+          ? dedent`
+          * Minimum Support App Version
+          * - iOS ${minimumSupportAppVersion.ios}
+          * - Android ${minimumSupportAppVersion.android}
+        `
+          : "";
+        const errorDetail = error
+          ? dedent`
+            * May throw ${pascalCase(
+              schema.appName
+            )}BridgeError for reasons: ${error.oneOf
+              .map(({ properties: { reason } }) => reason.enum[0])
+              .join(", ")}
+            `
+          : "";
+
         return dedent`
-          /**
-           * ${description}${
-          minimumSupportAppVersion
-            ? `\n * \n * Minimum Support App Version\n * - iOS ${minimumSupportAppVersion.ios}\n * - Android ${minimumSupportAppVersion.android}`
-            : ""
-        }
-           ${
-             error.oneOf.length > 0
-               ? `\n * \n * May throw ScaffoldedBridgeError for reasons: ${error.oneOf
-                   .map(({ properties: { reason } }) => reason)
-                   .join(", ")}`
-               : ""
-           }
-           */
+          ${makeMultilineComment(
+            `* ${description}`,
+            minimumSupportAppVersionDetail,
+            errorDetail
+          )}
           ${functionName}: (req: ${requestBodyTypeName}) => Promise<${responseTypeName}>;
         `;
       },
@@ -128,22 +138,32 @@ const plugin: Plugin = {
           pascalCase(subscriptionName + " Response") +
           `"]`;
 
+        const minimumSupportAppVersionDetail = minimumSupportAppVersion
+          ? dedent`
+          * Minimum Support App Version
+          * - iOS ${minimumSupportAppVersion.ios}
+          * - Android ${minimumSupportAppVersion.android}
+        `
+          : "";
+        const errorDetail = error
+          ? dedent`
+            * May throw ${pascalCase(
+              schema.appName
+            )}BridgeError for reasons: ${error.oneOf
+              .map(({ properties: { reason } }) => reason.enum[0])
+              .join(", ")}
+            `
+          : "";
+
         return dedent`
-          /**
-           * ${description}${
-          minimumSupportAppVersion
-            ? `\n * \n * Minimum Support App Version\n * - iOS ${minimumSupportAppVersion.ios}\n * - Android ${minimumSupportAppVersion.android}`
-            : ""
-        }
-              ${
-                error.oneOf.length > 0
-                  ? `\n * \n * May throw ScaffoldedBridgeError for reasons: ${error.oneOf
-                      .map(({ properties: { reason } }) => reason)
-                      .join(", ")}`
-                  : ""
-              }
-           */
-          ${functionName}: (req: ${requestBodyTypeName}, listener: (error: ScaffoldedBridgeError | null, response: ${responseTypeName} | null) => void) => () => void;
+          ${makeMultilineComment(
+            `* ${description}`,
+            minimumSupportAppVersionDetail,
+            errorDetail
+          )}
+          ${functionName}: (req: ${requestBodyTypeName}, listener: (error: ${pascalCase(
+          schema.appName
+        )}BridgeError | null, response: ${responseTypeName} | null) => void) => () => void;
         `;
       },
       {} as any
@@ -191,6 +211,14 @@ const plugin: Plugin = {
 
 function replaceAll(from: string, to: string) {
   return (str: string) => str.split(from).join(to);
+}
+
+function makeMultilineComment(...comments: string[]): string {
+  return dedent`
+  /**
+   ${comments.filter(Boolean).join("\n*\n")}
+   */
+  `;
 }
 
 export default plugin;

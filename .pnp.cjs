@@ -3451,16 +3451,33 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@metabridge/cli", [\
-      ["workspace:cli", {\
-        "packageLocation": "./cli/",\
+      ["npm:0.4.0", {\
+        "packageLocation": "./.yarn/cache/@metabridge-cli-npm-0.4.0-add3666813-6b7be848b0.zip/node_modules/@metabridge/cli/",\
         "packageDependencies": [\
-          ["@metabridge/cli", "workspace:cli"],\
+          ["@metabridge/cli", "npm:0.4.0"],\
           ["@metabridge/plugin-base", "npm:0.4.0"],\
           ["@metabridge/plugin-kotlin", "workspace:plugins/kotlin"],\
           ["@metabridge/plugin-swift", "workspace:plugins/swift"],\
           ["@metabridge/plugin-typescript", "workspace:plugins/typescript"],\
           ["@metabridge/plugin-typescript-docs", "workspace:plugins/typescript-docs"],\
           ["@metabridge/schema", "npm:0.4.0"],\
+          ["await-to-js", "npm:3.0.0"],\
+          ["commander", "npm:9.0.0"],\
+          ["tsm", "npm:2.2.1"],\
+          ["zod", "npm:3.13.4"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["workspace:cli", {\
+        "packageLocation": "./cli/",\
+        "packageDependencies": [\
+          ["@metabridge/cli", "workspace:cli"],\
+          ["@metabridge/plugin-base", "workspace:plugins/base"],\
+          ["@metabridge/plugin-kotlin", "workspace:plugins/kotlin"],\
+          ["@metabridge/plugin-swift", "workspace:plugins/swift"],\
+          ["@metabridge/plugin-typescript", "workspace:plugins/typescript"],\
+          ["@metabridge/plugin-typescript-docs", "workspace:plugins/typescript-docs"],\
+          ["@metabridge/schema", "workspace:schema"],\
           ["@types/node", "npm:17.0.21"],\
           ["await-to-js", "npm:3.0.0"],\
           ["commander", "npm:9.0.0"],\
@@ -3507,7 +3524,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./plugins/kotlin/",\
         "packageDependencies": [\
           ["@metabridge/plugin-kotlin", "workspace:plugins/kotlin"],\
-          ["@metabridge/cli", "workspace:cli"],\
+          ["@metabridge/cli", "npm:0.4.0"],\
           ["@metabridge/plugin-base", "npm:0.4.0"],\
           ["@types/dedent", "npm:0.7.0"],\
           ["@types/node", "npm:17.0.21"],\
@@ -3526,7 +3543,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./plugins/swift/",\
         "packageDependencies": [\
           ["@metabridge/plugin-swift", "workspace:plugins/swift"],\
-          ["@metabridge/cli", "workspace:cli"],\
+          ["@metabridge/cli", "npm:0.4.0"],\
           ["@metabridge/plugin-base", "npm:0.4.0"],\
           ["@types/dedent", "npm:0.7.0"],\
           ["@types/node", "npm:17.0.21"],\
@@ -3589,7 +3606,7 @@ const RAW_RUNTIME_STATE =
           ["@emotion/styled", "virtual:5c6c3c9f71b3cc4b9c4fcde93e182f72a37a5d1f837cd226c9fc81a802f203f5169ef0fe42a139e7ebfc8ee67300c77f0c4daa352447e7a97cc47ce168c603c6#npm:11.8.1"],\
           ["@karrotframe/navigator", "virtual:5c6c3c9f71b3cc4b9c4fcde93e182f72a37a5d1f837cd226c9fc81a802f203f5169ef0fe42a139e7ebfc8ee67300c77f0c4daa352447e7a97cc47ce168c603c6#npm:0.25.3"],\
           ["@karrotframe/tabs", "virtual:5c6c3c9f71b3cc4b9c4fcde93e182f72a37a5d1f837cd226c9fc81a802f203f5169ef0fe42a139e7ebfc8ee67300c77f0c4daa352447e7a97cc47ce168c603c6#npm:0.4.2"],\
-          ["@metabridge/cli", "workspace:cli"],\
+          ["@metabridge/cli", "npm:0.4.0"],\
           ["@metabridge/plugin-base", "npm:0.4.0"],\
           ["@metabridge/plugin-typescript", "npm:0.5.0"],\
           ["@metabridge/schema", "npm:0.4.0"],\

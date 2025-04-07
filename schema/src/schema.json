@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "properties": {
     "$schema": {
@@ -37,8 +37,7 @@
                   "type": "object",
                   "properties": {
                     "type": {
-                      "type": "string",
-                      "enum": ["object"]
+                      "const": "object"
                     },
                     "properties": {
                       "type": "object",
@@ -46,11 +45,21 @@
                         "reason": {
                           "type": "object",
                           "properties": {
-                            "const": {
-                              "type": "string"
+                            "type": {
+                              "const": "string"
+                            },
+                            "enum": {
+                              "type": "array",
+                              "items": [
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "minItems": 1,
+                              "maxItems": 1
                             }
                           },
-                          "required": ["const"],
+                          "required": ["enum", "type"],
                           "additionalProperties": false
                         }
                       },
@@ -59,17 +68,27 @@
                     },
                     "required": {
                       "type": "array",
-                      "items": {
-                        "type": "string",
-                        "enum": ["reason"]
-                      },
+                      "items": [
+                        {
+                          "const": "reason"
+                        }
+                      ],
                       "minItems": 1,
                       "maxItems": 1
+                    },
+                    "additionalProperties": {
+                      "const": false
                     }
                   },
-                  "required": ["type", "properties", "required"],
+                  "required": [
+                    "type",
+                    "properties",
+                    "required",
+                    "additionalProperties"
+                  ],
                   "additionalProperties": false
-                }
+                },
+                "minItems": 1
               }
             },
             "required": ["oneOf"],
@@ -94,13 +113,7 @@
             "required": ["ios", "android"]
           }
         },
-        "required": [
-          "operationId",
-          "description",
-          "requestBody",
-          "response",
-          "error"
-        ],
+        "required": ["operationId", "description", "requestBody", "response"],
         "additionalProperties": false
       }
     },
@@ -133,8 +146,7 @@
                   "type": "object",
                   "properties": {
                     "type": {
-                      "type": "string",
-                      "enum": ["object"]
+                      "const": "object"
                     },
                     "properties": {
                       "type": "object",
@@ -142,11 +154,21 @@
                         "reason": {
                           "type": "object",
                           "properties": {
-                            "const": {
-                              "type": "string"
+                            "type": {
+                              "const": "string"
+                            },
+                            "enum": {
+                              "type": "array",
+                              "items": [
+                                {
+                                  "type": "string"
+                                }
+                              ],
+                              "minItems": 1,
+                              "maxItems": 1
                             }
                           },
-                          "required": ["const"],
+                          "required": ["enum", "type"],
                           "additionalProperties": false
                         }
                       },
@@ -155,17 +177,27 @@
                     },
                     "required": {
                       "type": "array",
-                      "items": {
-                        "type": "string",
-                        "enum": ["reason"]
-                      },
+                      "items": [
+                        {
+                          "const": "reason"
+                        }
+                      ],
                       "minItems": 1,
                       "maxItems": 1
+                    },
+                    "additionalProperties": {
+                      "const": false
                     }
                   },
-                  "required": ["type", "properties", "required"],
+                  "required": [
+                    "type",
+                    "properties",
+                    "required",
+                    "additionalProperties"
+                  ],
                   "additionalProperties": false
-                }
+                },
+                "minItems": 1
               }
             },
             "required": ["oneOf"],
@@ -190,13 +222,7 @@
             "required": ["ios", "android"]
           }
         },
-        "required": [
-          "operationId",
-          "description",
-          "requestBody",
-          "response",
-          "error"
-        ],
+        "required": ["operationId", "description", "requestBody", "response"],
         "additionalProperties": false
       }
     },

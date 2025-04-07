@@ -18,6 +18,21 @@
       "response": {
         "$ref": "#/$defs/StringValue"
       },
+      "error": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "reason": {
+                "type": "string",
+                "enum": ["NOT_FOUND"]
+              }
+            },
+            "required": ["reason"],
+            "additionalProperties": false
+          }
+        ]
+      },
       "minimumSupportAppVersion": {
         "android": "1.1.1",
         "ios": "1.1.1"
