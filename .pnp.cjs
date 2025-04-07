@@ -3579,7 +3579,7 @@ const RAW_RUNTIME_STATE =
           ["@metabridge/plugin-base", "workspace:plugins/base"],\
           ["@types/dedent", "npm:0.7.0"],\
           ["@types/lodash", "npm:4.14.179"],\
-          ["@types/node", "npm:17.0.21"],\
+          ["@types/node", "npm:17.0.45"],\
           ["@types/prettier", "npm:2.4.4"],\
           ["change-case", "npm:4.1.2"],\
           ["dedent", "npm:0.7.0"],\
@@ -4312,6 +4312,13 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/@types-node-npm-17.0.21-7d68eb6a13-2beae12b02.zip/node_modules/@types/node/",\
         "packageDependencies": [\
           ["@types/node", "npm:17.0.21"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:17.0.45", {\
+        "packageLocation": "./.yarn/cache/@types-node-npm-17.0.45-fdb38d1624-b45fff7270.zip/node_modules/@types/node/",\
+        "packageDependencies": [\
+          ["@types/node", "npm:17.0.45"]\
         ],\
         "linkType": "HARD"\
       }]\

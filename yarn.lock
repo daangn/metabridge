@@ -2403,7 +2403,7 @@ __metadata:
     "@metabridge/plugin-base": "npm:^0.5.0"
     "@types/dedent": "npm:^0.7.0"
     "@types/lodash": "npm:^4.14.179"
-    "@types/node": "npm:^17.0.21"
+    "@types/node": "npm:^17.0.41"
     "@types/prettier": "npm:^2.4.4"
     change-case: "npm:^4.1.2"
     dedent: "npm:^0.7.0"
@@ -2907,6 +2907,13 @@ __metadata:
   version: 17.0.21
   resolution: "@types/node@npm:17.0.21"
   checksum: 2beae12b0240834801d45d1f6afec1905325054ba0768ba8fa60144eea62ac3751cb2b787a32795c1611a870b2cb4bf4d58caf21f20b126b2bb2454fe6e2437c
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^17.0.41":
+  version: 17.0.45
+  resolution: "@types/node@npm:17.0.45"
+  checksum: b45fff7270b5e81be19ef91a66b764a8b21473a97a8d211218a52e3426b79ad48f371819ab9153370756b33ba284e5c875463de4d2cf48a472e9098d7f09e8a2
   languageName: node
   linkType: hard
 

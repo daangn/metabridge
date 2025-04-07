@@ -86,8 +86,7 @@ export interface Schema {
             type: "object";
             properties: {
               reason: {
-                type: "string";
-                enum: [string];
+                const: string;
               };
             };
             required: ["reason"];
@@ -97,8 +96,7 @@ export interface Schema {
             type: "object";
             properties: {
               reason: {
-                type: "string";
-                enum: [string];
+                const: string;
               };
             };
             required: ["reason"];
@@ -126,8 +124,7 @@ export interface Schema {
             type: "object";
             properties: {
               reason: {
-                type: "string";
-                enum: [string];
+                const: string;
               };
             };
             required: ["reason"];
@@ -137,8 +134,7 @@ export interface Schema {
             type: "object";
             properties: {
               reason: {
-                type: "string";
-                enum: [string];
+                const: string;
               };
             };
             required: ["reason"];
