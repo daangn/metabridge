@@ -2370,7 +2370,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@metabridge/plugin-typescript@npm:*, @metabridge/plugin-typescript@npm:^0.5.0, @metabridge/plugin-typescript@workspace:plugins/typescript":
+"@metabridge/plugin-typescript@npm:*, @metabridge/plugin-typescript@workspace:plugins/typescript":
   version: 0.0.0-use.local
   resolution: "@metabridge/plugin-typescript@workspace:plugins/typescript"
   dependencies:
@@ -2390,6 +2390,20 @@ __metadata:
     typescript: "npm:^4.6.2"
   languageName: unknown
   linkType: soft
+
+"@metabridge/plugin-typescript@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "@metabridge/plugin-typescript@npm:0.5.0"
+  dependencies:
+    "@metabridge/plugin-base": "npm:^0.4.0"
+    change-case: "npm:^4.1.2"
+    dedent: "npm:^0.7.0"
+    json-schema-to-typescript: "npm:^10.1.5"
+    lodash: "npm:^4.17.21"
+    prettier: "npm:^2.5.1"
+  checksum: e65a6d45a5f23a0cd1124dea7b8fe2e050a562511fd3356b67b120bb8775b3b1b088265c326c4a62abd5942cd885c1e8f078d81c2c93a78b044e41e92dab5a6a
+  languageName: node
+  linkType: hard
 
 "@metabridge/schema@npm:^0.4.0, @metabridge/schema@workspace:schema":
   version: 0.0.0-use.local
