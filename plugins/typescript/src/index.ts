@@ -78,14 +78,14 @@ const plugin: Plugin = {
 
         const minimumSupportAppVersionDetail = minimumSupportAppVersion
           ? dedent`
-          * Minimum Support App Version
-          * - iOS ${minimumSupportAppVersion.ios}
-          * - Android ${minimumSupportAppVersion.android}
+          Minimum Support App Version
+          - iOS ${minimumSupportAppVersion.ios}
+          - Android ${minimumSupportAppVersion.android}
         `
           : "";
         const errorDetail = error
           ? dedent`
-            * May throw ${pascalCase(
+            May throw ${pascalCase(
               schema.appName
             )}BridgeError for reasons: ${error.oneOf
               .map(({ properties: { reason } }) => reason.enum[0])
@@ -95,7 +95,7 @@ const plugin: Plugin = {
 
         return dedent`
           ${makeMultilineComment(
-            `* ${description}`,
+            description,
             minimumSupportAppVersionDetail,
             errorDetail
           )}
@@ -140,14 +140,14 @@ const plugin: Plugin = {
 
         const minimumSupportAppVersionDetail = minimumSupportAppVersion
           ? dedent`
-          * Minimum Support App Version
-          * - iOS ${minimumSupportAppVersion.ios}
-          * - Android ${minimumSupportAppVersion.android}
+          Minimum Support App Version
+          - iOS ${minimumSupportAppVersion.ios}
+          - Android ${minimumSupportAppVersion.android}
         `
           : "";
         const errorDetail = error
           ? dedent`
-            * May throw ${pascalCase(
+            May throw ${pascalCase(
               schema.appName
             )}BridgeError for reasons: ${error.oneOf
               .map(({ properties: { reason } }) => reason.enum[0])
@@ -157,7 +157,7 @@ const plugin: Plugin = {
 
         return dedent`
           ${makeMultilineComment(
-            `* ${description}`,
+            description,
             minimumSupportAppVersionDetail,
             errorDetail
           )}
@@ -216,7 +216,15 @@ function replaceAll(from: string, to: string) {
 function makeMultilineComment(...comments: string[]): string {
   return dedent`
   /**
-   ${comments.filter(Boolean).join("\n*\n")}
+   ${comments
+     .filter(Boolean)
+     .map((content) =>
+       content
+         .split("\n")
+         .map((line) => `* ${line}`)
+         .join("\n")
+     )
+     .join("\n*\n")}
    */
   `;
 }
