@@ -3472,12 +3472,12 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./cli/",\
         "packageDependencies": [\
           ["@metabridge/cli", "workspace:cli"],\
-          ["@metabridge/plugin-base", "workspace:plugins/base"],\
+          ["@metabridge/plugin-base", "npm:0.4.0"],\
           ["@metabridge/plugin-kotlin", "workspace:plugins/kotlin"],\
           ["@metabridge/plugin-swift", "workspace:plugins/swift"],\
           ["@metabridge/plugin-typescript", "workspace:plugins/typescript"],\
           ["@metabridge/plugin-typescript-docs", "workspace:plugins/typescript-docs"],\
-          ["@metabridge/schema", "workspace:schema"],\
+          ["@metabridge/schema", "npm:0.4.0"],\
           ["@types/node", "npm:17.0.21"],\
           ["await-to-js", "npm:3.0.0"],\
           ["commander", "npm:9.0.0"],\
@@ -3513,7 +3513,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./plugins/base/",\
         "packageDependencies": [\
           ["@metabridge/plugin-base", "workspace:plugins/base"],\
-          ["@metabridge/schema", "workspace:schema"],\
+          ["@metabridge/schema", "npm:0.4.0"],\
           ["typescript", "patch:typescript@npm%3A4.6.2#optional!builtin<compat/typescript>::version=4.6.2&hash=5d3a66"]\
         ],\
         "linkType": "SOFT"\
@@ -3575,8 +3575,8 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./plugins/typescript/",\
         "packageDependencies": [\
           ["@metabridge/plugin-typescript", "workspace:plugins/typescript"],\
-          ["@metabridge/cli", "workspace:cli"],\
-          ["@metabridge/plugin-base", "workspace:plugins/base"],\
+          ["@metabridge/cli", "npm:0.4.0"],\
+          ["@metabridge/plugin-base", "npm:0.4.0"],\
           ["@types/dedent", "npm:0.7.0"],\
           ["@types/lodash", "npm:4.14.179"],\
           ["@types/node", "npm:17.0.45"],\

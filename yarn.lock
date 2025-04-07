@@ -2274,12 +2274,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@metabridge/cli@npm:^0.5.0, @metabridge/cli@workspace:cli":
+"@metabridge/cli@workspace:cli":
   version: 0.0.0-use.local
   resolution: "@metabridge/cli@workspace:cli"
   dependencies:
-    "@metabridge/plugin-base": "npm:^0.5.0"
-    "@metabridge/schema": "npm:^0.5.0"
+    "@metabridge/plugin-base": "npm:^0.4.0"
+    "@metabridge/schema": "npm:^0.4.0"
     "@types/node": "npm:^17.0.21"
     await-to-js: "npm:^3.0.0"
     commander: "npm:^9.0.0"
@@ -2310,11 +2310,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@metabridge/plugin-base@npm:^0.5.0, @metabridge/plugin-base@workspace:plugins/base":
+"@metabridge/plugin-base@workspace:plugins/base":
   version: 0.0.0-use.local
   resolution: "@metabridge/plugin-base@workspace:plugins/base"
   dependencies:
-    "@metabridge/schema": "npm:^0.5.0"
+    "@metabridge/schema": "npm:^0.4.0"
     typescript: "npm:^4.6.2"
   languageName: unknown
   linkType: soft
@@ -2399,8 +2399,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@metabridge/plugin-typescript@workspace:plugins/typescript"
   dependencies:
-    "@metabridge/cli": "npm:^0.5.0"
-    "@metabridge/plugin-base": "npm:^0.5.0"
+    "@metabridge/cli": "npm:^0.4.0"
+    "@metabridge/plugin-base": "npm:^0.4.0"
     "@types/dedent": "npm:^0.7.0"
     "@types/lodash": "npm:^4.14.179"
     "@types/node": "npm:^17.0.41"
@@ -2439,7 +2439,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@metabridge/schema@npm:^0.5.0, @metabridge/schema@workspace:schema":
+"@metabridge/schema@workspace:schema":
   version: 0.0.0-use.local
   resolution: "@metabridge/schema@workspace:schema"
   dependencies:
