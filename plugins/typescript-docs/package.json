@@ -50,7 +50,7 @@
     "react-dom": "^17.0.2",
     "react-router-dom": "5",
     "tsm": "^2.2.1",
-    "typescript": "^4.6.2",
+    "typescript": "^5.8.3",
     "vite": "^2.8.6",
     "vite-plugin-singlefile": "^0.7.1"
   }
