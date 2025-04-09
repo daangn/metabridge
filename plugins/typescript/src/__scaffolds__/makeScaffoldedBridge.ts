@@ -18,6 +18,21 @@ export class ScaffoldedBridgeError extends Error {
     super(debugDescription);
     this.reason = reason;
   }
+
+  static isScaffoldedBridgeError(
+    error: unknown
+  ): error is ScaffoldedBridgeError {
+    return (
+      error !== null &&
+      typeof error === "object" &&
+      "name" in error &&
+      typeof error.name === "string" &&
+      "reason" in error &&
+      typeof error.reason === "string" &&
+      "message" in error &&
+      typeof error.message === "string"
+    );
+  }
 }
 
 export type BridgeInstance<T> = {
