@@ -99,6 +99,10 @@
               }
             },
             "required": ["ios", "android"]
+          },
+          "extra": {
+            "type": "object",
+            "additionalProperties": true
           }
         },
         "required": ["operationId", "description", "requestBody", "response"],

@@ -1,12 +1,11 @@
+import type { Plugin } from "@metabridge/plugin-base";
 import { camelCase, pascalCase } from "change-case";
 import dedent from "dedent";
-import fs from "fs/promises";
 import { compile } from "json-schema-to-typescript";
-import { pipe } from "lodash/fp";
-import path from "path";
+import path from "node:path";
+import fs from "node:fs/promises";
 import prettier from "prettier";
-
-import { Plugin } from "@metabridge/plugin-base";
+import { pipe } from "lodash/fp";
 
 const plugin: Plugin = {
   async compile(schema) {
@@ -17,9 +16,9 @@ const plugin: Plugin = {
         (acc, [queryName, { requestBody, response, error }]) => {
           return {
             ...acc,
-            [pascalCase(queryName + " RequestBody")]: requestBody,
-            [pascalCase(queryName + " Response")]: response,
-            ...(error ? { [pascalCase(queryName + " Error")]: error } : {}),
+            [pascalCase(`${queryName} RequestBody`)]: requestBody,
+            [pascalCase(`${queryName} Response`)]: response,
+            ...(error ? { [pascalCase(`${queryName} Error`)]: error } : {}),
           };
         },
         {} as any
@@ -28,11 +27,11 @@ const plugin: Plugin = {
         (acc, [subscriptionName, { requestBody, response, error }]) => {
           return {
             ...acc,
-            [pascalCase(subscriptionName + " RequestBody")]: requestBody,
-            [pascalCase(subscriptionName + " Response")]: response,
+            [pascalCase(`${subscriptionName} RequestBody`)]: requestBody,
+            [pascalCase(`${subscriptionName} Response`)]: response,
             ...(error
               ? {
-                  [pascalCase(subscriptionName + " Error")]: error,
+                  [pascalCase(`${subscriptionName} Error`)]: error,
                 }
               : {}),
           };
@@ -41,7 +40,7 @@ const plugin: Plugin = {
       ),
     };
 
-    const schemaRootTypeName = pascalCase(schema.appName + " BridgeSchema");
+    const schemaRootTypeName = pascalCase(`${schema.appName} BridgeSchema`);
 
     const typeDefs = await compile(
       {
@@ -55,11 +54,6 @@ const plugin: Plugin = {
 
     lines.push(typeDefs);
 
-    await fs.readFile(
-      path.join(__dirname, "../src/__scaffolds__/makeScaffoldedBridge.ts"),
-      "utf-8"
-    );
-
     const queryDefinitions = Object.entries(schema.queries).map(
       ([
         queryName,
@@ -67,16 +61,12 @@ const plugin: Plugin = {
       ]) => {
         const functionName = camelCase(operationId);
 
-        const requestBodyTypeName =
-          schemaRootTypeName +
-          `["` +
-          pascalCase(queryName + " RequestBody") +
-          `"]`;
-        const responseTypeName =
-          schemaRootTypeName +
-          `["` +
-          pascalCase(queryName + " Response") +
-          `"]`;
+        const requestBodyTypeName = `${schemaRootTypeName}["${pascalCase(
+          `${queryName} RequestBody`
+        )}"]`;
+        const responseTypeName = `${schemaRootTypeName}["${pascalCase(
+          `${queryName} Response`
+        )}"]`;
 
         const minimumSupportAppVersionDetail = minimumSupportAppVersion
           ? dedent`
@@ -108,12 +98,15 @@ const plugin: Plugin = {
     );
 
     const queries = Object.entries(schema.queries).map(
-      ([queryName, { operationId }]) => {
-        const functionName = camelCase(operationId);
+      ([queryName, schemaValue]) => {
+        const functionName = camelCase(schemaValue.operationId);
+
+        const schemaInfo = dedent`${JSON.stringify(schemaValue)}`;
 
         return dedent`
           ${functionName}(req) {
-            return driver.onQueried("${queryName}", req)
+            const schemaInfo = ${schemaInfo}
+            return driver.onQueried("${queryName}", req, schemaInfo)
           },
         `;
       },
@@ -129,16 +122,12 @@ const plugin: Plugin = {
       ]) => {
         const functionName = camelCase(operationId);
 
-        const requestBodyTypeName =
-          schemaRootTypeName +
-          `["` +
-          pascalCase(subscriptionName + " RequestBody") +
-          `"]`;
-        const responseTypeName =
-          schemaRootTypeName +
-          `["` +
-          pascalCase(subscriptionName + " Response") +
-          `"]`;
+        const requestBodyTypeName = `${schemaRootTypeName}["${pascalCase(
+          `${subscriptionName} RequestBody`
+        )}"]`;
+        const responseTypeName = `${schemaRootTypeName}["${pascalCase(
+          `${subscriptionName} Response`
+        )}"]`;
 
         const minimumSupportAppVersionDetail = minimumSupportAppVersion
           ? dedent`
@@ -188,11 +177,11 @@ const plugin: Plugin = {
       replaceAll("Scaffolded", pascalCase(schema.appName)),
       replaceAll(
         "  /* definitions */",
-        [...queryDefinitions, ...subscriptionDefinitions].join(`\n`)
+        [...queryDefinitions, ...subscriptionDefinitions].join("\n")
       ),
       replaceAll(
         "    /* operations */",
-        [...queries, ...subscriptions].join(`\n`)
+        [...queries, ...subscriptions].join("\n")
       )
     )(
       await fs.readFile(
@@ -203,7 +192,7 @@ const plugin: Plugin = {
 
     lines.push(sdk);
 
-    const output = lines.join(`\n`);
+    const output = lines.join("\n");
 
     return prettier.format(output, {
       parser: "babel-ts",
