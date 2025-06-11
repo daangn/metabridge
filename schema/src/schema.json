@@ -108,7 +108,7 @@
               }
             },
             "additionalProperties": true,
-            "required": ["typeInfo"]
+            "required": ["$schema"]
           }
         },
         "required": ["operationId", "description", "requestBody", "response"],
