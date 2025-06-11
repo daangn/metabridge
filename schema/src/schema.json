@@ -102,13 +102,7 @@
           },
           "extra": {
             "type": "object",
-            "properties": {
-              "$schema": {
-                "$ref": "http://json-schema.org/draft-07/schema#"
-              }
-            },
-            "additionalProperties": true,
-            "required": ["$schema"]
+            "additionalProperties": true
           }
         },
         "required": ["operationId", "description", "requestBody", "response"],
@@ -213,6 +207,12 @@
       }
     },
     "$defs": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "http://json-schema.org/draft-07/schema#"
+      }
+    },
+    "$queriesExtraSchema": {
       "type": "object",
       "additionalProperties": {
         "$ref": "http://json-schema.org/draft-07/schema#"
