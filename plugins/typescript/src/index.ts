@@ -101,12 +101,21 @@ const plugin: Plugin = {
       ([queryName, schemaValue]) => {
         const functionName = camelCase(schemaValue.operationId);
 
-        const schemaInfo = dedent`${JSON.stringify(schemaValue)}`;
+        if (schemaValue.extra) {
+          const extra = schemaValue.extra;
+          const extraString = dedent`${JSON.stringify(extra)}`;
+
+          return dedent`
+          ${functionName}(req) {
+              const extra = ${extraString}
+              return driver.onQueried("${queryName}", req, extra)
+            },
+          `;
+        }
 
         return dedent`
           ${functionName}(req) {
-            const schemaInfo = ${schemaInfo}
-            return driver.onQueried("${queryName}", req, schemaInfo)
+            return driver.onQueried("${queryName}", req)
           },
         `;
       },
