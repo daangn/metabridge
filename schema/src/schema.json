@@ -103,7 +103,7 @@
           "extra": {
             "type": "object",
             "properties": {
-              "typeInfo": {
+              "$schema": {
                 "$ref": "http://json-schema.org/draft-07/schema#"
               }
             },
