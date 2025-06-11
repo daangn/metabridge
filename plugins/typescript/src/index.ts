@@ -11,6 +11,8 @@ const plugin: Plugin = {
   async compile(schema) {
     const lines: string[] = [];
 
+    const extraTypeName = pascalCase(`${schema.appName}QueriesExtra`);
+
     const properties = {
       ...Object.entries(schema.queries).reduce(
         (acc, [queryName, { requestBody, response, error }]) => {
@@ -38,9 +40,25 @@ const plugin: Plugin = {
         },
         {} as any
       ),
+      ...(schema.$queriesExtraSchema &&
+      Object.keys(schema.$queriesExtraSchema).length > 0
+        ? {
+            [extraTypeName]: {
+              type: "object",
+              properties: schema.$queriesExtraSchema,
+              additionalProperties: false,
+            },
+          }
+        : {}),
     };
 
     const schemaRootTypeName = pascalCase(`${schema.appName} BridgeSchema`);
+
+    const extraTypeReplacement =
+      schema.$queriesExtraSchema &&
+      Object.keys(schema.$queriesExtraSchema).length > 0
+        ? `${schemaRootTypeName}["${extraTypeName}"]`
+        : "any";
 
     const typeDefs = await compile(
       {
@@ -184,6 +202,7 @@ const plugin: Plugin = {
 
     const sdk = pipe(
       replaceAll("Scaffolded", pascalCase(schema.appName)),
+      replaceAll("extra?: any", `extra?: ${extraTypeReplacement}`),
       replaceAll(
         "  /* definitions */",
         [...queryDefinitions, ...subscriptionDefinitions].join("\n")
