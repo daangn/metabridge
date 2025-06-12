@@ -109,6 +109,9 @@ export interface Schema {
         android: string;
         [k: string]: unknown;
       };
+      extra?: {
+        [k: string]: unknown;
+      };
     };
   };
   subscriptions?: {
@@ -150,6 +153,9 @@ export interface Schema {
     };
   };
   $defs?: {
+    [k: string]: CoreSchemaMetaSchema;
+  };
+  $queriesExtraSchema?: {
     [k: string]: CoreSchemaMetaSchema;
   };
 }

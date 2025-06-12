@@ -3470,6 +3470,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@metabridge/cli", "workspace:cli"],\
           ["@metabridge/plugin-base", "workspace:plugins/base"],\
+          ["@metabridge/plugin-typescript", "workspace:plugins/typescript"],\
           ["@metabridge/schema", "workspace:schema"],\
           ["@types/node", "npm:17.0.45"],\
           ["await-to-js", "npm:3.0.0"],\

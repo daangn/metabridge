@@ -13,6 +13,7 @@
     "zod": "^3.13.4"
   },
   "devDependencies": {
+    "@metabridge/plugin-typescript": "workspace:^",
     "@types/node": "^17.0.21",
     "typescript": "^4.6.2"
   }

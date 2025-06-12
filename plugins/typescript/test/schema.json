@@ -35,6 +35,10 @@
       "minimumSupportAppVersion": {
         "android": "1.1.1",
         "ios": "1.1.1"
+      },
+      "extra": {
+        "foo": "hello",
+        "bar": 123
       }
     }
   },
@@ -72,6 +76,14 @@
       },
       "required": ["value"],
       "additionalProperties": false
+    }
+  },
+  "$queriesExtraSchema": {
+    "foo": {
+      "type": "string"
+    },
+    "bar": {
+      "type": "number"
     }
   }
 }

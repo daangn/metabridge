@@ -1,5 +1,5 @@
 export interface MetaBridgeDriver {
-  onQueried: (queryName: string, requestBody: any) => Promise<any>;
+  onQueried: (queryName: string, requestBody: any, extra?: any) => Promise<any>;
   onSubscribed: (
     subscriptionName: string,
     requestBody: any,
