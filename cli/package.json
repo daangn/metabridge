@@ -1,19 +1,19 @@
 {
   "name": "@metabridge/cli",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "bin": {
     "metabridge-cli": "./bin/run"
   },
   "dependencies": {
-    "@metabridge/plugin-base": "^0.5.0",
-    "@metabridge/schema": "^0.5.0",
+    "@metabridge/plugin-base": "^0.6.0",
+    "@metabridge/schema": "^0.6.0",
     "await-to-js": "^3.0.0",
     "commander": "^9.0.0",
     "tsm": "^2.2.1",
     "zod": "^3.13.4"
   },
   "devDependencies": {
-    "@metabridge/plugin-typescript": "^0.6.0",
+    "@metabridge/plugin-typescript": "^0.7.0",
     "@types/node": "^17.0.21",
     "typescript": "^4.6.2"
   }
