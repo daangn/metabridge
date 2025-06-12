@@ -121,12 +121,12 @@ const plugin: Plugin = {
 
         if (schemaValue.extra) {
           const extra = schemaValue.extra;
-          const extraString = dedent`${JSON.stringify(extra)}`;
+          const extraString = JSON.stringify(extra);
 
           return dedent`
           ${functionName}(req) {
               const extra = ${extraString}
-              return driver.onQueried("${queryName}", req, extra)
+              return driver.onQueried("${queryName}", req, { extra })
             },
           `;
         }
@@ -202,7 +202,10 @@ const plugin: Plugin = {
 
     const sdk = pipe(
       replaceAll("Scaffolded", pascalCase(schema.appName)),
-      replaceAll("extra?: any", `extra?: ${extraTypeReplacement}`),
+      replaceAll(
+        "context?: any",
+        `context?: { extra: ${extraTypeReplacement} }`
+      ),
       replaceAll(
         "  /* definitions */",
         [...queryDefinitions, ...subscriptionDefinitions].join("\n")
