@@ -49,13 +49,23 @@ import path from "path";
           data: string;
           [k: string]: unknown;
         };
+        MyAppQueriesExtra: {
+          foo?: string;
+          bar?: number;
+        };
       }
       export interface StringValue {
         value: string;
       }
 
       export interface MetaBridgeDriver {
-        onQueried: (queryName: string, requestBody: any) => Promise<any>;
+        onQueried: (
+          queryName: string,
+          requestBody: any,
+          context?: {
+            extra: MyAppBridgeSchema["MyAppQueriesExtra"];
+          }
+        ) => Promise<any>;
         onSubscribed: (
           subscriptionName: string,
           requestBody: any,
@@ -107,7 +117,8 @@ import path from "path";
         return {
           driver,
           getItemFromStorage(req) {
-            return driver.onQueried("STORAGE.GET", req);
+            const extra = { foo: "hello", bar: 123 };
+            return driver.onQueried("STORAGE.GET", req, { extra });
           },
           subscribe(req, listener) {
             return driver.onSubscribed("STREAM.SUBSCRIBE", req, listener);
