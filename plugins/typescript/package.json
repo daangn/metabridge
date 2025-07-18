@@ -1,6 +1,6 @@
 {
   "name": "@metabridge/plugin-typescript",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "main": "lib/index.js",
   "files": [
     "lib",
@@ -11,7 +11,7 @@
     "test": "yarn build && yarn node -r tsm ./test/index.test.ts"
   },
   "dependencies": {
-    "@metabridge/plugin-base": "^0.6.0",
+    "@metabridge/plugin-base": "^0.7.0",
     "change-case": "^4.1.2",
     "dedent": "^0.7.0",
     "json-schema-to-typescript": "^15.0.4",
@@ -19,7 +19,7 @@
     "prettier": "^2.5.1"
   },
   "devDependencies": {
-    "@metabridge/cli": "^0.6.0",
+    "@metabridge/cli": "^0.7.0",
     "@types/dedent": "^0.7.0",
     "@types/lodash": "^4.14.179",
     "@types/node": "^17.0.41",
