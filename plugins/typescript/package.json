@@ -14,7 +14,7 @@
     "@metabridge/plugin-base": "^0.6.0",
     "change-case": "^4.1.2",
     "dedent": "^0.7.0",
-    "json-schema-to-typescript": "^10.1.5",
+    "json-schema-to-typescript": "^15.0.4",
     "lodash": "^4.17.21",
     "prettier": "^2.5.1"
   },
