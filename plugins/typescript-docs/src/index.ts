@@ -28,7 +28,7 @@ const plugin: Plugin = {
           window.title = \`${titleText}\`;
         } catch (e) {}
         try {
-          window.schema = JSON.parse(\`${JSON.stringify(schema)}\`);
+          window.schema = JSON.parse(\`${JSON.stringify(schema).replace(/`/g, "\\`")}\`);
         } catch (e) {}
       `,
       null as any
