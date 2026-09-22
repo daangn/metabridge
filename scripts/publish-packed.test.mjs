@@ -6,7 +6,7 @@ import { resolve } from 'node:path';
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 
-for (const scenario of ['new', 'published', 'integrity', 'auth']) {
+for (const scenario of ['new', 'published', 'integrity', 'auth', 'propagation']) {
   test(`packed publishing: ${scenario}`, () => {
     const dir = mkdtempSync(resolve(tmpdir(), 'publish-packed-'));
     try {
@@ -24,16 +24,18 @@ if (process.argv[2] === 'view') {
   else { console.log(JSON.stringify({error:{code:process.env.SCENARIO === 'auth' ? 'E401' : 'E404'}})); process.exit(1); }
 }
 `, {mode: 0o755});
+      writeFileSync(resolve(dir, 'gh'), '#!/usr/bin/env node\nprocess.exit(0);\n', {mode: 0o755});
       const log = resolve(dir, 'commands');
       writeFileSync(log, '');
-      const result = spawnSync(process.execPath, ['scripts/publish-packed.mjs', dir, '--dry-run'], {
-        encoding: 'utf8', env: {...process.env, PATH: dir + ':' + process.env.PATH, LOG: log, SCENARIO: scenario}
+      const result = spawnSync(process.execPath, ['scripts/publish-packed.mjs', dir, ...(scenario === 'propagation' ? [] : ['--dry-run'])], {
+        encoding: 'utf8', env: {...process.env, PATH: dir + ':' + process.env.PATH, LOG: log, SCENARIO: scenario, GITHUB_REPOSITORY: 'test/repo', GITHUB_SHA: 'test-sha'}
       });
       const commands = readFileSync(log, 'utf8');
       assert.equal(result.status, ['integrity', 'auth'].includes(scenario) ? 1 : 0, result.stderr);
-      assert.equal(commands.includes('publish '), scenario === 'new');
+      assert.equal(commands.includes('publish '), ['new', 'propagation'].includes(scenario));
       if (scenario === 'new') assert.match(commands, /--ignore-scripts --dry-run/);
       if (scenario === 'integrity') assert.equal(commands, '');
+      if (scenario === 'propagation') assert.equal(commands.split('view ').length - 1, 1);
     } finally { rmSync(dir, {recursive: true, force: true}); }
   });
 }
