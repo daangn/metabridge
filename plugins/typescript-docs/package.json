@@ -61,5 +61,14 @@
     "typescript": "^5.9.3",
     "vite": "^6.4.3",
     "vite-plugin-singlefile": "^2.3.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daangn/metabridge.git",
+    "directory": "plugins/typescript-docs"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   }
 }

@@ -10,5 +10,14 @@
   },
   "devDependencies": {
     "typescript": "^4.6.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daangn/metabridge.git",
+    "directory": "plugins/base"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   }
 }
