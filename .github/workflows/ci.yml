@@ -25,4 +25,5 @@ jobs:
       - run: yarn workspace @metabridge/plugin-typescript-docs template:typecheck
       - run: yarn workspace @metabridge/plugin-typescript-docs exec playwright install --with-deps chromium
       - run: yarn workspace @metabridge/plugin-typescript-docs test:browser
-      - run: yarn changeset status
+      - run: yarn changeset status --since=origin/main
+        if: ${{ !startsWith(github.head_ref || github.ref_name, 'changeset-release/') }}
