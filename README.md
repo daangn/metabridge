@@ -84,7 +84,8 @@ versions are skipped. The repository root is private and is never published.
 - The `npm` GitHub environment is used only by the publishing job. Restrict its
   deployment branches to `main` in repository settings.
 - npm requires a matching `repository.url`; package manifests include this
-  metadata. The workflow uses GitHub-hosted runners and Node 24 with npm 11.
+  metadata. The workflow uses GitHub-hosted runners, Node 22.14 for build/browser checks
+  (Yarn 4.8 PnP compatibility), and Node 24 with npm 11 for publishing.
 
 The release PR is created with `GITHUB_TOKEN`, so GitHub does not automatically
 trigger PR workflows for that bot-generated commit. The release workflow repeats
