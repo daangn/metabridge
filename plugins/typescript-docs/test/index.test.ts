@@ -1,16 +1,16 @@
-import exec from "exec-sh";
+import { execFileSync } from "child_process";
+import path from "path";
 
-(async () => {
-  const command = [
-    "yarn",
+execFileSync(
+  "yarn",
+  [
     "metabridge-cli",
     "--plugin",
-    "@metabridge/plugin-typescript-docs",
+    path.resolve(__dirname, "../lib"),
     "--schema",
     "./test/schema.json",
     "--output",
     "./test/schema.output.html",
-  ].join(" ");
-
-  await exec.promise(command, true);
-})();
+  ],
+  { stdio: "inherit" }
+);
