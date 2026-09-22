@@ -106,9 +106,12 @@ jobs:
           package-manager-cache: false
       - run: corepack enable
       - run: yarn install --immutable
-      - uses: changesets/action/publish@66d7d1ddafddf1ef45f98ee51a7496f9cdadb2f4 # v2.1.2
-        env:
-          # Actions invoke node directly, so load Yarn PnP for CLI resolution.
-          NODE_OPTIONS: --require ${{ github.workspace }}/.pnp.cjs --experimental-loader ${{ github.workspace }}/.pnp.loader.mjs
+      - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
         with:
-          pack-dir-artifact-id: ${{ needs.pack.outputs.pack-dir-artifact-id }}
+          artifact-ids: ${{ needs.pack.outputs.pack-dir-artifact-id }}
+          path: ${{ runner.temp }}/changeset-pack
+          merge-multiple: true
+      - name: Publish packed packages with npm OIDC
+        run: node scripts/publish-packed.mjs "$RUNNER_TEMP/changeset-pack"
+        env:
+          GH_TOKEN: ${{ github.token }}
