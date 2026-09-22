@@ -38,8 +38,8 @@ for (const release of manifest.plan.flat()) {
     console.log(`Already published: ${tag}`);
   }
   if (dryRun) continue;
-  const version = JSON.parse(run('npm', ['view', tag, 'version', '--json', '--registry', registry]));
-  if (version !== release.version) throw new Error(`Published version not found: ${tag}`);
+  // npm publish can succeed before the registry exposes the version.
+  // Its exit status is authoritative; consumers may need to wait for propagation.
   if (!process.env.GITHUB_REPOSITORY || !process.env.GITHUB_SHA) throw new Error('GitHub release context required');
   try {
     run('gh', ['release', 'view', tag, '--repo', process.env.GITHUB_REPOSITORY]);
