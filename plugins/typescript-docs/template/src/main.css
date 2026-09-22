@@ -22,3 +22,8 @@ body,
 #root {
   height: 100%;
 }
+
+/* Keep the tab bar stationary; each tab owns its scrolling content. */
+.playground-screen-content {
+  overflow: hidden;
+}

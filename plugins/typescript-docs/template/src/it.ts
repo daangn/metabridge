@@ -13,7 +13,7 @@ export const { title = "MyApp Bridge" } = window;
 
 export function getSchema() {
   if (!window.schema) {
-    return sampleSchema as TypeSchema;
+    return sampleSchema as unknown as TypeSchema;
   }
 
   return window.schema;

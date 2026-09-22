@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 import styled from "@emotion/styled";
 
 interface CodeSnippetProps {
+  children?: React.ReactNode;
   language: "json" | "typescript";
 }
 const CodeSnippet: React.FC<CodeSnippetProps> = (props) => {
@@ -15,7 +16,7 @@ const CodeSnippet: React.FC<CodeSnippetProps> = (props) => {
 
       return () => {
         delete codeRef.current?.dataset.highlighted;
-      }
+      };
     }
   }, [codeRef, props.children]);
 

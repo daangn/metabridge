@@ -11,3 +11,7 @@
 #.pnp.*
 
 .DS_Store
+
+# Browser regression test artifacts
+**/test-results/
+**/playwright-report/
