@@ -2715,7 +2715,7 @@ const RAW_RUNTIME_STATE =
           ["jsonpointer", "npm:5.0.1"],\
           ["lodash", "npm:4.17.21"],\
           ["lodash-es", "npm:4.17.21"],\
-          ["nanoid", "npm:3.3.11"],\
+          ["nanoid", "npm:3.3.19"],\
           ["prop-types", "npm:15.8.1"],\
           ["react", "npm:18.3.1"],\
           ["react-is", "npm:16.9.0"]\
@@ -5665,13 +5665,6 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["nanoid", [\
-      ["npm:3.3.11", {\
-        "packageLocation": "./.yarn/cache/nanoid-npm-3.3.11-f98c1f9ef6-73b5afe597.zip/node_modules/nanoid/",\
-        "packageDependencies": [\
-          ["nanoid", "npm:3.3.11"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
       ["npm:3.3.19", {\
         "packageLocation": "./.yarn/cache/nanoid-npm-3.3.19-b508bd6b51-a330adb28d.zip/node_modules/nanoid/",\
         "packageDependencies": [\
