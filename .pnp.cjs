@@ -1340,7 +1340,7 @@ const RAW_RUNTIME_STATE =
           ["@pnpm/deps.graph-sequencer", "npm:1100.0.1"],\
           ["cac", "npm:7.0.0"],\
           ["import-meta-resolve", "npm:4.2.0"],\
-          ["launch-editor", "npm:2.14.1"],\
+          ["launch-editor", "npm:2.14.2"],\
           ["package-manager-detector", "npm:1.8.0"],\
           ["semver", "npm:7.8.5"],\
           ["tinyexec", "npm:1.3.1"]\
@@ -5393,12 +5393,12 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["launch-editor", [\
-      ["npm:2.14.1", {\
-        "packageLocation": "./.yarn/cache/launch-editor-npm-2.14.1-72c53f4965-335d12ca43.zip/node_modules/launch-editor/",\
+      ["npm:2.14.2", {\
+        "packageLocation": "./.yarn/cache/launch-editor-npm-2.14.2-24f3a4fc0f-8a3a82314e.zip/node_modules/launch-editor/",\
         "packageDependencies": [\
-          ["launch-editor", "npm:2.14.1"],\
+          ["launch-editor", "npm:2.14.2"],\
           ["picocolors", "npm:1.1.1"],\
-          ["shell-quote", "npm:1.10.0"]\
+          ["shell-quote", "npm:1.12.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -6646,10 +6646,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["shell-quote", [\
-      ["npm:1.10.0", {\
-        "packageLocation": "./.yarn/cache/shell-quote-npm-1.10.0-8aabc0056e-d4a22aeefe.zip/node_modules/shell-quote/",\
+      ["npm:1.12.0", {\
+        "packageLocation": "./.yarn/cache/shell-quote-npm-1.12.0-07cdcb44f1-18b3e38227.zip/node_modules/shell-quote/",\
         "packageDependencies": [\
-          ["shell-quote", "npm:1.10.0"]\
+          ["shell-quote", "npm:1.12.0"]\
         ],\
         "linkType": "HARD"\
       }]\
