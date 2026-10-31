@@ -2220,7 +2220,7 @@ const RAW_RUNTIME_STATE =
           ["commander", "npm:9.5.0"],\
           ["tsm", "npm:2.3.0"],\
           ["typescript", "patch:typescript@npm%3A4.9.5#optional!builtin<compat/typescript>::version=4.9.5&hash=289587"],\
-          ["zod", "npm:3.24.2"]\
+          ["zod", "npm:4.6.6"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -7489,10 +7489,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["zod", [\
-      ["npm:3.24.2", {\
-        "packageLocation": "./.yarn/cache/zod-npm-3.24.2-ab80dc0969-604c62a8cf.zip/node_modules/zod/",\
+      ["npm:4.6.6", {\
+        "packageLocation": "./.yarn/cache/zod-npm-4.6.6-e95f9c541d-ce628fb334.zip/node_modules/zod/",\
         "packageDependencies": [\
-          ["zod", "npm:3.24.2"]\
+          ["zod", "npm:4.6.6"]\
         ],\
         "linkType": "HARD"\
       }]\
