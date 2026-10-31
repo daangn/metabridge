@@ -10,7 +10,7 @@
     "await-to-js": "^3.0.0",
     "commander": "^9.0.0",
     "tsm": "^2.2.1",
-    "zod": "^3.13.4"
+    "zod": "^4.6.6"
   },
   "devDependencies": {
     "@metabridge/plugin-typescript": "^0.8.1",
