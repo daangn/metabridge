@@ -59,7 +59,7 @@
     "rollup": "^4.59.0",
     "tsm": "^2.2.1",
     "typescript": "^5.9.3",
-    "vite": "^6.4.3",
+    "vite": "^6.4.5",
     "vite-plugin-singlefile": "^2.3.3"
   },
   "repository": {
